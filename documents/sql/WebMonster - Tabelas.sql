@@ -1,5 +1,3 @@
---CRIAÇÃO DAS TABELAS
-
 CREATE TABLE tb_produto
 (
     cd_produto INTEGER NOT NULL AUTO_INCREMENT,
@@ -34,8 +32,6 @@ CREATE TABLE cliente
     cd_operadora_cartao VARCHAR(30),
     PRIMARY KEY(cd_cliente)
 );
-
---CRIAÇÃO DAS TABELAS DE RESOLUÇÃO
 
 CREATE TABLE ingrediente_produto
 (
