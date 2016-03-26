@@ -62,7 +62,7 @@ CREATE TABLE tb_pedido_parcela
     cd_parcela INTEGER,
     vl_parcela DECIMAL(10,2),
     PRIMARY KEY(cd_pedido)
-)
+);
 
 CREATE TABLE tb_transacao
 (
@@ -70,20 +70,20 @@ CREATE TABLE tb_transacao
  cd_pedido INTEGER,
  cd_emissao INTEGER,
  dt_emissao DATETIME,
- nm_transacao INTEGER,
- ic_tipo_pagamento INTEGER,
+ nm_transacao VARCHAR(60),
+ ic_tipo_pagamento VARCHAR(15),
  dt_transacao DATETIME,
  dt_ult_evento DATETIME,
  cd_ident_transacao INTEGER,
  ic_status_transacao INTEGER,
- nm_metodo_pagamento VARCHAR(60)
- PRIMARY KEY(cd_pedido)
-)
+ nm_metodo_pagamento VARCHAR(60),
+ PRIMARY KEY(cd_transacao)
+);
 
 
---CRIAÇÃO DAS TABELAS DE RESOLUÇÃO
+--CRIAÇÃO DAS TABELAS DE RESOLUÇÃO;
 
-CREATE TABLE ingrediente_produto
+CREATE TABLE tb_ingrediente_produto
 (
 	cd_produto INTEGER NOT NULL,
     cd_ingrediente INTEGER NOT NULL,
@@ -106,80 +106,80 @@ CREATE TABLE tb_produto_pedido
     qt_produto_pedido INTEGER        
 );
 
-ALTER TABLE ingrediente_produto
+ALTER TABLE tb_ingrediente_produto
 ADD CONSTRAINT FK_PRODUTO_INGREDIENTE_PRODUTO
 FOREIGN KEY(cd_produto)
-REFERENCES produto(cd_produto);
+REFERENCES tb_produto(cd_produto);
 
-ALTER TABLE ingrediente_produto
+ALTER TABLE tb_ingrediente_produto
 ADD CONSTRAINT FK_INGREDIENTE_INGREDIENTE_PRODUTO
 FOREIGN KEY(cd_ingrediente)
-REFERENCES ingrediente(cd_ingrediente);
+REFERENCES tb_ingrediente(cd_ingrediente);
 
-ALTER TABLE cliente_pedido
+ALTER TABLE tb_cliente_pedido
 ADD CONSTRAINT FK_PEDIDO_CLIENTE_PEDIDO
 FOREIGN KEY(cd_pedido)
-REFERENCES pedido(cd_pedido);
+REFERENCES tb_pedido(cd_pedido);
 
-ALTER TABLE cliente_pedido
+ALTER TABLE tb_cliente_pedido
 ADD CONSTRAINT FK_CLIENTE_CLIENTE_PEDIDO
 FOREIGN KEY(cd_cliente)
-REFERENCES cliente(cd_cliente);
+REFERENCES tb_cliente(cd_cliente);
 
-ALTER TABLE produto_pedido
+ALTER TABLE tb_produto_pedido
 ADD CONSTRAINT FK_PEDIDO_PRODUTO_PEDIDO
 FOREIGN KEY(cd_pedido)
-REFERENCES pedido(cd_pedido);
+REFERENCES tb_pedido(cd_pedido);
 
-ALTER TABLE produto_pedido
+ALTER TABLE tb_produto_pedido
 ADD CONSTRAINT FK_PRODUTO_PRODUTO_PEDIDO
 FOREIGN KEY(cd_produto)
-REFERENCES produto(cd_produto);
+REFERENCES tb_produto(cd_produto);
 
 
---- CARGA DE DADOS 
-
---PRODUTOS
--- refrigerantes
+-- CARGA DE DADOS 
+-- PRODUTOS
+-- refrigerantes;
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Coca Cola','Refrigerante de 600ml',6.50,10)
-
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Coca Cola','Refrigerante de 1 litro',10.00,12)
+values ('Coca Cola','Refrigerante de 600ml',6.50,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Guarana Antartica','Refrigerante de 600ml',4.50,10)
+values ('Coca Cola','Refrigerante de 1 litro',10.00,12);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Guarana Antartica','Refrigerante de 2 litros',8.50,10)
+values ('Guarana Antartica','Refrigerante de 600ml',4.50,10);
+
+INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
+values ('Guarana Antartica','Refrigerante de 2 litros',8.50,10);
+select * from tb_produto;
 
 -- cervejas
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Cerveja Brahma','Cerveja de 600ml',6.50,10)
+values ('Cerveja Brahma','Cerveja de 600ml',6.50,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Cerveja Brahma','Cerveja de litrao',10.00,12)
+values ('Cerveja Brahma','Cerveja de litrao',10.00,12);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Cerveja Skol','Cerveja de 600ml',4.50,10)
+values ('Cerveja Skol','Cerveja de 600ml',4.50,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Cerveja Skol','Cerveja de litrao',9.00,10)
+values ('Cerveja Skol','Cerveja de litrao',9.00,10);
 
 -- comidas
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Mussarela','Molho, mussarela e orégano.',18.00,10)
+values ('Pizza Mussarela','Molho, mussarela e orégano.',18.00,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Napolitana','Molho, mussarela, tomate, parmesão e orégano.',18.00,10)
+values ('Pizza Napolitana','Molho, mussarela, tomate, parmesão e orégano.',18.00,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Portuguesa','Molho, mussarela, presunto, cebola, ovos, azeitona e orégano.',30.50,10)
+values ('Pizza Portuguesa','Molho, mussarela, presunto, cebola, ovos, azeitona e orégano.',30.50,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Provolone','Molho, mussarela, provolone e orégano.',25.00,10)
+values ('Pizza Provolone','Molho, mussarela, provolone e orégano.',25.00,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Pizza Siciliana','Molho, mussarela, champignon, bacon, pimentão, azeitona e orégano.',35.00,10)
@@ -194,57 +194,57 @@ INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Pedaço Torta mousse de chocolate','Pedaço mousse de chocolate',17.00,10)
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Rocambole de chocolate com doce de leite','Rocambole de chocolate com doce de leite',20.00,12)
+values ('Rocambole de chocolate com doce de leite','Rocambole de chocolate com doce de leite',20.00,12);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Mousse de chocolate','Mousse de chocolate',17.00,10)
+values ('Mousse de chocolate','Mousse de chocolate',17.00,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Sorvete 2 bolas','Sorvete 2 bolas',13.00,10)
+values ('Sorvete 2 bolas','Sorvete 2 bolas',13.00,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Banana Brule','Banana Brule',17.00,10)
+values ('Banana Brule','Banana Brule',17.00,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Picole Diletto','Picole Diletto',10.00,10)
+values ('Picole Diletto','Picole Diletto',10.00,10);
 
 
 -- IGREDIENTE
 
 INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values (nm_ingrediente,'ds_ingrediente',qt_ingrediente,vl_ingrediente)
+values ('Borda de Catupiry ','Borda de catupiry Original',1,5.10);
 
 INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values (nm_ingrediente,'ds_ingrediente',qt_ingrediente,vl_ingrediente)
+values ('Borda de Cheddar ','Borda de Cheddar',1,5.10);
 
 INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values (nm_ingrediente,'ds_ingrediente',qt_ingrediente,vl_ingrediente)
+values ('Azeitona','Azeitona com caroço',50,2.50);
 
 INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values (nm_ingrediente,'ds_ingrediente',qt_ingrediente,vl_ingrediente)
+values ('O dobro de queijo','2 vezes mais de queijo ',10,6.00);
 
 INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values (nm_ingrediente,'ds_ingrediente',qt_ingrediente,vl_ingrediente)
+values ('Oregano','Oregano',100,2.50);
 
 
 -- CLIENTE 
 INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,nm_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
-values ('Genoveva' ,'Santos' ,13 ,34738100 ,'F' ,'26325872800' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Avenida Paris ','30' ,'ap' ,'genovevisdasilva@gmail.com' ,'' ,'' ,getdate()) 
+values ('Genoveva' ,'Santos' ,13 ,34738100 ,'F' ,'26325872800' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Avenida Paris ','30' ,'ap' ,'genovevisdasilva@gmail.com' ,'' ,'' ,curdate() ) ;
 
 INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,nm_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
-values ('Gisele' ,'Silva' ,11 ,34738180 ,'F' ,'75786244407' ,'' ,'Brasil' ,'SP','Praia Grande','11725380' ,'Tude Bastos' ,'Rua padre gastão','444' ,'casa' ,'yunesnoronha@gmail.com' ,'' ,'' ,getdate())
+values ('Gisele' ,'Silva' ,11 ,34738180 ,'F' ,'75786244407' ,'' ,'Brasil' ,'SP','Praia Grande','11725380' ,'Tude Bastos' ,'Rua padre gastão','444' ,'casa' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate());
 
 INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,nm_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
-values ('Gertrudes' ,'Selfie' ,13 ,988849091 ,'F' ,'57338831700' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Rua Mário Tamashiro - até 299/300 ','300' ,'ap' ,'yunesnoronha@gmail.com' ,'' ,'' ,getdate())
+values ('Gertrudes' ,'Selfie' ,13 ,988849091 ,'F' ,'57338831700' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Rua Mário Tamashiro - até 299/300 ','300' ,'ap' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate());
 
 
---CABECA
+-- CABECA
 INSERT INTO tb_pedido	(cd_pedido ,dt_emissao,vl_total_pedido ,ic_cancelado,qt_total_parcela)
 values ()	
---ITEM
+-- ITEM
 INSERT INTO tb_produto_pedido 	(cd_pedido ,cd_produto ,vl_unitario_produto,vl_total_produto_pedido,ds_obs,qt_produto_pedido) 
 values ()
 
---PARCELA
+-- PARCELA
 INSERT INTO tb_pedido_parcela cd_pedido,dt_emissao DATETIME,cd_parcela INTEGER,vl_parcela DECIMAL(10,2)
 values ()
