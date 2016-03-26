@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Simple Payment - Prototype</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+            <nav class="navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <i class="sr-only">Menu</i>
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                        </button>
+                        <a class="navbar-brand" href="#">Simple Payment</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#home"><i class="glyphicon glyphicon-tag"></i> Promoções</a></li>
+                            <li><a href="#cardapio"><i class="glyphicon glyphicon-book"></i> Cardápio</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+                            <li><a href="pedido.html"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div id="home" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#home" data-slide-to="0" class="active"></li>
+            <li data-target="#home" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="img/1.jpg" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Pizza em dobro!</h1>
+                        <p>Na compra de uma pizza você leva outra grátis. Promoção 
+                           válida somente no período da janta.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Adicionar</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="img/2.jpg" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Pizza em dobro!</h1>
+                        <p>Na compra de uma pizza você leva outra grátis. Promoção 
+                           válida somente no período da janta.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Adicionar</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#home" role="button" data-slide="prev">
+            <i class="glyphicon glyphicon-chevron-left" aria-hidden="true"></i>
+            <i class="sr-only">Previous</i>
+        </a>
+        <a class="right carousel-control" href="#home" role="button" data-slide="next">
+            <i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
+            <i class="sr-only">Next</i>
+        </a>
+    </div>
+
+    <div id="cardapio" class="container">
+        <div class="row">
+            <h1 class="text-center">Os mais pedidos</h1>
+        </div>
+        <div class="row text-center">
+            <br>
+            <div class="col-xs-6">
+                <img class="img-circle" src="img/3.jpg" alt="Pizza de Mussarela" width="150" height="150">
+                <h2>Pizza de Calabresa</h2>
+                <p class="text-justify">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id 
+                    nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. 
+                    Praesent commodo cursus magna.
+                </p>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produtoPedido">
+                    Adicionar
+                </button>
+                <div class="modal fade" id="produtoPedido" tabindex="-1" role="dialog" aria-labelledby="Produto">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h2 class="modal-title " id="Produto"><b>Pizza de Calabresa</b></h2>
+                            </div>
+                            <div class="modal-body">
+                                <h3>Promoção de final de semana :)</h3>
+                                <h1 class="text-danger"><span class="preco">De: </span><b><s>R$ 35,90</s></b></h1>
+                                <h1 class="text-success"><span class="preco">Por: </span><b>R$ 29,90</b></h1>
+                                <div class="form-inline">
+                                    <label for="qtd">Quantidade: </label>
+                                    <div class="input-group">                                        
+                                        <label class="sr-only" for="qtd">Quantidade</label>
+                                        <div class="input-group-addon btn"><i class="glyphicon glyphicon-plus"></i></div>
+                                        <input type="text" id="qtd" class="form-control text-center" value="1">
+                                        <div class="input-group-addon btn"><i class="glyphicon glyphicon-minus"></i></div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <h2><b>Igredientes</b></h2>
+                                <div class="row container">
+                                    <div class="col-xs-12">
+                                        <h4 class="text-justify">
+                                            <b>*A pizza é confeccionada com bordas recheadas de Catupiry&trade;.
+                                            </b>
+                                        </h4>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <h4><input type="checkbox"> Sem cebola</h4>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <h4><input type="checkbox"> Sem azeitona</h4>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <h4><input type="checkbox"> Sem borda recheada</h4>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="obs col-xs-12">
+                                        <h4 class="text-justify"><b>Observações:</b></h4>
+                                        <textarea class="form-control" rows="3">Pouco azeite, ao ponto, [...]</textarea>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Adicionar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <img class="img-circle" src="img/2.jpg" alt="Pizza de Frango com Catupiry" width="150" height="150">
+                <h2>Pizza de Frango com Catupiry&trade;</h2>
+                <p class="text-justify">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget 
+                    lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. 
+                    Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
+                </p>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produtoPedido">
+                    Adicionar
+                </button><br><br>
+            </div>
+            <div class="col-xs-6">
+                <img class="img-circle" src="img/2.jpg" alt="Generic placeholder image" width="150" height="150">
+                <h2>Pizza de Pepperoni</h2>
+                <p class="text-justify">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas 
+                    eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus 
+                    commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                </p>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produtoPedido">
+                    Adicionar
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <img class="img-circle" src="img/1.jpg" alt="Generic placeholder image" width="150" height="150">
+                <h2>Pizza à Moda da Casa</h2>
+                <p class="text-justify">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas 
+                    eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus 
+                    commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produtoPedido">
+                    Adicionar
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <h1 class="text-center">Demais opções do cardápio</h1>
+            <div class="row text-center">
+                <br>
+                <div class="col-xs-6">
+                    <img class="img-circle" src="img/3.jpg" alt="Pizza de Mussarela" width="150" height="150">
+                    <h2>Pizza de Calabresa</h2>
+                    <p class="text-justify">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id 
+                        nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. 
+                        Praesent commodo cursus magna.
+                    </p>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produtoPedido">
+                    Adicionar
+                </button><br><br>
+                </div>
+                <div class="col-xs-6">
+                    <img class="img-circle" src="img/2.jpg" alt="Pizza de Frango com Catupiry" width="150" height="150">
+                    <h2>Pizza de Frango com Catupiry&trade;</h2>
+                    <p class="text-justify">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget 
+                        lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. 
+                        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
+                    </p>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produtoPedido">
+                        Adicionar
+                    </button><br><br>
+                </div>
+                <div class="col-xs-6">
+                    <img class="img-circle" src="img/2.jpg" alt="Generic placeholder image" width="150" height="150">
+                    <h2>Pizza de Pepperoni</h2>
+                    <p class="text-justify">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas 
+                        eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus 
+                        commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                    </p>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produtoPedido">
+                        Adicionar
+                    </button>
+                </div>
+                <div class="col-xs-6">
+                    <img class="img-circle" src="img/1.jpg" alt="Generic placeholder image" width="150" height="150">
+                    <h2>Pizza à Moda da Casa</h2>
+                    <p class="text-justify">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas 
+                        eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus 
+                        commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produtoPedido">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <footer class="container">
+        <p class="pull-right"><a href="#">Voltar para o topo</a></p>
+        <p>&copy; 2016 Simple Payment &middot; Todos os direitos reservados</p>
+    </footer>
+    
+    <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">$('.carousel').carousel({interval: 7000});</script>
+</body>
+</html>
