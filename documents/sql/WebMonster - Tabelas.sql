@@ -136,6 +136,17 @@ ADD CONSTRAINT FK_PRODUTO_PRODUTO_PEDIDO
 FOREIGN KEY(cd_produto)
 REFERENCES tb_produto(cd_produto);
 
+-- configuração do auto_increment
+
+ALTER TABLE tb_produto  AUTO_INCREMENT = 0;
+ALTER TABLE tb_ingrediente AUTO_INCREMENT = 0;
+ALTER TABLE tb_cliente AUTO_INCREMENT = 0;
+ALTER TABLE tb_pedido AUTO_INCREMENT = 0;
+ALTER TABLE tb_pedido_parcela AUTO_INCREMENT = ;
+ALTER TABLE tb_transacao AUTO_INCREMENT = ;
+ALTER TABLE tb_ingrediente_produto AUTO_INCREMENT = 0;
+ALTER TABLE tb_cliente_pedido AUTO_INCREMENT = 0;
+ALTER TABLE tb_produto_pedido AUTO_INCREMENT = 0;
 
 -- CARGA DE DADOS 
 -- PRODUTOS
@@ -148,6 +159,7 @@ values ('Coca Cola','Refrigerante de 1 litro',10.00,12);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Guarana Antartica','Refrigerante de 600ml',4.50,10);
+
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Guarana Antartica','Refrigerante de 2 litros',8.50,10);
@@ -163,6 +175,7 @@ values ('Cerveja Brahma','Cerveja de litrao',10.00,12);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Cerveja Skol','Cerveja de 600ml',4.50,10);
+
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Cerveja Skol','Cerveja de litrao',9.00,10);
@@ -182,22 +195,23 @@ INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Pizza Provolone','Molho, mussarela, provolone e orégano.',25.00,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Siciliana','Molho, mussarela, champignon, bacon, pimentão, azeitona e orégano.',35.00,10)
+values ('Pizza Siciliana','Molho, mussarela, champignon, bacon, pimentão, azeitona e orégano.',35.00,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Vegetariana','Molho, mussarela, escarola, tomate, milho, ervilha e orégano.',25.00,10)
+values ('Pizza Vegetariana','Molho, mussarela, escarola, tomate, milho, ervilha e orégano.',25.00,10);
 
 
 -- sobremesas
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pedaço Torta mousse de chocolate','Pedaço mousse de chocolate',17.00,10)
+values ('Pedaço Torta mousse de chocolate','Pedaço mousse de chocolate',17.00,10);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Rocambole de chocolate com doce de leite','Rocambole de chocolate com doce de leite',20.00,12);
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Mousse de chocolate','Mousse de chocolate',17.00,10);
+
 
 INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
 values ('Sorvete 2 bolas','Sorvete 2 bolas',13.00,10);
