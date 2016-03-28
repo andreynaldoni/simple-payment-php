@@ -1,4 +1,4 @@
---CRIAÇÃO DAS TABELAS
+-- CRIAÇÃO DAS TABELAS
 
 CREATE TABLE tb_produto
 (
@@ -22,89 +22,90 @@ CREATE TABLE tb_ingrediente
 
 CREATE TABLE tb_cliente
 (
-    cd_cliente INTEGER NOT NULL AUTO_INCREMENT,
-    nm_cliente VARCHAR(60) NOT NULL,
-    nm_sobrenome VARCHAR(100),
-    cd_ddd INTEGER,
-    cd_telefone INTEGER,
-    ic_tipo_documento VARCHAR(2),
-    cd_cpf VARCHAR(15),
-    cd_cnpj VARCHAR(15),
-    nm_pais VARCHAR(15),
-    nm_estado VARCHAR(2),
-    nm_cidade VARCHAR(60),
-    cd_cep VARCHAR(8),
-    nm_bairro VARCHAR(60),
-    nm_rua    VARCHAR(80),
-    cd_numero INTEGER,
-    ds_complemento VARCHAR(40),
-    nm_email_cliente VARCHAR(100),
-    cd_cartao_cliente VARCHAR(30),
+    cd_cliente 			INTEGER NOT NULL AUTO_INCREMENT,
+    nm_cliente 			VARCHAR(60) NOT NULL,
+    nm_sobrenome 		VARCHAR(100),
+    cd_ddd 				INTEGER,
+    cd_telefone 		INTEGER,
+    ic_tipo_documento 	VARCHAR(2),
+    cd_cpf 				VARCHAR(15),
+    cd_cnpj 			VARCHAR(15),
+    nm_pais 			VARCHAR(15),
+    sg_estado 			CHAR(2),
+    nm_cidade 			VARCHAR(60),
+    cd_cep 				VARCHAR(8),
+    nm_bairro 			VARCHAR(60),
+    nm_rua    			VARCHAR(80),
+    cd_numero 			INTEGER,
+    ds_complemento 		VARCHAR(40),
+    nm_email_cliente 	VARCHAR(100),
+    cd_cartao_cliente 	VARCHAR(30),
     cd_operadora_cartao VARCHAR(30),
-    dt_validade_cartao DATE,
+    dt_validade_cartao 	DATE,
     PRIMARY KEY(cd_cliente)
 );
 
 CREATE TABLE tb_pedido
 (
-    cd_pedido INTEGER NOT NULL AUTO_INCREMENT,
-    dt_emissao DATETIME,
-    vl_total_pedido DECIMAL(10,2) NOT NULL,    
-    ic_cancelado CHAR(2),
-    qt_total_parcela INTEGER,
+    cd_pedido 			INTEGER NOT NULL AUTO_INCREMENT,
+    dt_emissao 			DATETIME,
+    vl_total_pedido 	DECIMAL(10,2) NOT NULL,    
+    ic_cancelado 		CHAR(2),
+    qt_total_parcela 	INTEGER,
+    cd_cliente			INTEGER,
     PRIMARY KEY(cd_pedido)
 );
 
-CREATE TABLE tb_pedido_parcela 
+CREATE TABLE tb_parcela 
 (
-    cd_pedido INTEGER NOT NULL AUTO_INCREMENT,
-    dt_emissao DATETIME,
-    cd_parcela INTEGER,
-    vl_parcela DECIMAL(10,2),
+    cd_pedido 	INTEGER NOT NULL AUTO_INCREMENT,
+    dt_emissao 	DATETIME,
+    cd_parcela 	INTEGER,
+    vl_parcela 	DECIMAL(10,2),
     PRIMARY KEY(cd_pedido)
 );
 
 CREATE TABLE tb_transacao
 (
- cd_transacao  INTEGER NOT NULL AUTO_INCREMENT,
- cd_pedido INTEGER,
- cd_emissao INTEGER,
- dt_emissao DATETIME,
- nm_transacao VARCHAR(60),
- ic_tipo_pagamento VARCHAR(15),
- dt_transacao DATETIME,
- dt_ult_evento DATETIME,
- cd_ident_transacao INTEGER,
- ic_status_transacao INTEGER,
- nm_metodo_pagamento VARCHAR(60),
+ cd_transacao  			INTEGER NOT NULL AUTO_INCREMENT,
+ cd_pedido 				INTEGER,
+ cd_emissao 			INTEGER,
+ dt_emissao 			DATETIME,
+ nm_transacao 			VARCHAR(60),
+ ic_tipo_pagamento 		VARCHAR(15),
+ dt_transacao 			DATETIME,
+ dt_ult_evento 			DATETIME,
+ cd_ident_transacao 	INTEGER,
+ ic_status_transacao 	INTEGER,
+ nm_metodo_pagamento 	VARCHAR(60),
  PRIMARY KEY(cd_transacao)
 );
 
-
---CRIAÇÃO DAS TABELAS DE RESOLUÇÃO;
+-- CRIAÇÃO DAS TABELAS DE RESOLUÇÃO
 
 CREATE TABLE tb_ingrediente_produto
 (
-	cd_produto INTEGER NOT NULL,
-    cd_ingrediente INTEGER NOT NULL,
-    qt_ingrediente_produto INTEGER NOT NULL
-);
-
-CREATE TABLE tb_cliente_pedido
-(
-	cd_cliente INTEGER NOT NULL,
-    cd_pedido INTEGER NOT NULL
+	cd_produto 							INTEGER NOT NULL,
+    cd_ingrediente 						INTEGER NOT NULL,
+    qt_ingrediente_produto 				INTEGER NOT NULL,
+    vl_adicional_ingrediente_produto 	DECIMAL(10,2)
 );
 
 CREATE TABLE tb_produto_pedido
 (
-    cd_pedido INTEGER NOT NULL,
-	cd_produto INTEGER NOT NULL,
-    vl_unitario_produto DECIMAL(10,2),   
+	cd_produto_pedido		INTEGER NOT NULL AUTO_INCREMENT,
+    cd_pedido 				INTEGER NOT NULL,
+	cd_produto 				INTEGER NOT NULL,
     vl_total_produto_pedido DECIMAL(10,2),    
-    ds_obs      VARCHAR(200),  
-    qt_produto_pedido INTEGER        
+    ds_obs      			VARCHAR(200),  
+    qt_produto_pedido 		INTEGER,
+    PRIMARY KEY(cd_produto_pedido)        
 );
+
+ALTER TABLE tb_pedido
+ADD CONSTRAINT FK_CLIENTE_PEDIDO
+FOREIGN KEY(cd_cliente)
+REFERENCES tb_cliente(cd_cliente);
 
 ALTER TABLE tb_ingrediente_produto
 ADD CONSTRAINT FK_PRODUTO_INGREDIENTE_PRODUTO
@@ -116,16 +117,6 @@ ADD CONSTRAINT FK_INGREDIENTE_INGREDIENTE_PRODUTO
 FOREIGN KEY(cd_ingrediente)
 REFERENCES tb_ingrediente(cd_ingrediente);
 
-ALTER TABLE tb_cliente_pedido
-ADD CONSTRAINT FK_PEDIDO_CLIENTE_PEDIDO
-FOREIGN KEY(cd_pedido)
-REFERENCES tb_pedido(cd_pedido);
-
-ALTER TABLE tb_cliente_pedido
-ADD CONSTRAINT FK_CLIENTE_CLIENTE_PEDIDO
-FOREIGN KEY(cd_cliente)
-REFERENCES tb_cliente(cd_cliente);
-
 ALTER TABLE tb_produto_pedido
 ADD CONSTRAINT FK_PEDIDO_PRODUTO_PEDIDO
 FOREIGN KEY(cd_pedido)
@@ -136,16 +127,25 @@ ADD CONSTRAINT FK_PRODUTO_PRODUTO_PEDIDO
 FOREIGN KEY(cd_produto)
 REFERENCES tb_produto(cd_produto);
 
+ALTER TABLE tb_parcela
+ADD CONSTRAINT FK_PEDIDO_PARCELA
+FOREIGN KEY(cd_pedido)
+REFERENCES tb_pedido(cd_pedido);
+
+ALTER TABLE tb_transacao
+ADD CONSTRAINT FK_PEDIDO_TRANSACAO
+FOREIGN KEY(cd_pedido)
+REFERENCES tb_pedido(cd_pedido);
+
 -- configuração do auto_increment
 
 ALTER TABLE tb_produto  AUTO_INCREMENT = 0;
 ALTER TABLE tb_ingrediente AUTO_INCREMENT = 0;
 ALTER TABLE tb_cliente AUTO_INCREMENT = 0;
 ALTER TABLE tb_pedido AUTO_INCREMENT = 0;
-ALTER TABLE tb_pedido_parcela AUTO_INCREMENT = ;
-ALTER TABLE tb_transacao AUTO_INCREMENT = ;
+ALTER TABLE tb_parcela AUTO_INCREMENT = 0;
+ALTER TABLE tb_transacao AUTO_INCREMENT = 0;
 ALTER TABLE tb_ingrediente_produto AUTO_INCREMENT = 0;
-ALTER TABLE tb_cliente_pedido AUTO_INCREMENT = 0;
 ALTER TABLE tb_produto_pedido AUTO_INCREMENT = 0;
 
 -- CARGA DE DADOS 
@@ -242,16 +242,16 @@ values ('Oregano','Oregano',100,2.50);
 
 
 -- CLIENTE 
-INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,nm_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
+INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
 values ('Genoveva' ,'Santos' ,13 ,34738100 ,'F' ,'26325872800' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Avenida Paris ','30' ,'ap' ,'genovevisdasilva@gmail.com' ,'' ,'' ,curdate() ) ;
 
-INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,nm_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
+INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
 values ('Gisele' ,'Silva' ,11 ,34738180 ,'F' ,'75786244407' ,'' ,'Brasil' ,'SP','Praia Grande','11725380' ,'Tude Bastos' ,'Rua padre gastão','444' ,'casa' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate());
 
-INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,nm_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
+INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
 values ('Gertrudes' ,'Selfie' ,13 ,988849091 ,'F' ,'57338831700' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Rua Mário Tamashiro - até 299/300 ','300' ,'ap' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate());
 
-
+/*
 -- CABECA
 INSERT INTO tb_pedido	(cd_pedido ,dt_emissao,vl_total_pedido ,ic_cancelado,qt_total_parcela)
 values ()	
@@ -260,5 +260,6 @@ INSERT INTO tb_produto_pedido 	(cd_pedido ,cd_produto ,vl_unitario_produto,vl_to
 values ()
 
 -- PARCELA
-INSERT INTO tb_pedido_parcela cd_pedido,dt_emissao DATETIME,cd_parcela INTEGER,vl_parcela DECIMAL(10,2)
+INSERT INTO tb_parcela cd_pedido,dt_emissao DATETIME,cd_parcela INTEGER,vl_parcela DECIMAL(10,2)
 values ()
+*/
