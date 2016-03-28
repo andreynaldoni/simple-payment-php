@@ -11,6 +11,63 @@
 * **[Visual Studio Code *(0.10.10+)*](https://code.visualstudio.com/)** :+1:
 * **[Git *(1.7+)*](https://git-scm.com/downloads)** :heart:
 
+#### Project structure (tree):
+```
+  |php-payment/
+  |--dao/
+  |  |--clienteDAO.php
+  |
+  |--documents/
+  |  |--prototype/
+  |    |--css/
+  |      |--bootstrap.min.css
+  |    |--fonts/
+  |      |--glyphicons-halflings-regular.eot
+  |      |--glyphicons-halflings-regular.svg
+  |      |--glyphicons-halflings-regular.ttf
+  |      |--glyphicons-halflings-regular.woff
+  |      |--glyphicons-halflings-regular.woff2
+  |    |--img/
+  |      |--1.jpg
+  |      |--2.jpg
+  |      |--3.jpg
+  |    |--js/
+  |      |--bootstrap.min.js
+  |      |--jquery-2.2.2.min.js
+  |    |--confirmacao.html
+  |    |--index.html
+  |    |--pagamento.html
+  |    |--pedido.html
+  |  |--sql/
+  |    |--limpeza.sql
+  |    |--simplepayment.sql
+  |  |--UML/
+  |    |--WebMonster - Tabelas.sql
+  |    |--CD - simplepayment.asta
+  |    |--CD simplepayment.pdf
+  |    |--cd simplepayment.png
+  |    |--model simplepayment.mwb
+  |    |--model simplepayment.png
+  |    |--UC Produto Pedido Cliente e Pagamento.asta
+  |    |--UC Simple Payment.pdf
+  |--model/
+  |  |--cliente.php
+  |  |--clientepedido.php
+  |  |--ingrediente.php
+  |  |--ingredienteproduto.php
+  |  |--pedido.php
+  |  |--produto.php
+  |  |--produtopedido.php
+  |--pagseguro/
+  |    |--[UOL's PagSeguro PHP module]
+  |--config.php
+  |--connection.php
+  |--database.php
+  |--index.php
+  |--LICENSE
+  |--README.MD
+```
+
 
 ## How to setup your environment
 
@@ -22,7 +79,7 @@ git clone https://github.com/andreynaldoni/simple-payment-php
 
 Start XAMPP Service 
 
-Type in your browser <http://localhost:8080/simple-payment-php/> then `Enter`
+Type in your browser <http://localhost/simple-payment-php/> then <kbd>Enter</kbd>
 
 
 ## What if you want to test it online?
