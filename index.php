@@ -7,9 +7,9 @@
 <body>
 
 <?php
-    require 'heroku/php/config.php';
-    require 'heroku/php/connection.php';
-    require 'heroku/php/dao/clienteDAO.php';
+    require 'web/config.php';
+    require 'web/connection.php';
+    require 'web/dao/clienteDAO.php';
 
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
