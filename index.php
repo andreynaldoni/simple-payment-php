@@ -2,7 +2,7 @@
 <html lang="pt_BR">
 <head>
 	<meta charset="UTF-8">
-	<title>WebMonster</title>
+	<title>Simplepayment</title>
 </head>
 <body>
 
