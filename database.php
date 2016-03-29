@@ -3,6 +3,12 @@
 function DBDelete($table, $where = null){
 	$table = DB_PREFIX . '_' . $table;
 	$where = ($where) ? " WHERE {$where}" : null;
+    
+    if($where){
+        DBEscape($where);
+        $where = implode(' AND ', $where);
+    }
+    
 	$query = "DELETE FROM {$table}{$where}";
 	return DBExecute($query);
 }
@@ -39,9 +45,25 @@ function DBDelete($table, $where = null){
 */
 
 //Função para Ler Dados
-	function DBSelect($table, $params = null, $fields = '*'){
+	function DBSelect($table, $params = null, $fields = null){
 		$table = DB_PREFIX . '_' . $table;
 		$params = ($params) ? " {$params}" : null;
+        $fields = ($fields) ? " {$fields}" : '*';
+        
+        if(!$fields){
+            DBEscape($fields);
+            $fields = implode(', ', $fields);
+        } else {
+            $fields = '*';
+        }
+        
+        if($params){
+            foreach ($params as $key => $value) {
+                $value = DBEscape($value);
+                $params[] = "{$key} = '{$value}'";
+            }
+            $params = implode(', ', $params);
+        }
 
 		$query = "SELECT {$fields} FROM {$table}{$params}";
 		$result = DBExecute($query);
@@ -58,7 +80,7 @@ function DBDelete($table, $where = null){
 
 //Exemplo de utilização
 /*
-	$produtos = DBRead('produto',"WHERE nm_produto = 'Nome do Produto'",'nm_produto, ds_produto');
+	$produtos = DBSelect('produto',"WHERE nm_produto = 'Nome do Produto'",'nm_produto, ds_produto');
 	var_dump($produtos);
 */
 
@@ -93,7 +115,7 @@ function DBDelete($table, $where = null){
 //Função para executar uma Query
 	function DBExecute($query, $insertId = false){
 		$link = DBConnect();
-		$result = mysqli_query($link, $query) or die(mysqli_error());
+		$result = mysqli_query($link, $query) or die(mysqli_error($link));
 		
 		if($insertId){
 			$result = mysqli_insert_id($link);
