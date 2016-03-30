@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt_BR">
-<head>
-	<meta charset="UTF-8">
-	<title>Simplepayment</title>
-</head>
-<body>
-
 <?php
+
+echo '
+        <!DOCTYPE html>
+        <html lang="pt_BR">
+        <head>
+            <meta charset="UTF-8">
+            <title>Simplepayment</title>
+        </head>
+        <body>
+';
+
     require 'web/config.php';
     require 'web/connection.php';
     require 'web/dao/clienteDAO.php';
@@ -27,9 +30,11 @@
             echo $linha;
         echo '</h4>';
     }
+
+echo '
+        Hello Word
+
+        </body>
+        </html>
+';
 ?>
-
-Hello Word
-
-</body>
-</html>
