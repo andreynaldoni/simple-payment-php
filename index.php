@@ -9,7 +9,7 @@
 
     require 'config.php';
     require 'connection.php';
-    //require 'clienteDAO.php';
+    require dirname(__FILE__).'/dao/clienteDAO.php';
 
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
