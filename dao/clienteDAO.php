@@ -40,4 +40,15 @@ include 'php-payment/model/cliente.php';
         
     }
 
+    $clienteDAO = new ClienteDAO();
+    
+    foreach($clientes as $cliente => $atual){
+        echo '<h4>';
+        $linha = '';
+            foreach($atual as $coluna => $value){
+                $linha = $linha.$value.' ';
+            }
+            echo $linha;
+        echo '</h4>';
+    }
 ?>
