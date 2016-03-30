@@ -6,11 +6,11 @@
     </head>
     <body>
 <?php
-    set_include_path(dirname(__FILE__).'/../');
-
+    set_include_path(dirname(__FILE__));
+    set_include_path(dirname(__FILE__).'/dao/');
     require 'config.php';
     require 'connection.php';
-    require 'dao/clienteDAO.php';
+    require 'clienteDAO.php';
 
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
