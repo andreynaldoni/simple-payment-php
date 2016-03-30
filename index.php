@@ -8,6 +8,7 @@
 <?php
     set_include_path(dirname(__FILE__));
     set_include_path(dirname(__FILE__).'/dao/');
+    set_include_path('/dao');
     require 'config.php';
     require 'connection.php';
     require 'clienteDAO.php';
