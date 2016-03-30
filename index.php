@@ -7,9 +7,9 @@
     <body>
 <?php
 
-    require 'config.php';
-    require 'connection.php';
-    require '/dao/clienteDAO.php';
+    include_once 'config.php';
+    include_once 'connection.php';
+    include_once '/dao/clienteDAO.php';
 
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
