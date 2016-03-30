@@ -4,10 +4,13 @@
         <meta charset="UTF-8">
         <title>Simplepayment</title>
     </head>
-    <body><?php
+    <body>
+<?php
     include 'config.php';
     include 'connection.php';
-    include '/dao/clienteDAO.php';
+    include 'dao/clienteDAO.php';
+
+    echo "Testando com Include";
 
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
