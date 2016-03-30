@@ -10,9 +10,9 @@ echo '
         <body>
 ';
 
-    require 'web/config.php';
-    require 'web/connection.php';
-    require 'web/dao/clienteDAO.php';
+    require 'config.php';
+    require 'connection.php';
+    require 'dao/clienteDAO.php';
 
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
