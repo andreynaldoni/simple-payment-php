@@ -6,12 +6,10 @@
     </head>
     <body>
 <?php
-    echo "teste";
 
-    set_include_path(dirname);
     require 'config.php';
     require 'connection.php';
-    require 'clienteDAO.php';
+    //require 'clienteDAO.php';
 
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
