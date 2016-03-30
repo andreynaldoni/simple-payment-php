@@ -6,11 +6,11 @@
     </head>
     <body>
 <?php
-    include 'config.php';
-    include 'connection.php';
-    include 'dao/clienteDAO.php';
+    include 'php-payment/config.php';
+    include 'php-payment/connection.php';
+    include 'php-payment/dao/clienteDAO.php';
 
-    echo "Testando com Include";
+    echo 'Testando com Include';
 
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
