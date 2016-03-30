@@ -12,8 +12,8 @@
 
     echo 'Testando com Include';
     
-    /*$clienteDAO = new ClienteDAO();
-    $clientes = $clienteDAO->listCliente();
+    $clienteDAO = new ClienteDAO();
+    /*$clientes = $clienteDAO->listCliente();
     
     foreach($clientes as $cliente => $atual){
         echo '<h4>';
