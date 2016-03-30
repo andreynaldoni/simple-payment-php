@@ -12,7 +12,7 @@
 
     echo 'Testando com Include';
     
-    $clienteDAO = new ClienteDAO();
+    /*$clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
     
     foreach($clientes as $cliente => $atual){
@@ -23,7 +23,7 @@
         }
         echo $linha;
         echo '</h4>';
-    }
+    }*/
 ?>
 
 Hello Word
