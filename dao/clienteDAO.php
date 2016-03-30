@@ -5,7 +5,7 @@ include_once 'php-payment/model/cliente.php';
 
     //class clienteDAO {
         
-        public function listCliente(){
+        function listCliente(){
             $link = DBSelect('cliente');
             if($link != null){
                 return $link;
@@ -14,7 +14,7 @@ include_once 'php-payment/model/cliente.php';
             }
         }
         
-        public function InsertCliente($cliente){
+        function InsertCliente($cliente){
             if(DBInsert('cliente',$cliente->getCliente(),true)){
                 return "Executado com sucesso.";
             } else {
@@ -22,7 +22,7 @@ include_once 'php-payment/model/cliente.php';
             }
         }
         
-        public function UpdateCliente($cliente){
+        function UpdateCliente($cliente){
             if(DBUpdate('cliente',$cliente->getCliente(),true)){
                 return "Executado com sucesso.";
             } else {
