@@ -6,18 +6,15 @@
     </head>
     <body>
 <?php
-
-    include_once 'config.php';
-    include_once 'connection.php';
-    include_once '/dao/clienteDAO.php';
+    include 'config.php';
+    include 'connection.php';
+    include '/dao/clienteDAO.php';
 
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
     
     var_dump($clientes);
-    
-    
-    
+        
     foreach($clientes as $cliente => $atual){
         echo '<h4>';
         $linha = '';
