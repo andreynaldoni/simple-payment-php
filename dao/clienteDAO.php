@@ -1,7 +1,7 @@
 <?php 
 
-require 'database.php';
-require 'model/cliente.php';
+include 'php-payment/database.php';
+include 'php-payment/model/cliente.php';
 
     class clienteDAO {
         

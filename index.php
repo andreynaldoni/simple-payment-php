@@ -15,8 +15,6 @@
     $clienteDAO = new ClienteDAO();
     $clientes = $clienteDAO->listCliente();
     
-    var_dump($clientes);
-        
     foreach($clientes as $cliente => $atual){
         echo '<h4>';
         $linha = '';
