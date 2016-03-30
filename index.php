@@ -16,6 +16,8 @@
     
     var_dump($clientes);
     
+    echo "teste";
+    
     foreach($clientes as $cliente => $atual){
         echo '<h4>';
         $linha = '';
