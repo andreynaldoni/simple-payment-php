@@ -1,14 +1,12 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Simplepayment</title>
+    </head>
+    <body>
 <?php
-
-echo '
-        <!DOCTYPE html>
-        <html lang="pt_BR">
-        <head>
-            <meta charset="UTF-8">
-            <title>Simplepayment</title>
-        </head>
-        <body>
-';
+    set_include_path(dirname(__FILE__).'/../');
 
     require 'config.php';
     require 'connection.php';
@@ -30,11 +28,9 @@ echo '
             echo $linha;
         echo '</h4>';
     }
-
-echo '
-        Hello Word
-
-        </body>
-        </html>
-';
 ?>
+
+Hello Word
+
+    </body>
+</html>
