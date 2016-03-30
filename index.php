@@ -10,11 +10,10 @@
     include 'php-payment\connection.php';
     include 'php-payment\dao\clienteDAO.php';
 
-    echo 'Testando com Include';
+    echo 'Testando requires e etc';
     
-    /*$clienteDAO = new ClienteDAO();
-    $clientes = $clienteDAO->listCliente();*/
-    $clientes = listCliente();
+    $clienteDAO = new ClienteDAO();
+    $clientes = $clienteDAO->listCliente();
     
     foreach($clientes as $cliente => $atual){
         echo '<h4>';

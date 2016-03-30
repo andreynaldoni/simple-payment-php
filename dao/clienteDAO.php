@@ -3,7 +3,7 @@
 include_once 'php-payment/database.php';
 include_once 'php-payment/model/cliente.php';
 
-    //class clienteDAO {
+    class clienteDAO {
         
         function listCliente(){
             $link = DBSelect('cliente');
@@ -30,13 +30,13 @@ include_once 'php-payment/model/cliente.php';
             }
         }
         
-        /*public function DeleteCliente($cliente){
+        public function DeleteCliente($cliente){
             if(DBDelete('cliente',$cliente->getCliente())){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
-        }*/
+        }
         
-    //}
+    }
 ?>
