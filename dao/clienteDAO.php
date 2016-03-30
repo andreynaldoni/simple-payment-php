@@ -3,7 +3,7 @@
 include_once 'php-payment/database.php';
 include_once 'php-payment/model/cliente.php';
 
-    class clienteDAO {
+    //class clienteDAO {
         
         public function listCliente(){
             $link = DBSelect('cliente');
@@ -38,17 +38,5 @@ include_once 'php-payment/model/cliente.php';
             }
         }*/
         
-    }
-
-    $clienteDAO = new ClienteDAO();
-    
-    foreach($clientes as $cliente => $atual){
-        echo '<h4>';
-        $linha = '';
-            foreach($atual as $coluna => $value){
-                $linha = $linha.$value.' ';
-            }
-            echo $linha;
-        echo '</h4>';
-    }
+    //}
 ?>
