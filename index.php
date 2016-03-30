@@ -6,9 +6,9 @@
     </head>
     <body>
 <?php
-    include 'php-payment/config.php';
-    include 'php-payment/connection.php';
-    include 'php-payment/dao/clienteDAO.php';
+    include 'php-payment\config.php';
+    include 'php-payment\connection.php';
+    include 'php-payment\dao\clienteDAO.php';
 
     echo 'Testando com Include';
 
