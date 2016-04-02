@@ -6,9 +6,9 @@
     </head>
     <body>
 <?php
-    include 'php-payment\config.php';
-    include 'php-payment\connection.php';
-    include 'php-payment\dao\clienteDAO.php';
+    include 'config.php';
+    include 'connection.php';
+    require 'dao/clienteDAO.php';
 
     echo 'Testando requires e etc';
     
