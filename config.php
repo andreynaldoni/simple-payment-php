@@ -7,5 +7,4 @@
 	define('DB_DATABASE', ltrim($url['path'],'/'));
 	define('DB_PREFIX','tb');
 	define('DB_CHARSET','utf8');
-    echo '<h1></h1>';
 ?>

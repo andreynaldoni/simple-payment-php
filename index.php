@@ -1,32 +1,57 @@
-<!DOCTYPE html>
-<html lang="pt_BR">
-    <head>
-        <meta charset="UTF-8">
-        <title>Simplepayment</title>
-    </head>
-    <body>
 <?php
+    //Header & Menu
+    include 'view/header.php';
+    include 'view/menu.php';
+    //Config & Connection
     include 'config.php';
     include 'connection.php';
-    require 'dao/clienteDAO.php';
-
-    echo 'Testando requires e etc';
-    
-    $clienteDAO = new ClienteDAO();
-    $clientes = $clienteDAO->listCliente();
-    
-    foreach($clientes as $cliente => $atual){
-        echo '<h4>';
-        $linha = '';
-        foreach($atual as $coluna => $value){
-            $linha = $linha.$value.' ';
-        }
-        echo $linha;
-        echo '</h4>';
-    }
+    //DAO->Cliente
+    include 'dao/clienteDAO.php';
+    echo '<br><br><br>';
 ?>
-
-Hello Word
-
-    </body>
-</html>
+<h3 class="text-center">Tabela de Clientes</h3>
+<div class="container">
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>DDD</th>
+                <th>Telefone</th>
+                <th>Fís. ou Jur.</th>
+                <th>CPF</th>
+                <th>CNPJ</th>
+                <th>Pais</th>
+                <th>Estado</th>
+                <th>Cidade</th>
+                <th>CEP</th>
+                <th>Bairro</th>
+                <th>Logradouro</th>
+                <th>Número</th>
+                <th>Complemento</th>
+                <th>Email</th>
+                <th>Cód. Cartão</th>
+                <th>Cód. Oper. Cartão</th>
+                <th>Validade</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php    
+            $clienteDAO = new ClienteDAO();
+            $clientes = $clienteDAO->listCliente();
+            
+            foreach($clientes as $cliente => $atual){
+                $linha = '';
+                foreach($atual as $coluna => $value){
+                    $linha .= '<td>' . $value . '</td>';
+                }
+                echo '<tr>' . $linha . '</tr>';
+            }
+        ?>
+        </tbody>
+    </div>
+</table>
+</div>
+<?php include 'view/footer.php' ?>
