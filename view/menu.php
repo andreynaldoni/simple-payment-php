@@ -13,13 +13,13 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="#home"><i class="glyphicon glyphicon-tag"></i> Promoções</a></li>
-                            <li><a href="#cardapio"><i class="glyphicon glyphicon-book"></i> Cardápio</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-tag"></i> Promoções</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-book"></i> Cardápio</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                            <li><a href="pedido.html"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido</a></li>
                         </ul>
                     </div>
                 </div>
