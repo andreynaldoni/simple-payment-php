@@ -26,3 +26,9 @@
             </nav>
         </div>
     </div>
+    <?php
+        //Overlay background content
+        if(isset($this->params['menu_overlay'])){ 
+            if(!$this->params['menu_overlay']) echo "<br><br><br>\n";
+        }
+    ?>

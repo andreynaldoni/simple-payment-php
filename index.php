@@ -1,1 +1,1 @@
-<?php include 'view/home/index.php'; ?>
+<?php require_once 'config.php'; ?>

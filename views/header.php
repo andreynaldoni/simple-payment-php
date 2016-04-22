@@ -8,7 +8,7 @@
     <meta name="msapplication-TileColor" content="#222222">
     <meta name="msapplication-navbutton-color" content="#222222">
     <meta name="apple-mobile-web-app-status-bar-style" content="#222222">
-    <title>Simple Payment - Prototype</title>
+    <title>Simple Payment - <?php echo $this->params['title']; ?></title>
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
 </head>
 <body>
