@@ -74,7 +74,7 @@
 Navigate to *htdocs* folder, type this code below in your *console/terminal/command prompt:*
 
 ```git
-git clone https://github.com/andreynaldoni/simple-payment-php
+git clone https://github.com/andreynaldoni/simple-payment-php.git
 ```
 
 Start XAMPP Service 
