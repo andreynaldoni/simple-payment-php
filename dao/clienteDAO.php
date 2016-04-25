@@ -32,7 +32,7 @@ include_once 'models/cliente.php';
         }
         
         public function DeleteCliente($cliente){
-            if(DBDelete('cliente',$cliente->getCliente())){
+            if(DBDelete('Cliente',$cliente->getCliente())){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";

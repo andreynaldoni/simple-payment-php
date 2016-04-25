@@ -36,10 +36,10 @@
                 $clientes = $clienteDAO->listCliente();
                 
                 foreach($clientes as $cliente => $atual){
-                    $linha = "";
-                    foreach($atual as $coluna => $value){
-                        $linha .= "<td>" . $value . "</td>";
-                    }
+                    $linha =    "<td>" . $atual->getCdCliente() . "</td>".
+                                "<td>" . $atual->getNmCliete() . "</td>".
+                                "<td>" . $atual->getNmCliente() . "</td>".
+                                "";
                     echo "<tr>" . $linha . "</tr>\n";
                 }
             ?>

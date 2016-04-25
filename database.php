@@ -46,7 +46,8 @@ function DBDelete($table, $where = null){
 
 //Função para Ler Dados
 	function DBSelect($table, $params = null, $fields = null){
-		$table = DB_PREFIX . '_' . $table;
+		$class_name = $table;
+        $table = DB_PREFIX . '_' . $table;
 		$params = ($params) ? " {$params}" : null;
         $fields = ($fields) ? " {$fields}" : '*';
         
@@ -71,7 +72,7 @@ function DBDelete($table, $where = null){
 		if(!mysqli_num_rows($result)){
 			return false;
 		}else{
-			while ($res = mysqli_fetch_assoc($result)){
+			while ($res = mysqli_fetch_object($result, $class_name)){
 				$data[] = $res;
 			}
 			return $data;
