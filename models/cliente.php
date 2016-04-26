@@ -6,9 +6,21 @@
         private $nm_sobrenome;
         private $cd_ddd;
         private $cd_telefone;
+        private $ic_tipo_documento;
+        private $cd_cpf;
+        private $cd_cnpj;
+        private $nm_pais;
+        private $sg_estado;
+        private $nm_cidade;
+        private $cd_cep;
+        private $nm_bairro;
+        private $nm_rua;
+        private $cd_numero;
+        private $ds_complemento;
         private $nm_email_cliente;
         private $cd_cartao_cliente;
         private $cd_operadora_cartao;
+        private $dt_validade_cartao;
         
         public function getCdCliente(){
             return $this->cd_cliente;
@@ -50,6 +62,94 @@
             $this->cd_telefone = $cd_telefone;
         }
         
+        public function getIcTipoDocumento(){
+            return $this->ic_tipo_documento;
+        }
+        
+        public function setIcTipoDocumento($ic_tipo_documento){
+            $this->ic_tipo_documento = $ic_tipo_documento;
+        }
+        
+        public function getCdCpf(){
+            return $this->cd_cpf;
+        }
+        
+        public function setCdCpf($cd_cpf){
+            $this->cd_cpf = $cd_cpf;
+        }
+        
+        public function getCdCnpj(){
+            return $this->cd_cnpj;
+        }
+        
+        public function setCdCnpj($cd_cnpj){
+            $this->cd_cnpj = $cd_cnpj;
+        }
+        
+        public function getNmPais(){
+            return $this-nm_pais;
+        }
+        
+        public function setNmPais($nm_pais){
+            $this->nm_pais = $nm_pais;
+        }
+        
+        public function getSgEstado(){
+            return $this->sg_estado;
+        }
+        
+        public function setSgEstado($sg_estado){
+            $this->sg_estado = $sg_estado;
+        }
+        
+        public function getNmCidade(){
+            return $this->nm_cidade;
+        }
+        
+        public function setNmCidade($nm_cidade){
+            $this->nm_cidade = $nm_cidade;
+        }
+        
+        public function getCdCep(){
+            return $this->cd_cep;
+        }
+        
+        public function setCdCep($cd_cep){
+            $this->cd_cep = $cd_cep;
+        }
+        
+        public function getNmBairro(){
+            return $this->nm_bairro;
+        }
+        
+        public function setNmBairro($nm_bairro){
+            $this->nm_bairro = $nm_bairro;
+        }
+        
+        public function getNmRua(){
+            return $this->nm_rua;
+        }
+        
+        public function setNmRua($nm_rua){
+            $this->nm_rua = $nm_rua;
+        }
+        
+        public function getCdNumero(){
+            return $this->cd_numero;
+        }
+        
+        public function setCdNumero(){
+            $this->cd_numero = $cd_numero;
+        }
+        
+        public function getDsComplemento(){
+            return $this->ds_complemento;
+        }
+        
+        public function setDsComplemento($ds_complemento){
+            $this->ds_complemento = $ds_complemento;
+        }
+        
         public function getNmEmailCliente(){
             return $this->nm_email_cliente;
         }
@@ -72,6 +172,14 @@
         
         public function setCdOperadoraCartao($cd_operadora_cartao){
             $this->cd_operadora_cartao = $cd_operadora_cartao;
+        }
+        
+        public function getDtValidadeCartao(){
+            return $this->dt_validade_cartao;
+        }
+        
+        public function setDtValidadeCartao($dt_validade_cartao){
+            $this->dt_validade_cartao = $dt_validade_cartao;
         }
         
         public function getCliente(){
