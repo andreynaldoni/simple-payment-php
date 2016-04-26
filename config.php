@@ -7,8 +7,6 @@
 	define('DB_DATABASE', ltrim($db_url['path'],'/'));
 	define('DB_PREFIX','tb');
 	define('DB_CHARSET','utf8');
-	// PHP_ENV == production / == development
-	define('PHP_ENV', false);
     // URL
     define('HOME_PATH', 'https://php-payment.herokuapp.com');
 	// Application
