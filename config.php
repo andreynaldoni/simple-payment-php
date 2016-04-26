@@ -1,5 +1,5 @@
 <?php
-	$db_url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+	$db_url = parse_url(getenv('CLEARDB_DATABASE_URL')); //parse_url(getenv('MYSQL_LOCAL_DB'));
     
     define('DB_HOSTNAME', $db_url['host']);
 	define('DB_USERNAME', $db_url['user']);
@@ -7,12 +7,12 @@
 	define('DB_DATABASE', ltrim($db_url['path'],'/'));
 	define('DB_PREFIX','tb');
 	define('DB_CHARSET','utf8');
-	// PHP_ENV == production / == development
-	define('PHP_ENV', false);
     // URL
-    define('HOME_PATH', 'https://php-payment.herokuapp.com');
+    define('HOME_PATH', 'https://php-payment.herokuapp.com/');
 	// Application
 	require_once 'app.php';
+    // PHP_ENV ? production : development
+	define('PHP_ENV', getenv('PHP_ENV'));
     // Environemnt type
     if(!defined('PHP_ENV') || PHP_ENV == 'development'){
         // Development
