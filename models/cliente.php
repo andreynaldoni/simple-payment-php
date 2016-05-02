@@ -21,6 +21,7 @@
         private $cd_cartao_cliente;
         private $cd_operadora_cartao;
         private $dt_validade_cartao;
+        private $cd_senha;
         
         public function getCdCliente(){
             return $this->cd_cliente;
@@ -182,13 +183,37 @@
             $this->dt_validade_cartao = $dt_validade_cartao;
         }
         
+        public function getCdSenha(){
+            return $this->cd_senha;
+        }
+        
+        public function setCdSenha($cd_senha){
+            $this->cd_senha = $cd_senha;
+        }
+        
         public function getCliente(){
             return array(
               "cd_cliente"          => $this->cd_cliente,
               "nm_cliente"          => $this->nm_cliente,
+              "nm_sobrenome"        => $this->nm_sobrenome,
+              "cd_ddd"              => $this->cd_ddd,
+              "cd_telefone"         => $this->cd_telefone,
+              "ic_tipo_documento"   => $this->ic_tipo_documento,
+              "cd_cpf"              => $this->cd_cpf,
+              "cd_cnpj"             => $this->cd_cnpj,
+              "nm_pais"             => $this->nm_pais,
+              "sg_estado"           => $this->sg_estado,
+              "nm_cidade"           => $this->nm_cidade,
+              "cd_cep"              => $this->cd_cep,
+              "nm_bairro"           => $this->nm_bairro,
+              "nm_rua"              => $this->nm_rua,
+              "cd_numero"           => $this->cd_numero,
+              "ds_complemento"      => $this->ds_complemento,
               "nm_email_cliente"    => $this->nm_email_cliente,
               "cd_cartao_cliente"   => $this->cd_cartao_cliente,
-              "cd_operadora_cartao" => $this->cd_operadora_cartao
+              "cd_operadora_cartao" => $this->cd_operadora_cartao,
+              "dt_validade_cartao"  => $this->dt_validade_cartao,
+              "cd_senha"            => $this->cd_senha
             );
         }
     }
