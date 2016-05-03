@@ -1,6 +1,7 @@
 <?php
     //DAO->Cliente
-    include "dao/clienteDAO.php";
+   //include "dao/clienteDAO.php";
+    include_once "negocio/clienteNeg.php";
 ?>
     <h3 class="text-center">Tabela de Clientes</h3>
     <div class="container">
@@ -31,9 +32,9 @@
                 </tr>
             </thead>
             <tbody>
-            <?php    
-                $clienteDAO = new ClienteDAO();
-                $clientes = $clienteDAO->listCliente();
+            <?php
+                $ClienteNeg = new clienteNeg();
+                $clientes = $ClienteNeg->GetList();
                 
                 foreach($clientes as $cliente => $atual){
                     $linha =    "<td>" . $atual->getCdCliente() . "</td>".

@@ -62,7 +62,7 @@ function DBDelete($table, $where = null){
                 $value = DBEscape($value);
                 $params[] = "{$key} = '{$value}'";
             }
-            $params = implode(', ', $params);
+            $params = implode(' and ', $params);
         }
 
 		$query = "SELECT {$fields} FROM {$table}{$params}";
