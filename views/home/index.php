@@ -1,7 +1,7 @@
 <?php
     //DAO->Cliente
    //include "dao/clienteDAO.php";
-    include_once "negocio/clienteNeg.php";
+    include_once "business/clienteNeg.php";
 ?>
     <h3 class="text-center">Tabela de Clientes</h3>
     <div class="container">

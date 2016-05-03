@@ -1,5 +1,6 @@
 <?php
     include "dao/clienteDAO.php";
+    //include "models/cliente.php";
      
      class clienteNeg{
          function GetCliente(){
@@ -10,6 +11,13 @@
                 $clientes = $clienteDAO->listCliente();
                 
                 return  $clientes;
+         }
+         
+         function GravarCliente($clienteMD){
+             var_dump($clienteMD);
+             
+             $clienteDAO = new ClienteDAO();
+             $clienteDAO->InsertCliente($clienteMD);
          }
          
          function Login(){
