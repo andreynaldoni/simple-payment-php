@@ -18,7 +18,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="<?= HOME_PATH ?>/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido</a></li>
                         </ul>
                     </div>
@@ -28,7 +28,7 @@
     </div>
     <?php
         //Overlay background content
-        if(isset($this->params['menu_overlay'])){ 
+        if(!isset($this->params['menu_overlay'])){ 
             if(!$this->params['menu_overlay']) echo "<br><br><br>\n";
         }
     ?>

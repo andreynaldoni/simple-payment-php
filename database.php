@@ -54,7 +54,7 @@ function DBDelete($table, $where = null){
                 $value = DBEscape($value);
                 $params[] = "{$key} = '{$value}'";
             }
-            $params = implode('AND ', $params);
+            $params = implode(' AND ', $params);
         }        
         
         $params = ($params) ? " WHERE {$params}" : null;

@@ -2,8 +2,7 @@
 class ErrorController{
     function notFound($params = []){
         $this->params = array(
-            'title'=>'Página não encontrada',
-            'menu_overlay'=>false
+            'title'=>'Página não encontrada'
         );
         $this->params = array_merge($this->params, $params);
         

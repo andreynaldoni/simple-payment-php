@@ -14,7 +14,7 @@ include_once 'models/cliente.php';
                 return "Ocorreu um erro.";
             }
         }
-        
+                
         function InsertCliente($cliente){
             if(DBInsert('cliente',$cliente->getCliente(),true)){
                 return "Executado com sucesso.";
@@ -34,6 +34,20 @@ include_once 'models/cliente.php';
         public function DeleteCliente($cliente){
             if(DBDelete('Cliente',$cliente->getCliente())){
                 return "Executado com sucesso.";
+            } else {
+                return "Ocorreu um erro.";
+            }
+        }
+        public function GetLogin($email,$senha){
+            $param = array(
+                "nm_email_cliente"      => $email,
+                "cd_senha"              => $senha
+            );
+            
+            $link = DBSelect('cliente',$param);
+            var_dump($link);
+            if($link != null){
+                return $link;
             } else {
                 return "Ocorreu um erro.";
             }

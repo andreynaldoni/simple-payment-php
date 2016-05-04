@@ -42,6 +42,7 @@ CREATE TABLE tb_cliente
     cd_cartao_cliente 	VARCHAR(30),
     cd_operadora_cartao VARCHAR(30),
     dt_validade_cartao 	DATE,
+    cd_senha			varchar(32),
     PRIMARY KEY(cd_cliente)
 );
 

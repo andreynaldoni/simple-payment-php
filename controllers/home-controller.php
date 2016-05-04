@@ -2,8 +2,7 @@
 class HomeController{
     function index($params = []){       
         $this->params = array(
-            'title'=>'Home',
-            'menu_overlay'=>false
+            'title'=>'Home'
         );
         $this->params = array_merge($this->params, $params);
         
@@ -16,11 +15,14 @@ class HomeController{
         require 'views/footer.php';
     }
     function login(){
+        $this->params = array(
+            'title'=>'Login'
+        );
         //Header & Footer
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home->Login
-        //require 'views/home/login.php';
+        require 'views/home/login.php';
         //Footer
         require 'views/footer.php';
     }
