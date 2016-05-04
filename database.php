@@ -2,13 +2,14 @@
 //Deletar Registros
 function DBDelete($table, $where = null){
 	$table = DB_PREFIX . '_' . $table;
-	$where = ($where) ? " WHERE {$where}" : null;
-    
+	
     if($where){
         DBEscape($where);
         $where = implode(' AND ', $where);
     }
     
+    $where = ($where) ? " WHERE {$where}" : null;
+           
 	$query = "DELETE FROM {$table}{$where}";
 	return DBExecute($query);
 }
@@ -47,24 +48,25 @@ function DBDelete($table, $where = null){
 //Função para Ler Dados
 	function DBSelect($class_name, $params = null, $fields = null){
 		$table = DB_PREFIX . '_' . $class_name;
-		$params = ($params) ? " {$params}" : null;
-        $fields = ($fields) ? " {$fields}" : '*';
-        
-        if(!$fields){
-            DBEscape($fields);
-            $fields = implode(', ', $fields);
-        } else {
-            $fields = '*';
-        }
-        
+		
         if($params){
             foreach ($params as $key => $value) {
                 $value = DBEscape($value);
                 $params[] = "{$key} = '{$value}'";
             }
             $params = implode('AND ', $params);
+        }        
+        
+        $params = ($params) ? " WHERE {$params}" : null;
+        $fields = ($fields) ? " {$fields}" : '*';
+        
+        if($fields){
+            DBEscape($fields);
+            $fields = implode(', ', $fields);
+        } else {
+            $fields = '*';
         }
-
+        
 		$query = "SELECT {$fields} FROM {$table}{$params}";
 		$result = DBExecute($query);
 
