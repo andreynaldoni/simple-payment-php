@@ -15,6 +15,14 @@ class SimplePayment {
             
             return;
         }
+        if (!$this->controller){
+            require_once 'controllers/cliente-controller.php';
+            
+            $this->controller = new ClienteController();
+            $this->controller->index();
+            
+            return;
+        }
         
         if (!file_exists('controllers/' . $this->controller . '.php')){
             require_once 'controllers/error-controller.php';
