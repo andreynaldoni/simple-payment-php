@@ -45,11 +45,12 @@ include_once 'models/cliente.php';
             );
             
             $link = DBSelect('cliente',$param);
-            var_dump($link);
+            
             if($link != null){
+                $_SESSION['cliente'] = $link;
                 return $link;
             } else {
-                return "Ocorreu um erro.";
+                return null;
             }
         }
         

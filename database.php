@@ -2,13 +2,14 @@
 //Deletar Registros
 function DBDelete($table, $where = null){
 	$table = DB_PREFIX . '_' . $table;
-	$where = ($where) ? " WHERE {$where}" : null;
-    
+	
     if($where){
         DBEscape($where);
         $where = implode(' AND ', $where);
     }
     
+    $where = ($where) ? " WHERE {$where}" : null;
+           
 	$query = "DELETE FROM {$table}{$where}";
 	return DBExecute($query);
 }
@@ -21,7 +22,7 @@ function DBDelete($table, $where = null){
 */
 
 //Função para Alterar Dados
-	function DBUpdate($table, array $data, $where = null, $insertId = false){
+	function DBUpdate($table, array $data, $where, $insertId){
 		$table = DB_PREFIX . '_' . $table;
 		$where = ($where) ? " WHERE {$where}" : null;
         
@@ -45,27 +46,28 @@ function DBDelete($table, $where = null){
 */
 
 //Função para Ler Dados
-	function DBSelect($class_name, $params = null, $fields = null){
+	function DBSelect($class_name, $params, $fields){
 		$table = DB_PREFIX . '_' . $class_name;
-		$params = ($params) ? " {$params}" : null;
-        $fields = ($fields) ? " {$fields}" : '*';
+		
+		if($params){
+            foreach ($params as $key => $value) {
+                $value = DBEscape($value);
+                $where[] = "{$key} = '{$value}'";
+            }
+            $params = implode(' AND ', $where);
+        }        
         
-        if(!$fields){
+        $params = ($params) ? " WHERE {$params}" : null;
+        
+        if($fields){
             DBEscape($fields);
             $fields = implode(', ', $fields);
         } else {
             $fields = '*';
         }
         
-        if($params){
-            foreach ($params as $key => $value) {
-                $value = DBEscape($value);
-                $params[] = "{$key} = '{$value}'";
-            }
-            $params = implode(' and ', $params);
-        }
-
 		$query = "SELECT {$fields} FROM {$table}{$params}";
+		
 		$result = DBExecute($query);
 
 		if(!mysqli_num_rows($result)){
@@ -85,7 +87,7 @@ function DBDelete($table, $where = null){
 */
 
 //Função para Gravar Dados
-	function DBInsert($table,array $data, $insertId = false){
+	function DBInsert($table,array $data, $insertId){
 		$table = DB_PREFIX . '_' . $table;
 		$data = DBEscape($data);
 

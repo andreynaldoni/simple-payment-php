@@ -1,3 +1,4 @@
+ <?= include_once (HOME_PATH . "/models/cliente.php") ?>
     <div class="navbar-wrapper">
         <div class="container">
             <nav class="navbar-inverse navbar-fixed-top">
@@ -17,8 +18,16 @@
                             <li><a href="#"><i class="glyphicon glyphicon-book"></i> Cardápio</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="<?= HOME_PATH ?>/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <?php
+                                $cliente = $_SESSION["cliente"];
+                                if(isset($cliente)){
+                            ?>
+                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span><?= $cliente->getNmCliente() ?></a></li>
+                                    <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                            <?php } else { ?>
+                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                    <li><a href="<?= HOME_PATH ?>/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <?php } ?>
                             <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido</a></li>
                         </ul>
                     </div>
