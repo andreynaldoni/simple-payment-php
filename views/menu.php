@@ -1,4 +1,4 @@
- <?= include_once (HOME_PATH . "/models/cliente.php") ?>
+
     <div class="navbar-wrapper">
         <div class="container">
             <nav class="navbar-inverse navbar-fixed-top">
@@ -10,7 +10,7 @@
                             <i class="icon-bar"></i>
                             <i class="icon-bar"></i>
                         </button>
-                        <a class="navbar-brand" href="#">Simple Payment</a>
+                        <a class="navbar-brand" href="<?= HOME_PATH ?>">Simple Payment</a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -22,7 +22,7 @@
                                 $cliente = $_SESSION["cliente"];
                                 if(isset($cliente)){
                             ?>
-                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span><?= $cliente->getNmCliente() ?></a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>teste</a></li>
                                     <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
                             <?php } else { ?>
                                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

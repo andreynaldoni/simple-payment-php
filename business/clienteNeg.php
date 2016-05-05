@@ -37,7 +37,7 @@
          
          function Logout(){
             session_destroy();
- 
+            unset ($_SESSION['cliente']);
             unset ($_SESSION['email']);
             unset ($_SESSION['senha']);
    
