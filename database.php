@@ -22,7 +22,7 @@ function DBDelete($table, $where = null){
 */
 
 //Função para Alterar Dados
-	function DBUpdate($table, array $data, $where = null, $insertId = false){
+	function DBUpdate($table, array $data, $where, $insertId){
 		$table = DB_PREFIX . '_' . $table;
 		$where = ($where) ? " WHERE {$where}" : null;
         
@@ -46,19 +46,18 @@ function DBDelete($table, $where = null){
 */
 
 //Função para Ler Dados
-	function DBSelect($class_name, $params = null, $fields = null){
+	function DBSelect($class_name, $params, $fields){
 		$table = DB_PREFIX . '_' . $class_name;
 		
-        if($params){
+		if($params){
             foreach ($params as $key => $value) {
                 $value = DBEscape($value);
-                $params[] = "{$key} = '{$value}'";
+                $where[] = "{$key} = '{$value}'";
             }
-            $params = implode(' AND ', $params);
+            $params = implode(' AND ', $where);
         }        
         
         $params = ($params) ? " WHERE {$params}" : null;
-        $fields = ($fields) ? " {$fields}" : '*';
         
         if($fields){
             DBEscape($fields);
@@ -68,6 +67,7 @@ function DBDelete($table, $where = null){
         }
         
 		$query = "SELECT {$fields} FROM {$table}{$params}";
+		
 		$result = DBExecute($query);
 
 		if(!mysqli_num_rows($result)){
@@ -87,7 +87,7 @@ function DBDelete($table, $where = null){
 */
 
 //Função para Gravar Dados
-	function DBInsert($table,array $data, $insertId = false){
+	function DBInsert($table,array $data, $insertId){
 		$table = DB_PREFIX . '_' . $table;
 		$data = DBEscape($data);
 
