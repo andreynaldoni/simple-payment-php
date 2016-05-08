@@ -14,9 +14,9 @@ class ClienteController{
         //Footer
         require 'views/footer.php';
     }
-    function Cadastro(){
+    function cadastrar(){
         $this->params = array(
-            'title'=>'Login'
+            'title'=>'Cadastro de cliente'
         );
         //Header & Footer
         require 'views/header.php';
@@ -26,7 +26,7 @@ class ClienteController{
         //Footer
         require 'views/footer.php';
     }
-    function Edicao(){
+    function edicao(){
         //Header & Footer
         require 'views/header.php';
         require 'views/menu.php';
