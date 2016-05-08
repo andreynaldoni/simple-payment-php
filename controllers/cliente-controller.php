@@ -1,5 +1,5 @@
 <?php 
-class HomeController{
+class ClienteController{
     function index($params = []){       
         $this->params = array(
             'title'=>'Cliente'

@@ -47,5 +47,17 @@ class HomeController{
         //Footer
         require 'views/footer.php';
     }
+    function admin(){
+        $this->params = array(
+            'title'=>'Admin'
+        );
+        //Header & Footer
+        require 'views/header.php';
+        require 'views/menu.php';
+        //View->Home->Admin
+        require 'views/home/admin.php';
+        //Footer
+        require 'views/footer.php';
+    }
 }
 ?>

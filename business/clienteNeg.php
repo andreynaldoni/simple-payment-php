@@ -13,11 +13,18 @@
                 return  $clientes;
          }
          
-         function GravarCliente($clienteMD){
-             var_dump($clienteMD);
+         function GravarCliente(){
+             $cliente = $_SESSION['clienteInsert'];
              
-             $clienteDAO = new ClienteDAO();
-             $clienteDAO->InsertCliente($clienteMD);
+             if(isset($cliente)){
+                $clienteDAO = new ClienteDAO();
+                $clienteDAO->InsertCliente($cliente);
+                $_SESSION['message'] = 'Cliente inserido com sucesso!';
+                
+             }else {
+                $_SESSION['message'] = 'Ocorreu um erro ao tentar inserir';
+             }
+             header('Location: ' . HOME_PATH . '/cliente/index');
          }
          
          function Login(){
