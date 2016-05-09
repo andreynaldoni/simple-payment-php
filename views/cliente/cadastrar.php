@@ -5,7 +5,7 @@ include_once "business/clienteNeg.php";
 ?>
 
 <div class="container-fluid" style="padding-left:35px;">
-    <form action="" method="POST">
+    <form action=$_POST[ 'user'] method="POST">
         <h1 style="padding-left:35px;">Cliente</h1>
         <div class="row">
             <div class="col-md-2">
@@ -29,12 +29,14 @@ include_once "business/clienteNeg.php";
         </div>
 
         <div class="row">
+
             <div class="col-md-1">
                 <div class="form-group">
                     <label for="ddd">DDD</label>
                     <input type="number" class="form-control" id="ddd" placeholder="DDD">
                 </div>
             </div>
+
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
@@ -119,7 +121,7 @@ include_once "business/clienteNeg.php";
             </div>
 
         </div>
-        <div class="control-group"  style="align:right;">
+        <div class="control-group" style="align:right;">
             <!-- Button -->
             <div class="controls">
                 <button class="btn btn-success">Cadastrar</button>
@@ -128,10 +130,28 @@ include_once "business/clienteNeg.php";
 
     </form>
 </div>
+
 <?php 
 if (isset($_POST['cliente'])) {
+
+    $clienteModel->nm_cliente = $_POST['nome-cliente'];
+    $clienteModel->nm_sobrenome = $_POST['sobrenome'];
+    $clienteModel->cd_ddd = $_POST['ddd'];
+    $clienteModel->cd_telefone = $_POST['telefone'];
+    $clienteModel->ic_tipo_documento = $_POST['documento'];
+    $clienteModel->nm_pais = "Brasil";
+    $clienteModel->sg_estado = $_POST['estado'];
+    $clienteModel->nm_cidade = $_POST['cidade'];
+    $clienteModel->cd_cep = $_POST['cep'];
+    $clienteModel->nm_bairro = $_POST['bairro'];
+    $clienteModel->nm_rua = $_POST['endereco'];
+    $clienteModel->cd_numero = $_POST['numero'];
+    $clienteModel->ds_complemento = $_POST['compl'];
+    $clienteModel->nm_email_cliente = $_POST['email'];
+    $clienteModel->cd_senha = $_POST['senha'];
+
     $cliente = new clienteNeg();
 
-    $cliente->GravarCliente();
+    $cliente->GravarCliente($clienteModel);
 }
 ?>

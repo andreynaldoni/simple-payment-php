@@ -13,12 +13,12 @@
                 return  $clientes;
          }
          
-         function GravarCliente(){
-             $cliente = $_SESSION['clienteInsert'];
+         function GravarCliente($clienteModel){
              
-             if(isset($cliente)){
+             
+             if(isset($clienteModel)){
                 $clienteDAO = new ClienteDAO();
-                $clienteDAO->InsertCliente($cliente);
+                $clienteDAO->InsertCliente($clienteModel);
                 $_SESSION['message'] = 'Cliente inserido com sucesso!';
                 
              }else {
