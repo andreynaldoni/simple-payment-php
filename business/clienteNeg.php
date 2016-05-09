@@ -29,7 +29,7 @@
          function GravarCliente(){
              $cliente = $_SESSION['clienteInsert'];
              
-             if(isset($cliente)){
+             if(isset($clienteModel)){
                 $clienteDAO = new ClienteDAO();
                 $clienteDAO->InsertCliente($cliente);
                 $_SESSION['message'] = 'Cliente inserido com sucesso!';

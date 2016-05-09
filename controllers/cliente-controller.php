@@ -16,7 +16,7 @@ class ClienteController{
     }
     function Cadastro(){
         $this->params = array(
-            'title'=>'Login'
+            'title'=>'Cadastro de cliente'
         );
         //Header & Footer
         require 'views/header.php';
