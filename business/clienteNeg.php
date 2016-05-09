@@ -26,10 +26,9 @@
              header('Location: ' . HOME_PATH . '/cliente/index');
          }
          
-         function GravarCliente(){
-             $cliente = $_SESSION['clienteInsert'];
+         function GravarCliente($cliente){
              
-             if(isset($clienteModel)){
+             if(isset($cliente)){
                 $clienteDAO = new ClienteDAO();
                 $clienteDAO->InsertCliente($cliente);
                 $_SESSION['message'] = 'Cliente inserido com sucesso!';
@@ -37,7 +36,7 @@
              }else {
                 $_SESSION['message'] = 'Ocorreu um erro ao tentar inserir';
              }
-             header('Location: ' . HOME_PATH . '/cliente/index');
+             //header('Location: ' . HOME_PATH . '/cliente/index');
          }
          
          function Login(){
@@ -49,9 +48,11 @@
              $login = $clienteDAO->GetLogin($email,$senha);
              
              if(isset($login)){
+                  echo '<h3 class="text-center">Login efetuado com sucesso.</h3>';
                   header('Location: ' . HOME_PATH . '/home/index');
              }else {
                   header('Location: ' . HOME_PATH . '/home/login');
+                  echo '<h3 class="text-center">Usuário e/ou senha inválido(s).</h3>';
              }
          }
          

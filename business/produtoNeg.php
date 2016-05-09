@@ -12,12 +12,12 @@
                 return  $Produtos;
          }
          
-         function GravarProduto(){
-             $Produto = $_SESSION['ProdutoInsert'];
+         function GravarProduto($Produto){             
              
              if(isset($Produto)){
                 $ProdutoDAO = new ProdutoDAO();
                 $ProdutoDAO->InsertProduto($Produto);
+                
                 $_SESSION['message'] = 'Produto inserido com sucesso!';
                 
              }else {

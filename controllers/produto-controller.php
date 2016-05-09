@@ -14,7 +14,7 @@ class ProdutoController{
         //Footer
         require 'views/footer.php';
     }
-    function Cadastro(){
+    function cadastrar(){
         $this->params = array(
             'title'=>'Cadastrar Produto'
         );
@@ -26,7 +26,7 @@ class ProdutoController{
         //Footer
         require 'views/footer.php';
     }
-    function Edicao(){
+    function edicao(){
         //Header & Footer
         require 'views/header.php';
         require 'views/menu.php';
