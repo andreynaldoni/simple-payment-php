@@ -3,7 +3,9 @@
     class Ingrediente{
         private $cd_ingrediente;
         private $nm_ingrediente;
-        private $nm_unidade_medida;
+        private $ds_ingrediente;
+        private $qt_ingrediente;
+        private $vl_ingrediente;
         
         public function getCdIngrediente(){
             return $this->cd_ingrediente;
@@ -21,19 +23,37 @@
             $this->nm_ingrediente = $nm_ingrediente;
         }
         
-        public function getNmUnidadeMedida(){
-            return $this->nm_unidade_medida;
+        public function getDsIngrediente(){
+            return $this-ds_ingrediente;
         }
         
-        public function setNmUnidadeMedida($nm_unidade_medida){
-            $this->nm_unidade_medida = $nm_unidade_medida;
+        public function setDsIngrediente($ds_ingrediente){
+            $this->ds_ingrediente = $ds_ingrediente;
+        }
+        
+        public function getQtIngrediente(){
+            return $this->qt_ingrediente;
+        }
+        
+        public function setQtIngrediente($qt_ingrediente){
+            $this->qt_ingrediente = $qt_ingrediente;
+        }
+        
+        public function getVlIngrediente(){
+            return $this->vl_ingrediente;
+        }
+        
+        public function setVlIngrediente($vl_ingrediente){
+            $this->vl_ingrediente = $vl_ingrediente;
         }
         
         public function getIngrediente(){
             return array(
                "cd_ingrediente"     => $this->cd_ingrediente,
                "nm_ingrediente"     => $this->nm_ingrediente,
-               "nm_unidade_medida"  => $this->nm_unidade_medida
+               "ds_ingrediente"     => $this->ds_ingrediente,
+               "qt_ingrediente"     => $this->qt_ingrediente,
+               "vl_ingrediente"     => $this->vl_ingrediente
             );
         }
     }

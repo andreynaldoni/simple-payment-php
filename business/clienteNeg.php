@@ -1,6 +1,5 @@
 <?php
     include "dao/clienteDAO.php";
-    //include "models/cliente.php";
      
      class clienteNeg{
          function GetCliente(){
@@ -11,6 +10,20 @@
                 $clientes = $clienteDAO->listCliente();
                 
                 return  $clientes;
+         }
+         
+         function updateCliente(){
+             $cliente =$_SESSION['clienteUpdate'];
+             
+             if(isset($cliente)){
+                 $clienteDAO = new ClienteDAO();
+                 if($clienteDAO->updateCliente($cliente)){
+                     $_SESSION['message'] = 'Cliente alterado com sucesso!';
+                 } else {
+                    $_SESSION['message'] = 'Ocorreu um erro ao tentar alterar';
+                 }
+             }
+             header('Location: ' . HOME_PATH . '/cliente/index');
          }
          
          function GravarCliente(){
@@ -47,8 +60,9 @@
             unset ($_SESSION['cliente']);
             unset ($_SESSION['email']);
             unset ($_SESSION['senha']);
+            
    
-            header('Location: ' . HOME_PATH . '/home/login');
+            header('Location: ' . HOME_PATH . '/home/index');
          }
          
          
