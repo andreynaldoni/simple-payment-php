@@ -5,7 +5,7 @@ include_once "business/clienteNeg.php";
 ?>
 
 <div class="container-fluid" style="padding-left:35px;">
-    <form action="" method="POST">
+    <form action=""method="POST">
         <h1 style="padding-left:35px;">Cliente</h1>
         <div class="row">
             <div class="col-md-2">
@@ -27,7 +27,7 @@ include_once "business/clienteNeg.php";
                 </div>
             </div>
         </div>
-
+        
         <div class="row">
             <div class="col-md-1">
                 <div class="form-group">
@@ -119,19 +119,12 @@ include_once "business/clienteNeg.php";
             </div>
 
         </div>
-        <div class="control-group"  style="align:right;">
-            <!-- Button -->
-            <div class="controls">
-                <button class="btn btn-success">Cadastrar</button>
-            </div>
-        </div>
-
     </form>
 </div>
 <?php 
-if (isset($_POST['cliente'])) {
-    $cliente = new clienteNeg();
+if (isset($_POST['user'])) {
+    $login = new clienteNeg();
 
-    $cliente->GravarCliente();
+    $login->Login();
 }
 ?>
