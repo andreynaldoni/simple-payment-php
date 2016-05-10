@@ -50,7 +50,7 @@ include_once "business/clienteNeg.php";
             </div>
             <div class="col-md-2">
                 <div class="form-group">
-                    <label for="cel">Telefone</label>
+                    <label for="cel">Celular</label>
                     <input type="number" class="form-control" name="cliente[cel]" placeholder="Celular">
                 </div>
             </div>

@@ -250,7 +250,7 @@ INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_
 values ('Gisele' ,'Silva' ,11 ,34738180 ,'F' ,'75786244407' ,'' ,'Brasil' ,'SP','Praia Grande','11725380' ,'Tude Bastos' ,'Rua padre gastão','444' ,'casa' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate());
 
 INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
-values ('Gertrudes' ,'Selfie' ,13 ,988849091 ,'F' ,'57338831700' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Rua Mário Tamashiro - até 299/300 ','300' ,'ap' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate());
+values ('Gertrudes' ,'Selfie' ,13 ,988849091 ,'F' ,'57338831700' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Rua Mário Tamashiro - até 299/300 ','300' ,'ap' ,'chico@gmail.com' ,'' ,'' ,curdate());
 
 /*
 -- CABECA
@@ -264,3 +264,6 @@ values ()
 INSERT INTO tb_parcela cd_pedido,dt_emissao DATETIME,cd_parcela INTEGER,vl_parcela DECIMAL(10,2)
 values ()
 */
+
+alter table tb_cliente add cd_ddd_cel varchar(2);
+alter table tb_cliente add cd_cel varchar(2);
