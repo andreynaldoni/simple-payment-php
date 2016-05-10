@@ -6,6 +6,8 @@
         private $nm_sobrenome;
         private $cd_ddd;
         private $cd_telefone;
+        private $cd_ddd_cel;
+        private $cd_celular;
         private $ic_tipo_documento;
         private $cd_cpf;
         private $cd_cnpj;
@@ -191,6 +193,22 @@
             $this->cd_senha = $cd_senha;
         }
         
+        public function getCdDddcel(){
+            return $this->cd_ddd_cel;
+        }
+        
+        public function setCdDddCel($cd_ddd_cel){
+            $this->cd_ddd_cel = $cd_ddd_cel;
+        }        
+        
+        public function getCdCelular(){
+            return $this->cd_celular;
+        }
+        
+        public function setCdCelular($cd_celular){
+            $this->cd_celular = $cd_celular;
+        }
+        
         public function getCliente(){
             return array(
               "cd_cliente"          => $this->cd_cliente,
@@ -213,7 +231,9 @@
               "cd_cartao_cliente"   => $this->cd_cartao_cliente,
               "cd_operadora_cartao" => $this->cd_operadora_cartao,
               "dt_validade_cartao"  => $this->dt_validade_cartao,
-              "cd_senha"            => $this->cd_senha
+              "cd_senha"            => $this->cd_senha,
+              "cd_ddd_cel"          => $this->cd_ddd_cel,
+              "cd_celular"              => $this->cd_celular                
             );
         }
     }

@@ -138,6 +138,10 @@ if (isset($_POST['cliente'])) {
     $clienteModel->setNmSobrenome($_POST['cliente']['sobrenome']);
     $clienteModel->setCdDdd($_POST['cliente']['ddd']);
     $clienteModel->setCdTelefone($_POST['cliente']['telefone']);
+   
+    $clienteModel->setCdDddCel($_POST['cliente']['ddd1']);   
+    $clienteModel->setCdCelular($_POST['cliente']['cel']);
+   
     $clienteModel->setIcTipoDocumento('F');
     $clienteModel->setCdCpf($_POST['cliente']['cpf']);
     $clienteModel->setNmPais("Brasil");

@@ -265,5 +265,5 @@ INSERT INTO tb_parcela cd_pedido,dt_emissao DATETIME,cd_parcela INTEGER,vl_parce
 values ()
 */
 
-alter table tb_cliente add cd_ddd_cel varchar(2);
-alter table tb_cliente add cd_cel varchar(2);
+alter table tb_cliente add cd_ddd_cel INTEGER;
+alter table tb_cliente add cd_celular INTEGER;
