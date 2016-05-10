@@ -12,6 +12,19 @@
                 return  $Produtos;
          }
          
+         function updateProduto(){
+             $Produto = $_SESSION['produtoUpdate'];
+             if(isset($Produto)){
+                 $ProdutoDAO = new ProdutoDAO();
+                 if($ProdutoDAO->updateProduto($Produto)){
+                     $_SESSION['message'] = 'Produto alterado com sucesso!';
+                 } else {
+                    $_SESSION['message'] = 'Ocorreu um erro ao tentar alterar';
+                 }
+             }
+             header('Location: ' . HOME_PATH . '/Produto/index');
+         }
+         
          function GravarProduto(){
              $Produto = $_SESSION['ProdutoInsert'];
              

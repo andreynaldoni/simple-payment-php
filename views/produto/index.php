@@ -1,11 +1,21 @@
 <?php
     include_once "business/produtoNeg.php";
-    $message = $_SESSION['message'];
+    
+    if(isset($_POST['cd_produto'])){
+        $produto = new Produto();
+        $produto->setCdProduto($_POST['cd_produto']);
+        $produto->setNmProduto($_POST['nm_produto']);
+        $produto->setDsProduto($_POST['ds_produto']);
+        $produto->setVlProduto($_POST['vl_produto']);
+        $produto->setQtProduto($_POST['qt_produto']);
+        
+        $_SESSION['produtoUpdate'] = $produto;
+        
+        $produtoNeg = new produtoNeg();
+        $produtoNeg->updateProduto();
+    }
 ?>
     <h3 class="text-center">Tabela de Produtos</h3>
-    <?php if(isset($message)){ ?>
-        <label><?= $message ?></label>
-    <?php } ?>
     <div class="container">
         <div class="table-responsive">
         <table class="table table-striped">
@@ -44,6 +54,7 @@
 </div>
 <?php foreach($produtos as $produto => $atual){ ?>
 <div class="modal fade" id='<?= $atual->getCdProduto() ?>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form method="post">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -56,25 +67,30 @@
             <div class="table-responsive">
             <table class="table table-striped">
                 <tr>
-                    <td><label for="nm_cliente">Nome</label></td>
-                    <td><input id="nm_cliente" type="text" value="<?= $atual->getNmProduto()?>"/></td>
+                    <td colspan="2" align="center"><label for="cd_produto">Código</label></td>
+                    <td colspan="2" align="center"><input name="cd_produto" type="text" enable="false" value="<?= $atual->getCdProduto()?>"/></td>
+                </tr>
+                <tr>
+                    <td><label for="nm_produto">Nome</label></td>
+                    <td><input name="nm_produto" type="text" value="<?= $atual->getNmProduto()?>"/></td>
                     <td><label for="ds_produto">Descrição</label></td>
-                    <td><input id="ds_produto" type="text" value="<?= $atual->getDsProduto() ?>"/></td>
+                    <td><input name="ds_produto" type="text" value="<?= $atual->getDsProduto() ?>"/></td>
                 </tr>
                 <tr>
                     <td><label for="vl_produto">Valor</label></td>
-                    <td><input id="vl_produto" type="text" value="<?= $atual->getVlProduto() ?>"/></td>
+                    <td><input name="vl_produto" type="text" value="<?= $atual->getVlProduto() ?>"/></td>
                     <td><label for="qt_produto">Quantidade</label></td>
-                    <td><input id="qt_produto" type="text" value="<?= $atual->getQtProduto() ?>"/></td>
+                    <td><input name="qt_produto" type="text" value="<?= $atual->getQtProduto() ?>"/></td>
                 </tr>
             </table>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <input type="submit" class="btn btn-primary" text="Save changes"/>
         </div>
         </div>
     </div>
+    </form>
 </div>
 <?php } ?>

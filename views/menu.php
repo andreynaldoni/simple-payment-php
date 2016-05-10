@@ -30,8 +30,7 @@
                                     <li><a href="<?= HOME_PATH ?>/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <?php } ?>
                             <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido</a></li>
-                            <li><a href="#admin" data-toggle='modal' data-target='#admin'><span class="glyphicon glyphicon-wrench"></span>Admin</a></li>
-                            
+                            <li><a href="<?= HOME_PATH ?>/home/admin"><span class="glyphicon glyphicon-wrench"></span>Admin</a></li>
                         </ul>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ include_once 'models/produto.php';
         }
         
         function UpdateProduto($Produto){
-            if(DBUpdate('Produto',$Produto->getProduto(),true)){
+            if(DBUpdate('Produto',$Produto->getProduto(), "cd_produto = " . $Produto->getCdProduto(),true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";

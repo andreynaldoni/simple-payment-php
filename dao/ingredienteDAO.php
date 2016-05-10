@@ -25,7 +25,7 @@ include_once 'models/ingrediente.php';
         }
                 
         function InsertIngrediente($Ingrediente){
-            if(DBInsert('Ingrediente',$Ingrediente->getIngrediente(),true)){
+            if(DBInsert('Ingrediente',$Ingrediente->getIngrediente(), "cd_ingrediente = " . $Ingrediente->getCdIngrediente(),true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";

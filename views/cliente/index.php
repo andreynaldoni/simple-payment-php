@@ -1,7 +1,5 @@
 <?php
     include_once "business/clienteNeg.php";
-    include_once "models/cliente.php";
-    $message = $_SESSION['message'];
     
     if(isset($_POST['cd_cliente'])){
         $cliente = new Cliente();
