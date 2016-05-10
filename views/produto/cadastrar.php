@@ -24,7 +24,7 @@ include_once "business/produtoNeg.php";
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="vlproduto">Valor do Produto</label>
-                    <input type="number" class="form-control" name="produto[vlproduto]" placeholder="R$">
+                    <input type="number" class="form-control" name="produto[vlproduto]" placeholder="R$" step="0.01" min="0.01">
                 </div>
             </div>
             <div class="col-md-2">

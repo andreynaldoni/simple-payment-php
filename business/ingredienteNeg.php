@@ -12,9 +12,8 @@
                 return  $Ingredientes;
          }
          
-         function GravarIngrediente(){
-             $Ingrediente = $_SESSION['IngredienteInsert'];
-             
+         function GravarIngrediente($Ingrediente){
+                          
              if(isset($Ingrediente)){
                 $IngredienteDAO = new IngredienteDAO();
                 $IngredienteDAO->InsertIngrediente($Ingrediente);

@@ -24,13 +24,13 @@
                                 if(isset($cliente)){
                             ?>
                                     <li><a href="#"><span class="glyphicon glyphicon-user"></span>DESENVOLVIMENTO</a></li>
-                                    <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                                    <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                             <?php } else { ?>
-                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                    <li><a href="<?= HOME_PATH ?>/cliente/cadastrar"><span class="glyphicon glyphicon-user"></span> Registrar</a></li>
                                     <li><a href="<?= HOME_PATH ?>/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <?php } ?>
                             <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido</a></li>
-                            <li><a href="#admin" data-toggle='modal' data-target='#admin'><span class="glyphicon glyphicon-wrench"></span>Admin</a></li>
+                            <li><a href="#admin" data-toggle='modal' data-target='#admin'><span class="glyphicon glyphicon-wrench"></span> Admin</a></li>
                             
                         </ul>
                     </div>
