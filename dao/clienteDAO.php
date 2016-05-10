@@ -38,13 +38,13 @@ include_once 'models/cliente.php';
                 return "Ocorreu um erro.";
             }
         }
-        public function GetLogin($email,$senha){
-            $param = array(
+        public function getLogin($email,$senha){
+            $params = array(
                 "nm_email_cliente"      => $email,
                 "cd_senha"              => $senha
             );
             
-            $link = DBSelect('cliente',$param);
+            $link = DBSelect('cliente', $params);
             
             if($link != null){
                 $_SESSION['cliente'] = $link;

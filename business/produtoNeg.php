@@ -1,42 +1,38 @@
 <?php
     include "dao/produtoDAO.php";
      
-     class ProdutoNeg{
-         function GetProduto(){
+    class ProdutoNeg{
+        function GetProduto(){
              
-         }
-         function GetList(){             
-                $ProdutoDAO = new ProdutoDAO();
-                $Produtos = $ProdutoDAO->listProduto();
+        }
+         
+        function getList(){             
+            $ProdutoDAO = new ProdutoDAO();
+            $Produtos = $ProdutoDAO->listProduto();
+            
+            return $Produtos;
+        }
+         
+        function updateProduto(){
+            if(isset($_SESSION['produtoUpdate'])){
+                $Produto = $_SESSION['produtoUpdate'];
                 
-                return  $Produtos;
-         }
+                $ProdutoDAO = new ProdutoDAO();
+                $ProdutoDAO->updateProduto($Produto);
+                
+                header('Location: ' . HOME_PATH . '/Produto/index');
+            }
+        }
          
-         function updateProduto(){
-             $Produto = $_SESSION['produtoUpdate'];
-             if(isset($Produto)){
-                 $ProdutoDAO = new ProdutoDAO();
-                 if($ProdutoDAO->updateProduto($Produto)){
-                     $_SESSION['message'] = 'Produto alterado com sucesso!';
-                 } else {
-                    $_SESSION['message'] = 'Ocorreu um erro ao tentar alterar';
-                 }
-             }
-             header('Location: ' . HOME_PATH . '/Produto/index');
-         }
-         
-         function GravarProduto(){
-             $Produto = $_SESSION['ProdutoInsert'];
-             
-             if(isset($Produto)){
+        function GravarProduto(){
+            if(isset($_SESSION['ProdutoInsert'])){
+                $Produto = $_SESSION['ProdutoInsert'];
+                
                 $ProdutoDAO = new ProdutoDAO();
                 $ProdutoDAO->InsertProduto($Produto);
-                $_SESSION['message'] = 'Produto inserido com sucesso!';
                 
-             }else {
-                $_SESSION['message'] = 'Ocorreu um erro ao tentar inserir';
-             }
-             header('Location: ' . HOME_PATH . '/Produto/index');
-         }
-     }
+                header('Location: ' . HOME_PATH . '/Produto/index');
+            }
+        }
+    }
 ?>

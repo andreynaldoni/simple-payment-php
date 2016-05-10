@@ -24,23 +24,23 @@
                     <th>ID          </th>
                     <th>Nome        </th>
                     <th>Descrição   </th>
-                    <th>Valor        </th>
+                    <th>Valor       </th>
                     <th>Estoque     </th>
                 </tr>
             </thead>
             <tbody>
 <?php
     $produtoNeg = new ProdutoNeg();
-    $produtos = $produtoNeg->GetList();
+    $produtos = $produtoNeg->getList();
     
     foreach($produtos as $produto => $atual){
 ?>
 <tr>
-    <td><?= $atual->getCdProduto()         ?></td>
-    <td><?= $atual->getNmProduto()         ?></td>
-    <td><?= $atual->getDsProduto()         ?></td>
-    <td><?= $atual->getVlProduto()         ?></td>
-    <td><?= $atual->getQtProduto()         ?></td>
+    <td><?= $atual->getCdProduto() ?></td>
+    <td><?= $atual->getNmProduto() ?></td>
+    <td><?= $atual->getDsProduto() ?></td>
+    <td><?= $atual->getVlProduto() ?></td>
+    <td><?= $atual->getQtProduto() ?></td>
     <td><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdProduto() ?>"  >
         Editar
     </button></td>

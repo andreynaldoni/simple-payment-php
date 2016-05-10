@@ -1,6 +1,5 @@
 <?php
     include_once "business/clienteNeg.php";
-    $message = $_SESSION['message'];
 ?>
 
 <div class="container">

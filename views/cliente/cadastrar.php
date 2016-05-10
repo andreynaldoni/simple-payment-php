@@ -1,11 +1,11 @@
 <?php 
-//DAO->Cliente
-//include "dao/clienteDAO.php";
-include_once "business/clienteNeg.php";
+    //DAO->Cliente
+    //include "dao/clienteDAO.php";
+    include_once "business/clienteNeg.php";
 ?>
 
 <div class="container-fluid" style="padding-left:35px;">
-    <form action=$_POST[ 'user'] method="POST">
+    <form method="POST">
         <h1 style="padding-left:35px;">Cliente</h1>
         <div class="row">
             <div class="col-md-2">
@@ -152,6 +152,6 @@ if (isset($_POST['cliente'])) {
 
     $cliente = new clienteNeg();
 
-    $cliente->GravarCliente($clienteModel);
+    $cliente->gravarCliente($clienteModel);
 }
 ?>

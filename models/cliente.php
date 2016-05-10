@@ -88,7 +88,7 @@
         }
         
         public function getNmPais(){
-            return $this-nm_pais;
+            return $this->nm_pais;
         }
         
         public function setNmPais($nm_pais){

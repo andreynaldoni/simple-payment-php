@@ -1,5 +1,5 @@
 
-    <?php include_once '../models/cliente.php'; ?>
+    <?php include_once 'models/cliente.php'; ?>
     <div class="navbar-wrapper">
         <div class="container">
             <nav class="navbar-inverse navbar-fixed-top">
@@ -20,17 +20,17 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php
-                                $cliente = $_SESSION['cliente'];
-                                if(isset($cliente)){
+                                if(isset($_SESSION['cliente'])){
+                                    $cliente = $_SESSION['cliente'];
                             ?>
-                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>DESENVOLVIMENTO</a></li>
-                                    <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> ~Em Desenvolvimento~</a></li>
+                                    <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                             <?php } else { ?>
                                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                                     <li><a href="<?= HOME_PATH ?>/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <?php } ?>
                             <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido</a></li>
-                            <li><a href="<?= HOME_PATH ?>/home/admin"><span class="glyphicon glyphicon-wrench"></span>Admin</a></li>
+                            <li><a href="<?= HOME_PATH ?>/home/admin"><span class="glyphicon glyphicon-wrench"></span> Admin</a></li>
                         </ul>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
     <?php
         //Overlay background content
         if(!isset($this->params['menu_overlay'])){ 
-            if(!$this->params['menu_overlay']) echo "<br><br><br>\n";
+            echo "<br><br><br>\n";
         }
     ?>
     

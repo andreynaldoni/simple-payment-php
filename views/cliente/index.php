@@ -62,7 +62,7 @@
             <tbody>
 <?php
     $ClienteNeg = new clienteNeg();
-    $clientes = $ClienteNeg->GetList();
+    $clientes = $ClienteNeg->getList();
     
     foreach($clientes as $cliente => $atual){
 ?>

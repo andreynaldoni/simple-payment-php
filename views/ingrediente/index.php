@@ -31,7 +31,7 @@
             <tbody>
 <?php
     $IngredienteNeg = new IngredienteNeg();
-    $Ingredientes = $IngredienteNeg->GetList();
+    $Ingredientes = $IngredienteNeg->getList();
     
     foreach($Ingredientes as $Ingrediente => $atual){
 ?>

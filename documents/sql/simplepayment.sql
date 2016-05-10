@@ -243,14 +243,14 @@ values ('Oregano','Oregano',100,2.50);
 
 
 -- CLIENTE 
-INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
-values ('Genoveva' ,'Santos' ,13 ,34738100 ,'F' ,'26325872800' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Avenida Paris ','30' ,'ap' ,'genovevisdasilva@gmail.com' ,'' ,'' ,curdate() ) ;
+INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao, cd_senha)
+values ('Genoveva' ,'Santos' ,13 ,34738100 ,'F' ,'26325872800' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Avenida Paris ','30' ,'ap' ,'genovevisdasilva@gmail.com' ,'' ,'' ,curdate(), '202cb962ac59075b964b07152d234b70') ;
 
-INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
-values ('Gisele' ,'Silva' ,11 ,34738180 ,'F' ,'75786244407' ,'' ,'Brasil' ,'SP','Praia Grande','11725380' ,'Tude Bastos' ,'Rua padre gastão','444' ,'casa' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate());
+INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao, cd_senha)
+values ('Gisele' ,'Silva' ,11 ,34738180 ,'F' ,'75786244407' ,'' ,'Brasil' ,'SP','Praia Grande','11725380' ,'Tude Bastos' ,'Rua padre gastão','444' ,'casa' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate(), '202cb962ac59075b964b07152d234b70');
 
-INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao)
-values ('Gertrudes' ,'Selfie' ,13 ,988849091 ,'F' ,'57338831700' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Rua Mário Tamashiro - até 299/300 ','300' ,'ap' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate());
+INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao, cd_senha)
+values ('Gertrudes' ,'Selfie' ,13 ,988849091 ,'F' ,'57338831700' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Rua Mário Tamashiro - até 299/300 ','300' ,'ap' ,'a@a.com' ,'' ,'' ,curdate(), '202cb962ac59075b964b07152d234b70');
 
 /*
 -- CABECA

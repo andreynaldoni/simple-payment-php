@@ -46,7 +46,7 @@ function DBDelete($table, $where = null){
 */
 
 //Função para Ler Dados
-	function DBSelect($class_name, $params, $fields){
+	function DBSelect($class_name, $params = null, $fields = null){
 		$table = DB_PREFIX . '_' . $class_name;
 		
 		if($params){

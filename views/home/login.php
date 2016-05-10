@@ -5,7 +5,7 @@
     if(isset($_POST['user']))
     {
         $login = new clienteNeg();
-        $login->Login();
+        $login->login();
     }
 ?>
 

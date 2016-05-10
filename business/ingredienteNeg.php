@@ -1,42 +1,38 @@
 <?php
     include "dao/ingredienteDAO.php";
      
-     class IngredienteNeg{
-         function GetIngrediente(){
+    class IngredienteNeg{
+        function getIngrediente(){
              
-         }
-         function GetList(){             
-                $IngredienteDAO = new IngredienteDAO();
-                $Ingredientes = $IngredienteDAO->listIngrediente();
+        }
+        
+        function getList(){             
+            $IngredienteDAO = new IngredienteDAO();
+            $Ingredientes = $IngredienteDAO->listIngrediente();
                 
-                return  $Ingredientes;
-         }
+            return $Ingredientes;
+        }
          
-         function updateIngrediente(){
-             $Ingrediente = $_SESSION['ingredienteUpdate'];
-             if(isset($Ingrediente)){
-                 $IngredienteDAO = new IngredienteDAO();
-                 if($IngredienteDAO->updateIngrediente($Ingrediente)){
-                     $_SESSION['message'] = 'Ingrediente alterado com sucesso!';
-                 } else {
-                    $_SESSION['message'] = 'Ocorreu um erro ao tentar alterar';
-                 }
-             }
-             header('Location: ' . HOME_PATH . '/ingrediente/index');
-         }
-         
-         function GravarIngrediente(){
-             $Ingrediente = $_SESSION['IngredienteInsert'];
-             
-             if(isset($Ingrediente)){
+        function updateIngrediente(){
+            if(isset($_SESSION['ingredienteUpdate'])){
+                $Ingrediente = $_SESSION['ingredienteUpdate'];
+                 
                 $IngredienteDAO = new IngredienteDAO();
-                $IngredienteDAO->InsertIngrediente($Ingrediente);
-                $_SESSION['message'] = 'Ingrediente inserido com sucesso!';
+                $IngredienteDAO->updateIngrediente($Ingrediente);
                 
-             }else {
-                $_SESSION['message'] = 'Ocorreu um erro ao tentar inserir';
-             }
-             header('Location: ' . HOME_PATH . '/ingrediente/index');
-         }
-     }
+                header('Location: ' . HOME_PATH . '/ingrediente/index');
+            }
+        }
+         
+        function gravarIngrediente(){
+            if(isset($_SESSION['IngredienteInsert'])){
+                $Ingrediente = $_SESSION['IngredienteInsert'];
+                
+                $IngredienteDAO = new IngredienteDAO();
+                $IngredienteDAO->insertIngrediente($Ingrediente);
+                
+                header('Location: ' . HOME_PATH . '/ingrediente/index');
+            }
+        }
+    }
 ?>
