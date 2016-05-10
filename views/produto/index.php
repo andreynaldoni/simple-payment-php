@@ -24,7 +24,7 @@
                     <th>ID          </th>
                     <th>Nome        </th>
                     <th>Descrição   </th>
-                    <th>Valor       </th>
+                    <th>Valor        </th>
                     <th>Estoque     </th>
                 </tr>
             </thead>
