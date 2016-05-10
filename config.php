@@ -11,7 +11,7 @@
 	define('DB_CHARSET','utf8');
     // URL
     define('HOME_PATH', 'https://php-payment.herokuapp.com/');
-	//define('HOME_PATH', 'http://localhost/GIT/simple-payment-php');
+	//define('HOME_PATH', 'http://localhost/simple-payment-php');
     // Application
 	require_once 'app.php';
     // PHP_ENV ? production : development

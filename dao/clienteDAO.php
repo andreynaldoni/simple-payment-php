@@ -24,7 +24,7 @@ include_once 'models/cliente.php';
         }
         
         function UpdateCliente($cliente){
-            if(DBUpdate('cliente',$cliente->getCliente(),true)){
+            if(DBUpdate('cliente',$cliente->getCliente(), "cd_cliente = " . $cliente->getCdCliente(),true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";

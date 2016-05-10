@@ -13,8 +13,7 @@
          }
          
          function updateCliente(){
-             $cliente =$_SESSION['clienteUpdate'];
-             
+             $cliente = $_SESSION['clienteUpdate'];
              if(isset($cliente)){
                  $clienteDAO = new ClienteDAO();
                  if($clienteDAO->updateCliente($cliente)){

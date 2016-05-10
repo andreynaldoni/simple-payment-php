@@ -1,8 +1,11 @@
 <?php
     include_once "business/clienteNeg.php";
+    include_once "models/cliente.php";
     $message = $_SESSION['message'];
+    
     if(isset($_POST['cd_cliente'])){
         $cliente = new Cliente();
+        
         $cliente->setCdCliente($_POST['cd_cliente']);
         $cliente->setNmCliente($_POST['nm_cliente']);
         $cliente->setNmSobrenome($_POST['nm_sobrenome']);
@@ -19,21 +22,18 @@
         $cliente->setNmRua($_POST['nm_rua']);
         $cliente->setCdNumero($_POST['cd_numero']);
         $cliente->setDsComplemento($_POST['ds_complemento']);
-        $cliente->setNmEmail($_POST['nm_email']);
+        $cliente->setNmEmailCliente($_POST['nm_email_cliente']);
         $cliente->setCdCartaoCliente($_POST['cd_cartao_cliente']);
-        $cliente->setCdOperadora($_POST['cd_operadora_cartao']);
+        $cliente->setCdOperadoraCartao($_POST['cd_operadora_cartao']);
         $cliente->setDtValidadeCartao($_POST['dt_validade_cartao']);
         
         $_SESSION['clienteUpdate'] = $cliente;
         
-        $clienteNeg = new ClienteNeg();
+        $clienteNeg = new clienteNeg();
         $clienteNeg->updateCliente();
     }
 ?>
     <h3 class="text-center">Tabela de Clientes</h3>
-    <?php if(isset($message)){ ?>
-        <label><?= $message ?></label>
-    <?php } ?>
     <div class="container">
         <div class="table-responsive">
         <table class="table table-striped">
@@ -102,7 +102,7 @@
 </div>
 <?php foreach($clientes as $cliente => $atual){ ?>
 <div class="modal fade" id='<?= $atual->getCdCliente() ?>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <form method="post" action="#">
+    <form method="post" action="<?= HOME_PATH ?>/cliente/index">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -117,67 +117,67 @@
                 <table class="table table-striped">
                     <tr>
                         <td colspan="4" align="center">
-                            <label for="nm_cliente">Código</label>
-                            <input id="nm_cliente" type="text" value="<?= $atual->getCdCliente()?>"/>
+                            <label for="cd_cliente">Código</label>
+                            <input name="cd_cliente" type="text" value="<?= $atual->getCdCliente()?>"/>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="nm_cliente">Nome</label></td>
-                        <td><input id="nm_cliente" type="text" value="<?= $atual->getNmCliente()?>"/></td>
+                        <td><input name="nm_cliente" type="text" value="<?= $atual->getNmCliente()?>"/></td>
                         <td><label for="nm_sobrenome">Sobrenome</label></td>
-                        <td><input id="nm_sobrenome" type="text" value="<?= $atual->getNmSobrenome() ?>"/></td>
+                        <td><input name="nm_sobrenome" type="text" value="<?= $atual->getNmSobrenome() ?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="cd_ddd">DDD</label></td>
-                        <td><input id="cd_ddd" type="text" value="<?= $atual->getCdDdd() ?>"/></td>
+                        <td><input name="cd_ddd" type="text" value="<?= $atual->getCdDdd() ?>"/></td>
                         <td><label for="">Telefone</label></td>
-                        <td><input id="cd_telefone" type="text" value="<?= $atual->getCdTelefone() ?>"/></td>
+                        <td><input name="cd_telefone" type="text" value="<?= $atual->getCdTelefone() ?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="">CPF/CNPJ</label></td>
-                        <td><input id="ic_tipo_documento" type="text" value="<?= $atual->getIcTipoDocumento() ?>"/></td>
+                        <td><input name="ic_tipo_documento" type="text" value="<?= $atual->getIcTipoDocumento() ?>"/></td>
                         <td><label for="">CPF</label></td>
-                        <td><input id="cd_cpf" type="text" value="<?= $atual->getCdCpf() ?>"/></td>
+                        <td><input name="cd_cpf" type="text" value="<?= $atual->getCdCpf() ?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="">CNPJ</label></td>
-                        <td><input id="cd_cnpj" type="text" value="<?= $atual->getCdCnpj() ?>"/></td>
+                        <td><input name="cd_cnpj" type="text" value="<?= $atual->getCdCnpj() ?>"/></td>
                         <td><label for="">País</label></td>
-                        <td><input id="nm_pais" type="text" value="<?= $atual->getNmPais() ?>"/></td>
+                        <td><input name="nm_pais" type="text" value="<?= $atual->getNmPais() ?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="">Estado</label></td>
-                        <td><input id="sg_estado" type="text" value="<?= $atual->getSgEstado() ?>"/></td>
+                        <td><input name="sg_estado" type="text" value="<?= $atual->getSgEstado() ?>"/></td>
                         <td><label for="">Cidade</label></td>
-                        <td><input id="nm_cidade" type="text" value="<?= $atual->getNmCidade() ?>"/></td>
+                        <td><input name="nm_cidade" type="text" value="<?= $atual->getNmCidade() ?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="">CEP</label></td>
-                        <td><input id="cd_cep" type="text" value="<?= $atual->getCdCep() ?>"/></td>
+                        <td><input name="cd_cep" type="text" value="<?= $atual->getCdCep() ?>"/></td>
                         <td><label for="">Bairro</label></td>
-                        <td><input id="nm_bairro" type="text" value="<?= $atual->getNmBairro() ?>"/></td>
+                        <td><input name="nm_bairro" type="text" value="<?= $atual->getNmBairro() ?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="">Rua</label></td>
-                        <td><input id="nm_rua" type="text" value="<?= $atual->getNmRua() ?>"/></td>
+                        <td><input name="nm_rua" type="text" value="<?= $atual->getNmRua() ?>"/></td>
                         <td><label for="">Número</label></td>
-                        <td><input id="cd_numero" type="text" value="<?= $atual->getCdNumero() ?>"/></td>
+                        <td><input name="cd_numero" type="text" value="<?= $atual->getCdNumero() ?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="">Complemento</label></td>
-                        <td><input id="ds_complemento" type="text" value="<?= $atual->getDsComplemento() ?>"/></td>
+                        <td><input name="ds_complemento" type="text" value="<?= $atual->getDsComplemento() ?>"/></td>
                         <td><label for="">Email</label></td>
-                        <td><input id="nm_email_cliente" type="text" value="<?= $atual->getNmEmailCliente() ?>"/></td>
+                        <td><input name="nm_email_cliente" type="text" value="<?= $atual->getNmEmailCliente() ?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="">Cartão</label></td>
-                        <td><input id="cd_cartao_cliente" type="text" value="<?= $atual->getCdCartaoCliente() ?>"/></td>
+                        <td><input name="cd_cartao_cliente" type="text" value="<?= $atual->getCdCartaoCliente() ?>"/></td>
                         <td><label for="">Operadora</label></td>
-                        <td><input id="cd_operadora_cartao" type="text" value="<?= $atual->getCdOperadoraCartao()?>"/></td>
+                        <td><input name="cd_operadora_cartao" type="text" value="<?= $atual->getCdOperadoraCartao()?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="">Validade</label></td>
-                        <td><input id="dt_validade_cartao" type="data" value="<?= $atual->getDtValidadeCartao() ?>"/></td>
+                        <td><input name="dt_validade_cartao" type="data" value="<?= $atual->getDtValidadeCartao() ?>"/></td>
                     </tr>
                 </table>
             </div>

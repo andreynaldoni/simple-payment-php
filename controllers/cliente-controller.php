@@ -9,29 +9,20 @@ class ClienteController{
         //Header & Footer
         require 'views/header.php';
         require 'views/menu.php';
-        //View->Home
+        //View->Cliente
         require 'views/cliente/index.php';
         //Footer
         require 'views/footer.php';
     }
-    function Cadastro(){
+    function cadastro(){
         $this->params = array(
             'title'=>'Cadastro de cliente'
         );
         //Header & Footer
         require 'views/header.php';
         require 'views/menu.php';
-        //View->Home->Login
+        //View->Cliente->Login
         require 'views/cliente/cadastrar.php';
-        //Footer
-        require 'views/footer.php';
-    }
-    function Edicao(){
-        //Header & Footer
-        require 'views/header.php';
-        require 'views/menu.php';
-        //View->Home->Login
-        //require 'views/home/logoff.php';
         //Footer
         require 'views/footer.php';
     }

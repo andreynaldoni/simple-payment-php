@@ -2,6 +2,13 @@
     //DAO->Cliente
    //include "dao/clienteDAO.php";
     include_once "business/clienteNeg.php";
+    
+    if(isset($_POST['user']))
+    {
+        $login = new clienteNeg();
+        
+            $login->Login();
+    }
 ?>
 
     <div class="container">
@@ -17,12 +24,3 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
         </form>
     </div>
-        
-    <?php
-        if(isset($_POST['user']))
-        {
-            $login = new clienteNeg();
-            
-             $login->Login();
-        }
-    ?>

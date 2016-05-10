@@ -14,7 +14,7 @@
             <a href="<?= HOME_PATH ?>/ingrediente/index" class="btn btn-primary btn-block btn-large">Ingredientes</a>
         </div>
         <div class="col-md-6">
-            <a href="<?= HOME_PATH ?>/home/admin" class="btn btn-primary btn-block btn-large">Pedidos</a>
+            <a href="<?= HOME_PATH ?>/pedido/index" class="btn btn-primary btn-block btn-large">Pedidos</a>
         </div>
     </div>
 </div>
