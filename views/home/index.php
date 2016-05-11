@@ -7,7 +7,11 @@
         <div class="row">
             <h1 class="text-center"><i class="glyphicon glyphicon-book" style="vertical-align: top;"></i> Cardápio :)</h1>
             <hr>
+            <?php if(isset($_SESSION['cliente'])){
+                $cliente = $_SESSION['cliente'][0];
+            ?>
             <h3 class="text-center">Olá <b><?=  $cliente->getNmCliente() ?></b> seja bem vindo(a), aqui você pode checar nosso cardápio ;)</h3>
+            <?php } ?>
         </div>
         <div class="text-center">
             <br>
