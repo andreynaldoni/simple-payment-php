@@ -23,7 +23,7 @@ function DBDelete($table, $where = null){
 
 //Função para Alterar Dados
 	function DBUpdate($table, array $data, $where, $insertId){
-		$table = DB_PREFIX . '_' . $table;
+		$table = DB_PREFIX . '_' . strtolower($table);
 		$where = ($where) ? " WHERE {$where}" : null;
         
 		foreach ($data as $key => $value) {
@@ -47,7 +47,7 @@ function DBDelete($table, $where = null){
 
 //Função para Ler Dados
 	function DBSelect($class_name, $params = null, $fields = null){
-		$table = DB_PREFIX . '_' . $class_name;
+		$table = DB_PREFIX . '_' . strtolower($class_name);
 		
 		if($params){
             foreach ($params as $key => $value) {
@@ -88,7 +88,7 @@ function DBDelete($table, $where = null){
 
 //Função para Gravar Dados
 	function DBInsert($table,array $data, $insertId){
-		$table = DB_PREFIX . '_' . $table;
+		$table = DB_PREFIX . '_' . strtolower($table);
 		$data = DBEscape($data);
 
 		$fields = implode(', ', array_keys($data));

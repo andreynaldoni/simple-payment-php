@@ -1,7 +1,8 @@
 <?php
-    session_start(); 
-	$db_url = parse_url(getenv('CLEARDB_DATABASE_URL')); 
-    //$db_url = parse_url(getenv('MYSQL_LOCAL_DB'));
+    // Session Intialize
+    session_start();
+	$db_url = parse_url(getenv('JAWSDB_URL')); // Production Environment
+    //$db_url = parse_url(getenv('MYSQL_LOCAL_DB')); // Local Development Environment
     
     define('DB_HOSTNAME', $db_url['host']);
 	define('DB_USERNAME', $db_url['user']);
@@ -10,8 +11,8 @@
 	define('DB_PREFIX','tb');
 	define('DB_CHARSET','utf8');
     // URL
-    define('HOME_PATH', 'https://php-payment.herokuapp.com/');
-	//define('HOME_PATH', 'http://localhost/simple-payment-php');
+    define('HOME_PATH', 'https://php-payment.herokuapp.com/'); // Production Path
+	//define('HOME_PATH', 'http://localhost/simple-payment-php'); // Local Development Path
     // Application
 	require_once 'app.php';
     // PHP_ENV ? production : development
@@ -26,6 +27,17 @@
         error_reporting(0);
         ini_set('display_errors', 0);    
     }   
+    // Autoload Classes
+    function __autoload($class_name) {
+        $file = 'models/' . $class_name . '.php';
+        
+        /*if (!file_exists($file)) {
+            require_once 'views/errors/404.php';
+            return;
+        }*/
+        require_once $file;
+    }
+    
     // Start the application
     $app = new SimplePayment();
 ?>
