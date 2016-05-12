@@ -2,36 +2,59 @@
     include "dao/produtoDAO.php";
      
     class ProdutoNeg{
-        function GetProduto(){
-             
+        
+        private function checkImg($produto){
+            $type = $produto["type"]['im_produto'];
+                        
+            if ($produto["size"]['im_produto'] > 500000) {
+                return false;
+            }
+            
+            if($type != "image/jpg" && $type != "image/png" 
+                && $type != "image/jpeg" && $type != "image/gif" ) {
+                return false;
+            }
+            return true;
+        }
+        
+        private function setProdutoImg($imgname){
+            $img_path = 'public/img/produto';
+            
+            if($_FILES['produto']['name']['im_produto'] == '') return;
+            
+            if ($this->checkImg($_FILES['produto'])){
+                $sucesso = move_uploaded_file($_FILES['produto']['tmp_name']['im_produto'], $img_path . '/' . $imgname);
+                return $sucesso;
+            }
+            return false;
         }
          
         function getList(){             
             $ProdutoDAO = new ProdutoDAO();
-            $Produtos = $ProdutoDAO->listProduto();
-            
-            return $Produtos;
+            return $ProdutoDAO->listProduto();
         }
          
-        function updateProduto(){
-            if(isset($_SESSION['produtoUpdate'])){
-                $Produto = $_SESSION['produtoUpdate'];
-                
+        function updateProduto($produto){
+            if(isset($produto)){
                 $ProdutoDAO = new ProdutoDAO();
-                $ProdutoDAO->updateProduto($Produto);
+                $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1];      
+                $this->setProdutoImg($img_name);
                 
-                header('Location: ' . HOME_PATH . '/Produto/index');
+                if($produto->getImProduto() != null){
+                    $produto->setImProduto($img_name);
+                }
+
+                $ProdutoDAO->updateProduto($produto);
+                //header('Location: ' . HOME_PATH . '/Produto/index');
             }
         }
          
-        function GravarProduto(){
-            if(isset($_SESSION['ProdutoInsert'])){
-                $Produto = $_SESSION['ProdutoInsert'];
-                
+        function gravarProduto($produto){
+            if(isset($produto)){
                 $ProdutoDAO = new ProdutoDAO();
-                $ProdutoDAO->InsertProduto($Produto);
+                $ProdutoDAO->insertProduto($produto);
                 
-                header('Location: ' . HOME_PATH . '/Produto/index');
+                //header('Location: ' . HOME_PATH . '/Produto/index');
             }
         }
     }

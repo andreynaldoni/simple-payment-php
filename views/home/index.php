@@ -27,13 +27,15 @@
                     }
             ?>
             <div class="col-sm-4">
-                <img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">
+                <a href="#" data-toggle="modal" data-target="#produto<?= $atual->getCdProduto() ?>">
+                    <img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">
+                </a>
                 <h2><?= $atual->getNmProduto() ?></h2>
                 <p class="text-center">
                     <?= $atual->getDsProduto() ?>
                 </p>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produto<?= $atual->getCdProduto() ?>">
-                    Adicionar
+                   <i class="glyphicon glyphicon-plus-sign"></i> Adicionar
                 </button>
                 <div class="modal fade" id="produto<?= $atual->getCdProduto() ?>" tabindex="-1" role="dialog" aria-labelledby="Produto<?= $atual->getCdProduto() ?>">
                     <div class="modal-dialog" role="document">
@@ -46,8 +48,8 @@
                             </div>
                             <div class="modal-body">
                                 <h3>Promoção de final de semana :)</h3>
-                                <h1 class="text-danger"><span class="preco">De: </span><b><s>R$ <?= str_replace('.', ',', ($atual->getVlProduto() * 1.5)) ?></s></b></h1>
-                                <h1 class="text-success"><span class="preco">Por: </span><b>R$ <?= str_replace('.', ',',$atual->getVlProduto()) ?></b></h1>
+                                <h1 class="text-danger"><span class="preco">De: </span><b><s>R$ <?= number_format(($atual->getVlProduto() * 1.05), 2, ',', '.') ?></s></b></h1>
+                                <h1 class="text-success"><span class="preco">Por: </span><b>R$ <?= number_format($atual->getVlProduto(), 2, ',', ' ')  ?></b></h1>
                                 <div class="form-inline">
                                     <label for="qtd">Quantidade: </label>
                                     <div class="input-group">

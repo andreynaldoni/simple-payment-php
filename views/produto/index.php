@@ -1,18 +1,19 @@
 <?php
     include_once "business/produtoNeg.php";
     
-    if(isset($_POST['cd_produto'])){
+    if(isset($_POST['produto'])){
         $produto = new Produto();
-        $produto->setCdProduto($_POST['cd_produto']);
-        $produto->setNmProduto($_POST['nm_produto']);
-        $produto->setDsProduto($_POST['ds_produto']);
-        $produto->setVlProduto($_POST['vl_produto']);
-        $produto->setQtProduto($_POST['qt_produto']);
         
-        $_SESSION['produtoUpdate'] = $produto;
+        $produto->setCdProduto($_POST['produto']['cd_produto']);
+        $produto->setNmProduto($_POST['produto']['nm_produto']);
+        $produto->setDsProduto($_POST['produto']['ds_produto']);
+        $produto->setVlProduto($_POST['produto']['vl_produto']);
+        $produto->setQtProduto($_POST['produto']['qt_produto']);
+        $produto->setImProduto($_POST['produto']['im_produto']);
         
         $produtoNeg = new produtoNeg();
-        $produtoNeg->updateProduto();
+        
+        $produtoNeg->updateProduto($produto);        
     }
 ?>
 
@@ -24,13 +25,13 @@
         <table class="table table-striped prod" style="vertical-align: middle">
             <thead>
                 <tr>
-                    <th class="text-center">Código          </th>
-                    <th>Nome        </th>
-                    <th>Descrição   </th>
-                    <th class="text-center">Valor       </th>
-                    <th class="text-center">Estoque     </th>
-                    <th class="text-center">Imagem      </th>
-                    <th class="text-center">Ação      </th>
+                    <th class="text-center">Código</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th class="text-center">Valor</th>
+                    <th class="text-center">Estoque</th>
+                    <th class="text-center">Imagem</th>
+                    <th class="text-center">Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,13 +43,24 @@
 ?>
 <tr>
     <td class="text-center"><b><?= $atual->getCdProduto() ?></b></td>
-    <td><?= $atual->getNmProduto() ?></td>
-    <td><?= $atual->getDsProduto() ?></td>
-    <td class="text-center"><b>R$ <?= str_replace('.', ',', $atual->getVlProduto()) ?></b></td>
+    <?php 
+        if(strlen($atual->getNmProduto()) > 20){
+            echo '<td>' . substr($atual->getNmProduto(), 0, 20) . '...</td>';
+        }else{
+            echo '<td>' . $atual->getNmProduto() . '</td>';
+        }
+        
+        if(strlen($atual->getDsProduto()) > 12){
+            echo '<td>' . substr($atual->getNmProduto(), 0, 12) . '...</td>';
+        }else{
+            echo '<td>' . $atual->getDsProduto() . '</td>';
+        }
+    ?>
+    <td class="text-center"><b>R$ <?= number_format($atual->getVlProduto(), 2, ',', '.') ?></b></td>
     <td class="text-center"><?= $atual->getQtProduto() ?></td>
-    <td><img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150"></td>
-    <td><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdProduto() ?>">
-        Editar
+    <td class="text-center"><img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150"></td>
+    <td class="text-center"><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdProduto() ?>">
+        <i class="glyphicon glyphicon-pencil"></i>
     </button></td>
 </tr>
 
@@ -59,41 +71,75 @@
 </table></div>
 </div>
 <?php foreach($produtos as $produto => $atual){ ?>
-<div class="modal fade" id="<?= $atual->getCdProduto() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <form method="post">
+<div class="modal fade" id="<?= $atual->getCdProduto() ?>" tabindex="-1" role="dialog" aria-labelledby="ProdutoEditar" aria-hidden="true">
+    <form method="post" enctype="multipart/form-data">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+        <div class="modal-header bg-primary">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Editando <?= $atual->getNmProduto() ?></h4>
+            <h2 class="modal-title text-center" id="ProdutoEditar"><b>Editando <?= $atual->getNmProduto() ?></b></h2>
         </div>
         <div class="modal-body">
-            <div class="table-responsive">
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="2" align="center"><label for="cd_produto">Código</label></td>
-                    <td colspan="2" align="center"><input name="cd_produto" type="text" enable="false" value="<?= $atual->getCdProduto()?>"/></td>
-                </tr>
-                <tr>
-                    <td><label for="nm_produto">Nome</label></td>
-                    <td><input name="nm_produto" type="text" value="<?= $atual->getNmProduto()?>"/></td>
-                    <td><label for="ds_produto">Descrição</label></td>
-                    <td><input name="ds_produto" type="text" value="<?= $atual->getDsProduto() ?>"/></td>
-                </tr>
-                <tr>
-                    <td><label for="vl_produto">Valor</label></td>
-                    <td><input name="vl_produto" type="text" value="<?= $atual->getVlProduto() ?>"/></td>
-                    <td><label for="qt_produto">Quantidade</label></td>
-                    <td><input name="qt_produto" type="text" value="<?= $atual->getQtProduto() ?>"/></td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="produto[cd_produto]">Código:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="produto[cd_produto]" type="hidden" value="<?= $atual->getCdProduto()?>"/>
+                        <input name="produto[cd_produto]" type="text" class="form-control" value="<?= $atual->getCdProduto()?>" disabled/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="produto[nm_produto]">Nome:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
+                        <input name="produto[nm_produto]" type="text" class="form-control" value="<?= $atual->getNmProduto()?>" maxlength="60"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-12">
+                    <label for="produto[ds_produto]">Descrição:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+                        <input name="produto[ds_produto]" type="text" class="form-control" value="<?= $atual->getDsProduto() ?>" maxlength="100"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-6">
+                    <label for="produto[vl_produto]">Valor:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                        <input name="produto[vl_produto]" type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control" value="<?= $atual->getVlProduto() ?>"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="produto[qt_produto]">Quantidade:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
+                        <input name="produto[qt_produto]" type="number" step="1" class="form-control" value="<?= $atual->getQtProduto() ?>"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-12">
+                    <label for="produto[im_produto]" style="margin-top: 10px">Imagem:</label>
+                </div>
+                <div class="col-sm-12">
+                    <input name="produto[im_produto]" type="hidden" value="<?= $atual->getImProduto()?>"/>
+                    <img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">
+                </div>
+                <div class="col-sm-6" style="margin-top: 15px">
+                    <input name="produto[im_produto]" type="file"/>
+                </div>    
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" text="Save changes"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
         </div>
     </div>

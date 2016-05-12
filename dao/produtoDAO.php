@@ -6,8 +6,8 @@ include_once 'models/produto.php';
 
     class ProdutoDAO {
         
-        function getProduto($Produto){
-            $link = DBSelect('Produto',$Produto->getProduto());
+        function getProduto($produto){
+            $link = DBSelect('Produto', $produto->getProduto());
             if($link != null){
                 return $link;
             } else {
@@ -24,24 +24,24 @@ include_once 'models/produto.php';
             }
         }
                 
-        function InsertProduto($Produto){
-            if(DBInsert('Produto',$Produto->getProduto(),true)){
+        function insertProduto($produto){
+            if(DBInsert('Produto', $produto->getProduto(), true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        function UpdateProduto($Produto){
-            if(DBUpdate('Produto',$Produto->getProduto(), "cd_produto = " . $Produto->getCdProduto(),true)){
+        function updateProduto($produto){
+            if(DBUpdate('Produto', $produto->getProduto(), "cd_produto = " . $produto->getCdProduto(),true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        public function DeleteProduto($Produto){
-            if(DBDelete('Produto',$Produto->getProduto())){
+        public function deleteProduto($produto){
+            if(DBDelete('Produto', $produto->getProduto())){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
