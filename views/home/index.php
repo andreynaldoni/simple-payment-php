@@ -26,8 +26,8 @@
                         echo '<div class="row">';
                     }
             ?>
-            <div class="col-xs-4">
-                <img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getCdProduto() ?>.jpg" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">
+            <div class="col-sm-4">
+                <img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">
                 <h2><?= $atual->getNmProduto() ?></h2>
                 <p class="text-center">
                     <?= $atual->getDsProduto() ?>

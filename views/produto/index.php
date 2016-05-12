@@ -15,17 +15,22 @@
         $produtoNeg->updateProduto();
     }
 ?>
-    <h3 class="text-center">Tabela de Produtos</h3>
+
+    <br>
     <div class="container">
-        <div class="table-responsive">
-        <table class="table table-striped">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="text-center" style="margin: 0">Tabela de Produtos</h3></div>
+        <div class="table-responsive prod">
+        <table class="table table-striped prod" style="vertical-align: middle">
             <thead>
                 <tr>
-                    <th>ID          </th>
+                    <th class="text-center">Código          </th>
                     <th>Nome        </th>
                     <th>Descrição   </th>
-                    <th>Valor       </th>
-                    <th>Estoque     </th>
+                    <th class="text-center">Valor       </th>
+                    <th class="text-center">Estoque     </th>
+                    <th class="text-center">Imagem      </th>
+                    <th class="text-center">Ação      </th>
                 </tr>
             </thead>
             <tbody>
@@ -36,12 +41,13 @@
     foreach($produtos as $produto => $atual){
 ?>
 <tr>
-    <td><?= $atual->getCdProduto() ?></td>
+    <td class="text-center"><b><?= $atual->getCdProduto() ?></b></td>
     <td><?= $atual->getNmProduto() ?></td>
     <td><?= $atual->getDsProduto() ?></td>
-    <td><?= $atual->getVlProduto() ?></td>
-    <td><?= $atual->getQtProduto() ?></td>
-    <td><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdProduto() ?>"  >
+    <td class="text-center"><b>R$ <?= str_replace('.', ',', $atual->getVlProduto()) ?></b></td>
+    <td class="text-center"><?= $atual->getQtProduto() ?></td>
+    <td><img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150"></td>
+    <td><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdProduto() ?>">
         Editar
     </button></td>
 </tr>
@@ -50,10 +56,10 @@
 
 </tbody>
 </div>
-</table>
+</table></div>
 </div>
 <?php foreach($produtos as $produto => $atual){ ?>
-<div class="modal fade" id='<?= $atual->getCdProduto() ?>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="<?= $atual->getCdProduto() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <form method="post">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

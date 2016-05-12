@@ -152,106 +152,104 @@ ALTER TABLE tb_produto_pedido AUTO_INCREMENT = 0;
 
 -- CARGA DE DADOS 
 -- PRODUTOS
--- refrigerantes;
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Coca Cola','Refrigerante de 600ml',6.50,10);
+-- Refrigerantes;
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Coca Cola', 'Refrigerante de 600ml', 6.50, 10, '1.jpg');
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Coca Cola','Refrigerante de 1 litro',10.00,12);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Coca Cola', 'Refrigerante de 1 litro', 10.00, 12, '2.jpg');
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Guarana Antartica','Refrigerante de 600ml',4.50,10);
-
-
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Guarana Antartica','Refrigerante de 2 litros',8.50,10);
-select * from tb_produto;
-
--- cervejas
-
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Cerveja Brahma','Cerveja de 600ml',6.50,10);
-
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Cerveja Brahma','Cerveja de litrao',10.00,12);
-
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Cerveja Skol','Cerveja de 600ml',4.50,10);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Guarana Antartica', 'Refrigerante de 600ml', 4.50, 10, '3.jpg');
 
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Cerveja Skol','Cerveja de litrao',9.00,10);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Guarana Antartica', 'Refrigerante de 2 litros', 8.50, 10, '4.jpg');
 
--- comidas
+-- Cervejas
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Mussarela','Molho, mussarela e orégano.',18.00,10);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Cerveja Brahma', 'Cerveja de 600ml', 6.50, 10, '5.jpg');
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Napolitana','Molho, mussarela, tomate, parmesão e orégano.',18.00,10);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Cerveja Brahma', 'Cerveja de litrao', 10.00, 12, '6.jpg');
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Portuguesa','Molho, mussarela, presunto, cebola, ovos, azeitona e orégano.',30.50,10);
-
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Provolone','Molho, mussarela, provolone e orégano.',25.00,10);
-
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Siciliana','Molho, mussarela, champignon, bacon, pimentão, azeitona e orégano.',35.00,10);
-
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pizza Vegetariana','Molho, mussarela, escarola, tomate, milho, ervilha e orégano.',25.00,10);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Cerveja Skol', 'Cerveja de 600ml', 4.50, 10, '7.jpg');
 
 
--- sobremesas
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Cerveja Skol', 'Cerveja de litrao', 9.00, 10, '8.jpg');
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Pedaço Torta mousse de chocolate','Pedaço mousse de chocolate',17.00,10);
+-- Comidas
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Rocambole de chocolate com doce de leite','Rocambole de chocolate com doce de leite',20.00,12);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Pizza Mussarela', 'Molho, mussarela e orégano.', 18.00, 10, '9.jpg');
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Mousse de chocolate','Mousse de chocolate',17.00,10);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Pizza Napolitana', 'Molho, mussarela, tomate, parmesão e orégano.', 18.00, 10, NULL);
+
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Pizza Portuguesa', 'Molho, mussarela, presunto, cebola, ovos, azeitona e orégano.', 30.50, 10, NULL);
+
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Pizza Provolone', 'Molho, mussarela, provolone e orégano.', 25.00, 10, NULL);
+
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Pizza Siciliana', 'Molho, mussarela, champignon, bacon, pimentão, azeitona e orégano.', 35.00, 10, NULL);
+
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Pizza Vegetariana', 'Molho, mussarela, escarola, tomate, milho, ervilha e orégano.', 25.00, 10, NULL);
 
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Sorvete 2 bolas','Sorvete 2 bolas',13.00,10);
+-- Sobremesas
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Banana Brule','Banana Brule',17.00,10);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Pedaço Torta mousse de chocolate', 'Pedaço mousse de chocolate', 17.00, 10, NULL);
 
-INSERT INTO tb_produto (nm_produto,ds_produto,vl_produto,qt_produto)
-values ('Picole Diletto','Picole Diletto',10.00,10);
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Rocambole de chocolate com doce de leite', 'Rocambole de chocolate com doce de leite', 20.00, 12, NULL);
+
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Mousse de chocolate', 'Mousse de chocolate', 17.00, 10, NULL);
+
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Sorvete 2 bolas', 'Sorvete 2 bolas', 13.00, 10, NULL);
+
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Banana Brule', 'Banana Brule', 17.00, 10, NULL);
+
+INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto)
+VALUES ('Picole Diletto', 'Picole Diletto', 10.00, 10, NULL);
 
 
 -- IGREDIENTE
 
-INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values ('Borda de Catupiry ','Borda de catupiry Original',1,5.10);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
+values ('Borda de Catupiry ', 'Borda de catupiry Original', 1, 5.10);
 
-INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values ('Borda de Cheddar ','Borda de Cheddar',1,5.10);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
+values ('Borda de Cheddar ', 'Borda de Cheddar', 1, 5.10);
 
-INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values ('Azeitona','Azeitona com caroço',50,2.50);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
+values ('Azeitona', 'Azeitona com caroço', 50, 2.50);
 
-INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values ('O dobro de queijo','2 vezes mais de queijo ',10,6.00);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
+values ('O dobro de queijo', '2 vezes mais de queijo ', 10, 6.00);
 
-INSERT INTO tb_ingrediente (nm_ingrediente,ds_ingrediente,qt_ingrediente,vl_ingrediente)
-values ('Oregano','Oregano',100,2.50);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
+values ('Oregano', 'Oregano', 100, 2.50);
 
 
 -- CLIENTE 
 INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao, cd_senha)
-values ('Genoveva' ,'Santos' ,13 ,34738100 ,'F' ,'26325872800' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Avenida Paris ','30' ,'ap' ,'genovevisdasilva@gmail.com' ,'' ,'' ,curdate(), '202cb962ac59075b964b07152d234b70') ;
+values ('Genoveva' ,'Santos' ,13 ,34738100 ,'F' ,'26325872800' ,'' ,'Brasil' ,'SP', 'Praia Grande', '11700080' ,'Boqueirão ' ,'Avenida Paris ', '30' ,'ap' ,'genovevisdasilva@gmail.com' ,'' ,'' ,curdate(), '202cb962ac59075b964b07152d234b70') ;
 
 INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao, cd_senha)
-values ('Gisele' ,'Silva' ,11 ,34738180 ,'F' ,'75786244407' ,'' ,'Brasil' ,'SP','Praia Grande','11725380' ,'Tude Bastos' ,'Rua padre gastão','444' ,'casa' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate(), '202cb962ac59075b964b07152d234b70');
+values ('Gisele' ,'Silva' ,11 ,34738180 ,'F' ,'75786244407' ,'' ,'Brasil' ,'SP', 'Praia Grande', '11725380' ,'Tude Bastos' ,'Rua padre gastão', '444' ,'casa' ,'yunesnoronha@gmail.com' ,'' ,'' ,curdate(), '202cb962ac59075b964b07152d234b70');
 
 INSERT INTO tb_cliente  (nm_cliente ,nm_sobrenome ,cd_ddd ,cd_telefone ,ic_tipo_documento ,cd_cpf ,cd_cnpj ,nm_pais ,sg_estado ,nm_cidade ,cd_cep ,nm_bairro ,nm_rua    ,cd_numero ,ds_complemento ,nm_email_cliente ,cd_cartao_cliente ,cd_operadora_cartao ,dt_validade_cartao, cd_senha)
-values ('Gertrudes' ,'Selfie' ,13 ,988849091 ,'F' ,'57338831700' ,'' ,'Brasil' ,'SP','Praia Grande','11700080' ,'Boqueirão ' ,'Rua Mário Tamashiro - até 299/300 ','300' ,'ap' ,'a@a.com' ,'' ,'' ,curdate(), '202cb962ac59075b964b07152d234b70');
+values ('Gertrudes' ,'Selfie' ,13 ,988849091 ,'F' ,'57338831700' ,'' ,'Brasil' ,'SP', 'Praia Grande', '11700080' ,'Boqueirão ' ,'Rua Mário Tamashiro - até 299/300 ', '300' ,'ap' ,'a@a.com' ,'' ,'' ,curdate(), '202cb962ac59075b964b07152d234b70');
 
 /*
 -- CABECA
