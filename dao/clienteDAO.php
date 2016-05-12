@@ -15,24 +15,24 @@ include_once 'models/cliente.php';
             }
         }
                 
-        function InsertCliente($cliente){
-            if(DBInsert('cliente',$cliente->getCliente(),true)){
+        function insertCliente($cliente){
+            if(DBInsert('cliente', $cliente->getCliente(), true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        function UpdateCliente($cliente){
-            if(DBUpdate('cliente',$cliente->getCliente(), "cd_cliente = " . $cliente->getCdCliente(),true)){
+        function updateCliente($cliente){
+            if(DBUpdate('cliente', $cliente->getCliente(), "cd_cliente = " . $cliente->getCdCliente(), true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        public function DeleteCliente($cliente){
-            if(DBDelete('Cliente',$cliente->getCliente())){
+        public function deleteCliente($cliente){
+            if(DBDelete('Cliente', $cliente->getCliente())){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";

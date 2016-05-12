@@ -2,10 +2,6 @@
     include "dao/clienteDAO.php";
      
      class clienteNeg{
-         function getCliente(){
-             
-         }
-         
          function getList(){             
                 $clienteDAO = new ClienteDAO();
                 $clientes = $clienteDAO->listCliente();
@@ -13,9 +9,8 @@
                 return  $clientes;
          }
          
-         function updateCliente(){
-             if(isset($_SESSION['clienteUpdate'])){
-                 $cliente = $_SESSION['clienteUpdate'];
+         function updateCliente($cliente){
+             if(isset($cliente)){
                  
                  $clienteDAO = new ClienteDAO();
                  $clienteDAO->updateCliente($cliente);
@@ -24,12 +19,19 @@
              }
          }
          
-         function gravarCliente(){
-             if(isset($_SESSION['clienteInsert'])){
-                $cliente = $_SESSION['clienteInsert'];
+         function gravarCliente($cliente){
+             if(isset($cliente)){
+                
+                $cliente->setCdSenha(hash('md5', $cliente->getCdSenha()));
                 
                 $clienteDAO = new ClienteDAO();
-                $clienteDAO->InsertCliente($cliente);
+                $retorno = $clienteDAO->insertCliente($cliente);
+                                
+                if($retorno == 'Executado com sucesso.'){
+                    echo '<h2 class="text-center">Cliente <b>' . $cliente->getNmCliente() . ' </b> cadastrado com sucesso. :)</h2>';
+                }else{
+                    echo '<h2 class="text-center">Não foi possível cadastrar-lo. :(<br>Tente novamente</h2>';
+                }
                 
                 header('Location: ' . HOME_PATH . '/cliente/index');
              }

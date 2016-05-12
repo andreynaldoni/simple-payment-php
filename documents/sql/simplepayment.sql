@@ -7,6 +7,7 @@ CREATE TABLE tb_produto
     ds_produto VARCHAR(100) NOT NULL,
     vl_produto DECIMAL(10,2) NOT NULL,
     qt_produto INTEGER NOT NULL,
+    im_produto VARCHAR(25),
     PRIMARY KEY (cd_produto)
 );
 
@@ -264,3 +265,44 @@ values ()
 INSERT INTO tb_parcela cd_pedido,dt_emissao DATETIME,cd_parcela INTEGER,vl_parcela DECIMAL(10,2)
 values ()
 */
+
+CREATE TABLE tb_categoria_produto
+(
+	cd_categoria INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nm_categoria VARCHAR(50),
+    ds_categoria VARCHAR(150)
+);
+
+ALTER TABLE tb_categoria_produto AUTO_INCREMENT = 0;
+
+-- CATEGORIA PRODUTOS
+INSERT INTO tb_categoria_produto
+(
+	`nm_categoria`,
+    `ds_categoria`
+)
+VALUES
+(
+	'Bebidas',
+    'Sucos, Refrigerantes e etc.'
+),
+(
+	'Bebidas Alcoólicas',
+    'Ceverjas, Whiskeys, Vodkas, Vinhos, Cachaças e etc.'
+),
+(
+	'Sobremesas Doces',
+    'Sorvetes, Tortas, Bolos e etc.'
+),
+(
+	'Sobremesas Salgadas',
+    'Tortas salgadas, salgados de festa e etc.'
+),
+(
+	'Pizzas Doces',
+    'Pizzas de sabores doces.'
+),
+(
+	'Pizzas Salgadas',
+    'Pizzas tradicionais.'
+)

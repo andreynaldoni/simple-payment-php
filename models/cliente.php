@@ -139,7 +139,7 @@
             return $this->cd_numero;
         }
         
-        public function setCdNumero(){
+        public function setCdNumero($cd_numero){
             $this->cd_numero = $cd_numero;
         }
         
