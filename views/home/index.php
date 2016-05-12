@@ -28,7 +28,11 @@
             ?>
             <div class="col-sm-4">
                 <a href="#" data-toggle="modal" data-target="#produto<?= $atual->getCdProduto() ?>">
+                    <?php if($atual->getImProduto() != null){ ?>
                     <img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">
+                    <?php }else{ ?>
+                    <img src="<?= HOME_PATH ?>/public/img/produto/no-photo.svg" alt="Sem foto" width="150" height="150">
+                    <?php } ?>
                 </a>
                 <h2><?= $atual->getNmProduto() ?></h2>
                 <p class="text-center">

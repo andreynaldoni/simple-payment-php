@@ -1,4 +1,3 @@
-
     <div class="navbar-wrapper">
         <div class="container">
             <nav class="navbar-inverse navbar-fixed-top">
