@@ -37,10 +37,10 @@
         function updateProduto($produto){
             if(isset($produto)){
                 $ProdutoDAO = new ProdutoDAO();
-                $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1];      
-                $this->setProdutoImg($img_name);
-                
-                if($produto->getImProduto() != null){
+
+                if($_FILES['produto']['name']['im_produto'] != null){
+                    $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1];      
+                    $this->setProdutoImg($img_name);
                     $produto->setImProduto($img_name);
                 }
 

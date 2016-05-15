@@ -19,12 +19,12 @@
     <br>
     <div class="container">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="text-center" style="margin: 0">Tabela de Produtos</h3></div>
+            <div class="panel-heading bg-primary"><h3 class="text-center" style="margin: 0">Tabela de Produtos</h3></div>
                 <div class="table-responsive prod">
                     <table class="table table-striped prod" style="vertical-align: middle">
                         <thead>
                             <tr>
-                                <th class="text-center">Código</th>
+                                <th class="text-center">ID</th>
                                 <th>Nome</th>
                                 <th>Descrição</th>
                                 <th class="text-center">Valor</th>
