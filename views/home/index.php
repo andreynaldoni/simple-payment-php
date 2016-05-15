@@ -8,7 +8,7 @@
             <h1 class="text-center"><i class="glyphicon glyphicon-book" style="vertical-align: top;"></i> Cardápio :)</h1>
             <hr>
             <?php if(isset($_SESSION['cliente'])){
-                $cliente = $_SESSION['cliente'][0];
+                $cliente = $_SESSION['cliente'];
             ?>
             <h3 class="text-center">Olá <b><?=  $cliente->getNmCliente() ?></b> seja bem vindo(a), aqui você pode checar nosso cardápio ;)</h3>
             <?php } ?>
@@ -38,6 +38,8 @@
                 <p class="text-center">
                     <?= $atual->getDsProduto() ?>
                 </p>
+                <h3 class="text-danger" style="margin: 0"><span class="text-danger">De: </span><b><s>R$ <?= number_format(($atual->getVlProduto() * 1.10), 2, ',', '.') ?></s></b></h3>
+                <h3 class="text-success" style="margin: 0;margin-bottom:15px"><span class="text-success">Por: </span><b>R$ <?= number_format($atual->getVlProduto(), 2, ',', ' ')  ?></b></h3>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#produto<?= $atual->getCdProduto() ?>">
                    <i class="glyphicon glyphicon-plus-sign"></i> Adicionar
                 </button>

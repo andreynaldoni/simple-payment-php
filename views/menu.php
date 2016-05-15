@@ -13,13 +13,25 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="glyphicon glyphicon-tag"></i> Promoções</a></li>
-                            <li><a href="<?= HOME_PATH ?>"><i class="glyphicon glyphicon-book"></i> Cardápio</a></li>
+                            <li><a href="<?= HOME_PATH ?>"><i class="glyphicon glyphicon-tag"></i> Promoções</a></li>
+                            <li class="dropdown">
+                                <a id="cardapio" href="<?= HOME_PATH ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+                                    <i class="glyphicon glyphicon-book"></i> Cardápio 
+                                    <span class="caret"></span> 
+                                </a> 
+                                <ul class="dropdown-menu" aria-labelledby="cardapio">
+                                    <li><a href="<?= HOME_PATH ?>">Menu</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="<?= HOME_PATH ?>">Pizzas</a></li> 
+                                    <li><a href="<?= HOME_PATH ?>">Bebidas</a></li>
+                                    <!--<li role="separator" class="divider"></li>-->  
+                                </ul> 
+                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php
                                 if(isset($_SESSION['cliente'])){
-                                    $cliente = $_SESSION['cliente'][0];
+                                    $cliente = $_SESSION['cliente'];
                             ?>
                                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?= $cliente->getNmCliente() ?></a></li>
                                     <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>

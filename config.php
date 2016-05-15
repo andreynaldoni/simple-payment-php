@@ -11,7 +11,7 @@
 	define('DB_PREFIX','tb');
 	define('DB_CHARSET','utf8');
     // URL
-    define('HOME_PATH', 'https://php-payment.herokuapp.com/'); // Production Path
+    define('HOME_PATH', 'https://php-payment.herokuapp.com'); // Production Path
 	//define('HOME_PATH', 'http://localhost/simple-payment-php'); // Local Development Path
     // Application
 	require_once 'app.php';
@@ -36,6 +36,10 @@
             return;
         }*/
         require_once $file;
+    }
+    
+    function redirect($link = ""){
+        echo "<script>document.location.href='" . HOME_PATH . $link . "'</script>";
     }
     
     // Start the application

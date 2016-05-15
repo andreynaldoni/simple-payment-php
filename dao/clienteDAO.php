@@ -7,52 +7,56 @@ include_once 'models/cliente.php';
     class clienteDAO {
         
         function listCliente(){
-            $link = DBSelect('cliente');
-            if($link != null){
-                return $link;
-            } else {
-                return "Ocorreu um erro.";
-            }
+            $retorno = DBSelect('cliente');
+            if($retorno != null){
+                return $retorno;
+            }    
+            return "Ocorreu um erro.";
         }
                 
         function insertCliente($cliente){
             if(DBInsert('cliente', $cliente->getCliente(), true)){
                 return "Executado com sucesso.";
-            } else {
-                return "Ocorreu um erro.";
             }
+            return "Ocorreu um erro.";
         }
         
         function updateCliente($cliente){
             if(DBUpdate('cliente', $cliente->getCliente(), "cd_cliente = " . $cliente->getCdCliente(), true)){
                 return "Executado com sucesso.";
-            } else {
-                return "Ocorreu um erro.";
             }
+            return "Ocorreu um erro.";
         }
         
         public function deleteCliente($cliente){
             if(DBDelete('Cliente', $cliente->getCliente())){
                 return "Executado com sucesso.";
-            } else {
-                return "Ocorreu um erro.";
             }
+            return "Ocorreu um erro.";
         }
-        public function getLogin($email,$senha){
+        public function getLogin($email, $senha){
             $params = array(
-                "nm_email_cliente"      => $email,
-                "cd_senha"              => $senha
+                "nm_email_cliente" => $email,
+                "cd_senha"         => $senha
             );
             
-            $link = DBSelect('cliente', $params);
+            $retorno = DBSelect('cliente', $params);
             
-            if($link != null){
-                $_SESSION['cliente'] = $link;
-                return $link;
-            } else {
-                return null;
+            if($retorno != null){
+                return $retorno;
             }
+            return null;
         }
-        
+        public function checkEmail($email){
+            $params = array(
+                "nm_email_cliente" => $email
+            );
+            $retorno = DBSelect('cliente', $params);
+            
+            if($retorno != null){
+                return $retorno;
+            }
+            return null;
+        }
     }
 ?>
