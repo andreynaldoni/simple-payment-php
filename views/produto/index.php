@@ -1,7 +1,7 @@
 <?php
     include_once "business/produtoNeg.php";
     
-    if(isset($_POST['produto'])){
+    if(isset($_POST['update'])){
         $produto = new Produto();
         
         $produto->setCdProduto($_POST['produto']['cd_produto']);
@@ -14,6 +14,11 @@
         $produtoNeg = new produtoNeg();
         
         $produtoNeg->updateProduto($produto);
+    }
+    if(isset($_POST['delete'])){
+        $_SESSION['cd_produto'] = $_POST['produto']['cd_produto'];
+        $produtoNeg = new produtoNeg();
+        $produtoNeg->deleteProduto();
     }
     
     $produtoNeg = new ProdutoNeg();
@@ -140,8 +145,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" name="delete" class="btn btn-primary">Excluir</button>
+                    <button type="submit" name="update" class="btn btn-primary">Salvar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
                 </div>
             </div>

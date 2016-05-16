@@ -1,14 +1,14 @@
 <?php
     include_once "business/clienteNeg.php";
     
-    if(isset($_POST['cd_cliente'])){
+    if(isset($_POST['update'])){
         $cliente = new Cliente();
         
         $cliente->setCdCliente($_POST['cd_cliente']);
         $cliente->setNmCliente($_POST['nm_cliente']);
         $cliente->setNmSobrenome($_POST['nm_sobrenome']);
-        $cliente->setCdDDD($_POST['cd_ddd']);
         $cliente->setCdTelefone($_POST['cd_telefone']); 
+        $cliente->setCdCelular($_POST['cd_celular']); 
         $cliente->setIcTipoDocumento($_POST['ic_tipo_documento']);
         $cliente->setCdCpf($_POST['cd_cpf']);
         $cliente->setCdCnpj($_POST['cd_cnpj']);  
@@ -30,6 +30,12 @@
         $clienteNeg = new clienteNeg();
         $clienteNeg->updateCliente();
     }
+    if(isset($_POST['delete'])){
+        $_SESSION['cd_cliente'] = $_POST['cd_cliente'];
+                
+        $clienteNeg = new clienteNeg();
+        $clienteNeg->deleteCliente();
+    }
 ?>
     <h3 class="text-center">Tabela de Clientes</h3>
     <div class="container">
@@ -40,8 +46,8 @@
                     <th>ID          </th>
                     <th>Nome        </th>
                     <th>Sobrenome   </th>
-                    <th>DDD         </th>
                     <th>Telefone    </th>
+                    <th>Celular     </th>
                     <th>Fís./Jur.   </th>
                     <th>CPF         </th>
                     <th>CNPJ        </th>
@@ -70,8 +76,8 @@
     <td><?= $atual->getCdCliente()         ?></td>
     <td><?= $atual->getNmCliente()         ?></td>
     <td><?= $atual->getNmSobrenome()       ?></td>
-    <td><?= $atual->getCdDdd()             ?></td>
     <td><?= $atual->getCdTelefone()        ?></td>
+    <td><?= $atual->getCdCelular()         ?></td>
     <td><?= $atual->getIcTipoDocumento()   ?></td>
     <td><?= $atual->getCdCpf()             ?></td>
     <td><?= $atual->getCdCpf()             ?></td>
@@ -126,10 +132,10 @@
                         <td><input name="nm_sobrenome" type="text" value="<?= $atual->getNmSobrenome() ?>"/></td>
                     </tr>
                     <tr>
-                        <td><label for="cd_ddd">DDD</label></td>
-                        <td><input name="cd_ddd" type="text" value="<?= $atual->getCdDdd() ?>"/></td>
                         <td><label for="">Telefone</label></td>
                         <td><input name="cd_telefone" type="text" value="<?= $atual->getCdTelefone() ?>"/></td>
+                        <td><label for="">Celular</label></td>
+                        <td><input name="cd_telefone" type="text" value="<?= $atual->getCdCelular() ?>"/></td>
                     </tr>
                     <tr>
                         <td><label for="">CPF/CNPJ</label></td>
@@ -181,8 +187,9 @@
             </div>
         </div>
         <div class="modal-footer">
+            <button type="submit" name="update" class="btn btn-primary" >Salvar</button>
+            <button type="submit" name="delete" class="btn btn-primary" >Excluir</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <input type="submit" class="btn btn-primary" value="Salvar">
         </div>
         </div>
     </div>

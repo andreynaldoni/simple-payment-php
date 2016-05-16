@@ -1,7 +1,7 @@
 <?php
     include_once "business/ingredienteNeg.php";
     
-    if(isset($_POST['cd_ingrediente'])){
+    if(isset($_POST['update'])){
         $ingrediente = new Ingrediente();
         $ingrediente->setCdIngrediente($_POST['cd_ingrediente']);
         $ingrediente->setNmIngrediente($_POST['nm_ingrediente']);
@@ -13,6 +13,12 @@
         
         $IngredienteNeg = new IngredienteNeg();
         $IngredienteNeg->updateIngrediente();
+    }
+    if(isset($_POST['delete'])){
+        $_SESSION['cd_ingrediente'] = $_POST['cd_ingrediente'];
+        
+        $IngredienteNeg = new IngredienteNeg();
+        $IngredienteNeg->deleteIngrediente();
     }
 ?>
     <h3 class="text-center">Tabela de Ingredientes</h3>
@@ -86,8 +92,9 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" text="Save changes">
+            <button type="submit" name="delete" class="btn btn-primary" >Excluir</button>
+            <button type="submit" name="update" class="btn btn-primary" >Salvar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
         </div>
     </div>

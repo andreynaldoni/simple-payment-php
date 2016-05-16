@@ -1,16 +1,13 @@
 <?php
 //Deletar Registros
-function DBDelete($table, $where = null){
-	$table = DB_PREFIX . '_' . $table;
-	
-    if($where){
-        DBEscape($where);
+function DBDelete($table, $where){
+	$table = DB_PREFIX . '_' .  strtolower($table);
+	DBEscape($where);
+    if(count($where) > 1){
         $where = implode(' AND ', $where);
     }
-    
-    $where = ($where) ? " WHERE {$where}" : null;
-           
-	$query = "DELETE FROM {$table}{$where}";
+    $where = "WHERE {$where}";
+    $query = "DELETE FROM {$table} " . $where;
 	return DBExecute($query);
 }
 

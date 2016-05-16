@@ -22,6 +22,13 @@
                 //header('Location: ' . HOME_PATH . '/ingrediente/index');
             }
         }
+        
+        function deleteIngrediente(){
+            if(isset($_SESSION['cd_ingrediente'])){
+                $IngredienteDAO = new IngredienteDAO();
+                $IngredienteDAO->deleteIngrediente($_SESSION['cd_ingrediente']);
+            }
+        }
          
         function gravarIngrediente($ingrediente){
             if(isset($ingrediente)){

@@ -40,8 +40,8 @@ include_once 'models/produto.php';
             }
         }
         
-        public function deleteProduto($produto){
-            if(DBDelete('Produto', $produto->getProduto())){
+        public function deleteProduto($id){
+            if(DBDelete('Produto', 'cd_produto = ' . $id)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";

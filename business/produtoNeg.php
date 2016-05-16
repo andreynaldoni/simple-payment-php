@@ -62,5 +62,12 @@
                 //header('Location: ' . HOME_PATH . '/Produto/index');
             }
         }
+        
+        function deleteProduto(){
+            if(isset($_SESSION['cd_produto'])){
+                $ProdutoDAO = new ProdutoDAO();
+                $ProdutoDAO->deleteProduto($_SESSION['cd_produto']);
+            }
+        }
     }
 ?>
