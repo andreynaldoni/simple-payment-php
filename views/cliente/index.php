@@ -187,9 +187,9 @@
             </div>
         </div>
         <div class="modal-footer">
+            <button type="submit" name="update" class="btn btn-primary" >Salvar</button>
+            <button type="submit" name="delete" class="btn btn-primary" >Excluir</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <input type="submit" name="update" class="btn btn-primary" value="Salvar">
-            <input type="submit" name="delete" class="btn btn-primary" value="Excluir">
         </div>
         </div>
     </div>

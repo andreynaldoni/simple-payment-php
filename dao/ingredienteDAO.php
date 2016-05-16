@@ -25,7 +25,7 @@ include_once 'models/ingrediente.php';
         }
                 
         function InsertIngrediente($Ingrediente){
-            if(DBInsert('Ingrediente',$Ingrediente->getIngrediente(), "cd_ingrediente = " . $Ingrediente->getCdIngrediente(),true)){
+            if(DBInsert('Ingrediente',$Ingrediente->getIngrediente(),true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
@@ -33,15 +33,15 @@ include_once 'models/ingrediente.php';
         }
         
         function UpdateIngrediente($Ingrediente){
-            if(DBUpdate('Ingrediente',$Ingrediente->getIngrediente(),true)){
+            if(DBUpdate('Ingrediente',$Ingrediente->getIngrediente(), "cd_ingrediente = " . $Ingrediente->getCdIngrediente(), true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        public function DeleteIngrediente($Ingrediente){
-            if(DBDelete('Ingrediente',$Ingrediente->getIngrediente())){
+        public function DeleteIngrediente($id){
+            if(DBDelete('Ingrediente',"cd_ingrediente = " . $id)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
