@@ -1,7 +1,7 @@
 <?php
 //Deletar Registros
 function DBDelete($table, $where){
-	$table = DB_PREFIX . '_' . $table;
+	$table = DB_PREFIX . '_' .  strtolower($table);
 	DBEscape($where);
     if(count($where) > 1){
         $where = implode(' AND ', $where);
