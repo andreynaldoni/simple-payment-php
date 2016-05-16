@@ -4,6 +4,7 @@
         private $cd_produto;
         private $cd_ingrediente;
         private $qt_ingrediente_produto;
+        private $vl_adicional_ingrediente_produto;
         
         public function getCdProduto(){
             return $this->cd_produto;
@@ -29,11 +30,20 @@
             $this->cd_ingrediente_produto = $cd_ingrediente_produto;
         }
         
+        public function getVlAdicionalIngredienteProduto(){
+            return $this->vl_adicional_ingrediente_produto;
+        }
+        
+        public function setVlAdicionalIngredienteProduto($vl_adicional_ingrediente_produto){
+            $this->vl_adicional_ingrediente_produto = $vl_adicional_ingrediente_produto;
+        }
+        
         public function getIngredienteProduto(){
             return array(
-               "cd_produto"             => $this->cd_produto,
-               "cd_ingrediente"         => $this->cd_ingrediente,
-               "qt_ingrediente_produto" => $this->qt_ingrediente_produto 
+               "cd_produto"                       => $this->cd_produto,
+               "cd_ingrediente"                   => $this->cd_ingrediente,
+               "qt_ingrediente_produto"           => $this->qt_ingrediente_produto,
+               "vl_adicional_ingrediente_produto" => $this->vl_adicional_ingrediente_produto
             );
         }
     }

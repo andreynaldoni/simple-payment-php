@@ -36,7 +36,7 @@
         
         function getProdutoPorCategoria($cd_categoria){
             $ProdutoDAO = new ProdutoDAO();
-            return $ProdutoDAO->listProduto(array('cd_categoria ' => $cd_categoria));
+            return $ProdutoDAO->listProduto(array('cd_categoria' => $cd_categoria));
         }
          
         function updateProduto($produto){

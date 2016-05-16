@@ -26,9 +26,10 @@
                 $row = 1;
                 
                 foreach($produtos as $produto => $atual){
-                    if($row % 3 == 0){
-                        echo '<div class="row">';
-                    }
+                    if($atual->getQtProduto() > 0){
+                        if($row % 3 == 0){
+                            echo '<div class="row">';
+                        }
             ?>
             <div class="col-sm-4">
                 <a href="#" data-toggle="modal" data-target="#produto<?= $atual->getCdProduto() ?>">
@@ -53,19 +54,20 @@
                                 <h2 class="modal-title" id="Produto"><b><?= $atual->getNmProduto() ?></b></h2>
                             </div>
                             <div class="modal-body">
-                                <h3>Promoção de final de semana :)</h3>
+                                <!--<h3>Promoção de final de semana :)</h3>-->
+                                <h3><?= $atual->getDsProduto() ?></h3>
                                 <h1 class="text-danger"><span class="preco">De: </span><b><s>R$ <?= number_format(($atual->getVlProduto() * 1.05), 2, ',', '.') ?></s></b></h1>
                                 <h1 class="text-success"><span class="preco">Por: </span><b>R$ <?= number_format($atual->getVlProduto(), 2, ',', ' ')  ?></b></h1>
+                                <label for="qtd">Quantidade: </label>
                                 <div class="form-inline">
-                                    <label for="qtd">Quantidade: </label>
                                     <div class="input-group">
                                         <span class="input-group-addon btn"><i class="glyphicon glyphicon-plus"></i></span>
-                                        <input type="text" id="qtd" class="form-control text-center" value="1">
+                                        <input type="text" id="qtd" class="form-control text-center" value="1" size="6">
                                         <span class="input-group-addon btn"><i class="glyphicon glyphicon-minus"></i></span>
                                     </div>
                                 </div>
                                 <hr>
-                                <h2><b>Igredientes</b></h2>
+                                <h2><b>Ingredientes</b></h2>
                                 <h4 class="text-center">
                                     <b>
                                     *A pizza é confeccionada com bordas recheadas de Catupiry&trade;.
@@ -111,10 +113,11 @@
                 <br><br><br>
             </div>
             <?php
-                    if($row % 3 == 0){
-                        echo '</div>';
+                        if($row % 3 == 0){
+                            echo '</div>';
+                        }
+                        $row++;
                     }
-                    $row++;
                 }
                 //if ($row % 3 != 1) echo "</div>";
             ?>

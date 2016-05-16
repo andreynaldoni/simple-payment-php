@@ -286,6 +286,94 @@ VALUES ('Limão', 'Rodelas', 100, 0.50, 1);
 INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente, cd_categoria)
 VALUES ('Laranja', 'Rodelas', 100, 0.50, 1);
 
+-- INGREDIENTE PRODUTOS
+-- Bebidas
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (1, 6, 25, 0.50);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (1, 7, 25, 0.50);
+
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (2, 6, 25, 0.50);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (2, 7, 25, 0.50);
+
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (3, 6, 25, 0.50);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (3, 7, 25, 0.50);
+
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (4, 6, 25, 0.50);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (4, 7, 25, 0.50);
+-- Pizzas
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (9, 1, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (9, 2, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (9, 3, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (9, 4, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (9, 5, 20, 1);
+
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (10, 1, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (10, 2, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (10, 3, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (10, 4, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (10, 5, 20, 1);
+
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (11, 1, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (11, 2, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (11, 3, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (11, 4, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (11, 5, 20, 1);
+
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (12, 1, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (12, 2, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (12, 3, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (12, 4, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (12, 5, 20, 1);
+
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (13, 1, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (13, 2, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (13, 3, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (13, 4, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (13, 5, 20, 1);
+
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (14, 1, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (14, 2, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (14, 3, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (14, 4, 20, 1);
+INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
+VALUES (14, 5, 20, 1);
+
 -- CLIENTE 
 INSERT INTO tb_cliente (nm_cliente, nm_sobrenome, dt_nascimento, cd_telefone, cd_celular, ic_tipo_documento, cd_cpf, cd_cnpj, nm_pais, sg_estado, nm_cidade, cd_cep, nm_bairro, nm_rua, cd_numero, ds_complemento, nm_email_cliente, cd_cartao_cliente, cd_operadora_cartao, dt_validade_cartao, cd_senha)
 VALUES ('Genoveva', 'Santos', NULL, 1334738100, NULL, 'F', '26325872800', '', 'Brasil', 'SP', 'Praia Grande', '11700080', 'Boqueirão ', 'Avenida Paris ', '30', 'ap', 'genovevisdasilva@gmail.com', '', '', curdate(), '202cb962ac59075b964b07152d234b70') ;

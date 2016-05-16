@@ -6,8 +6,8 @@ include_once 'models/ingrediente.php';
 
     class IngredienteDAO {
         
-        function getIngrediente($Ingrediente){
-            $link = DBSelect('Ingrediente',$Ingrediente->getIngrediente());
+        function getIngrediente($ingrediente){
+            $link = DBSelect('Ingrediente', $ingrediente->getIngrediente());
             if($link != null){
                 return $link;
             } else {
@@ -24,24 +24,24 @@ include_once 'models/ingrediente.php';
             }
         }
                 
-        function InsertIngrediente($Ingrediente){
-            if(DBInsert('Ingrediente',$Ingrediente->getIngrediente(), "cd_ingrediente = " . $Ingrediente->getCdIngrediente(),true)){
+        function insertIngrediente($ingrediente){
+            if(DBInsert('Ingrediente', $ingrediente->getIngrediente(), "cd_ingrediente = " . $ingrediente->getCdIngrediente(), true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        function UpdateIngrediente($Ingrediente){
-            if(DBUpdate('Ingrediente',$Ingrediente->getIngrediente(),true)){
+        function updateIngrediente($ingrediente){
+            if(DBUpdate('Ingrediente', $ingrediente->getIngrediente(), true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        public function DeleteIngrediente($Ingrediente){
-            if(DBDelete('Ingrediente',$Ingrediente->getIngrediente())){
+        public function deleteIngrediente($ingrediente){
+            if(DBDelete('Ingrediente', $ingrediente->getIngrediente())){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
