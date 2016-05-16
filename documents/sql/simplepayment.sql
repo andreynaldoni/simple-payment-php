@@ -209,7 +209,7 @@ VALUES ('Guarana Antartica', 'Refrigerante de 2 litros', 8.50, 10, '4.jpg', 1);
 -- Cervejas
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Cerveja Brahma', 'Cerveja de 600ml', 6.50, 10, '5.jpg', 1);
+VALUES ('Cerveja Brahma', 'Cerveja de 600ml', 6.50, 10, '5.jpg', 2);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
 VALUES ('Cerveja Brahma', 'Cerveja de litrao', 10.00, 12, '6.jpg', 2);
