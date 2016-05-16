@@ -19,6 +19,7 @@ CREATE TABLE tb_ingrediente
     ds_ingrediente VARCHAR(100),
     qt_ingrediente INTEGER,
     vl_ingrediente DECIMAL(10,2),
+    cd_categoria   INTEGER,
     PRIMARY KEY(cd_ingrediente)
 );
 
@@ -115,6 +116,11 @@ CREATE TABLE tb_categoria_produto
 
 ALTER TABLE tb_produto
 ADD CONSTRAINT FK_PRODUTO_CATEGORIA_PRODUTO
+FOREIGN KEY(cd_categoria)
+REFERENCES tb_categoria_produto(cd_categoria); 
+
+ALTER TABLE tb_ingrediente
+ADD CONSTRAINT FK_INGREDIENTE_CATEGORIA_PRODUTO
 FOREIGN KEY(cd_categoria)
 REFERENCES tb_categoria_produto(cd_categoria); 
 
@@ -259,21 +265,26 @@ VALUES ('Picole Diletto', 'Picole Diletto', 10.00, 10, NULL, 3);
 
 -- IGREDIENTE
 
-INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
-VALUES ('Borda de Catupiry ', 'Borda de catupiry Original', 1, 5.10);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente, cd_categoria)
+VALUES ('Borda de Catupiry', 'Borda de catupiry Original', 1, 5.10, 6);
 
-INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
-VALUES ('Borda de Cheddar ', 'Borda de Cheddar', 1, 5.10);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente, cd_categoria)
+VALUES ('Borda de Cheddar', 'Borda de Cheddar', 1, 5.10, 6);
 
-INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
-VALUES ('Azeitona', 'Azeitona com caroço', 50, 2.50);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente, cd_categoria)
+VALUES ('Azeitona', 'Azeitona com caroço', 50, 2.50, 6);
 
-INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
-VALUES ('O dobro de queijo', '2 vezes mais de queijo ', 10, 6.00);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente, cd_categoria)
+VALUES ('O dobro de queijo', '2 vezes mais de queijo ', 10, 6.00, 6);
 
-INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente)
-VALUES ('Oregano', 'Oregano', 100, 2.50);
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente, cd_categoria)
+VALUES ('Oregano', 'Oregano', 100, 2.50, 6);
 
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente, cd_categoria)
+VALUES ('Limão', 'Rodelas', 100, 0.50, 1);
+
+INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente, cd_categoria)
+VALUES ('Laranja', 'Rodelas', 100, 0.50, 1);
 
 -- CLIENTE 
 INSERT INTO tb_cliente (nm_cliente, nm_sobrenome, dt_nascimento, cd_telefone, cd_celular, ic_tipo_documento, cd_cpf, cd_cnpj, nm_pais, sg_estado, nm_cidade, cd_cep, nm_bairro, nm_rua, cd_numero, ds_complemento, nm_email_cliente, cd_cartao_cliente, cd_operadora_cartao, dt_validade_cartao, cd_senha)

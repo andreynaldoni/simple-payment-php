@@ -27,11 +27,11 @@ class PagSeguroConfigWrapper
     /**
      * production or sandbox
      */
-    const PAGSEGURO_ENV = "production";
+    const PAGSEGURO_ENV = "sandbox";
     /**
      *
      */
-    const PAGSEGURO_EMAIL = "your_pagseguro_email";
+    const PAGSEGURO_EMAIL = "andreynaldoni@gmail.com";
     /**
      *
      */
@@ -39,7 +39,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_TOKEN_SANDBOX = "your_sandbox_token";
+    const PAGSEGURO_TOKEN_SANDBOX = "8434B8DF0FA04315A2F53E3064957B7F";
     /**
      *
      */
@@ -47,7 +47,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_APP_ID_SANDBOX = "your_sandbox_application_id";
+    const PAGSEGURO_APP_ID_SANDBOX = "app0144737167";
     /**
      *
      */
@@ -55,7 +55,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_APP_KEY_SANDBOX = "your_sandbox_application_key";
+    const PAGSEGURO_APP_KEY_SANDBOX = "35B8B2FF82829F5884706F801666B3A4";
     /**
      * UTF-8, ISO-8859-1
      */
@@ -63,11 +63,11 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_LOG_ACTIVE = false;
+    const PAGSEGURO_LOG_ACTIVE = true;
     /**
      * Informe o path completo (relativo ao path da lib) para o arquivo, ex.: ../PagSeguroLibrary/logs.txt
      */
-    const PAGSEGURO_LOG_LOCATION = "";
+    const PAGSEGURO_LOG_LOCATION = "../pagseguro/PagSeguroLibrary/logs.txt";
 
     /**
      * @return array
