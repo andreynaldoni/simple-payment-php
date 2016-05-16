@@ -29,7 +29,7 @@
     }   
     // Autoload Classes
     function __autoload($class_name) {
-        $file = 'models/' . $class_name . '.php';
+        $file = 'models/' . str_replace('_', '', $class_name) . '.php';
         
         /*if (!file_exists($file)) {
             require_once 'views/errors/404.php';
@@ -37,9 +37,16 @@
         }*/
         require_once $file;
     }
-    
+    // Javascript redirect
     function redirect($link = ""){
         echo "<script>document.location.href='" . HOME_PATH . $link . "'</script>";
+    }
+    // Image show
+    function image_show($img){
+        if(file_exists('public/img' . $img) && is_file('public/img' . $img)){
+            return HOME_PATH . '/public/img' . $img;
+        }
+        return HOME_PATH . '/public/img/produto/no-photo.svg';
     }
     
     // Start the application
