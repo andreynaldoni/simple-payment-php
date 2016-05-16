@@ -4,8 +4,9 @@
         private $cd_cliente;
         private $nm_cliente;
         private $nm_sobrenome;
-        private $cd_ddd;
+        private $dt_nascimento;
         private $cd_telefone;
+        private $cd_celular;
         private $ic_tipo_documento;
         private $cd_cpf;
         private $cd_cnpj;
@@ -47,12 +48,12 @@
             $this->nm_sobrenome = $nm_sobrenome;
         }
         
-        public function getCdDdd(){
-            return $this->cd_ddd;
+        public function getDtNascimento(){
+            return $this->dt_nascimento;
         }
         
-        public function setCdDdd($cd_ddd){
-            $this->cd_ddd = $cd_ddd;
+        public function setDtNascimento($dt_nascimento){
+            $this->dt_nascimento = $dt_nascimento;
         }
         
         public function getCdTelefone(){
@@ -61,6 +62,14 @@
         
         public function setCdTelefone($cd_telefone){
             $this->cd_telefone = $cd_telefone;
+        }
+        
+        public function getCdCelular(){
+            return $this->cd_celular;
+        }
+        
+        public function setCdCelular($cd_celular){
+            $this->cd_celular = $cd_celular;
         }
         
         public function getIcTipoDocumento(){
@@ -196,8 +205,9 @@
               "cd_cliente"          => $this->cd_cliente,
               "nm_cliente"          => $this->nm_cliente,
               "nm_sobrenome"        => $this->nm_sobrenome,
-              "cd_ddd"              => $this->cd_ddd,
+              "dt_nascimento"       => $this->dt_nascimento,
               "cd_telefone"         => $this->cd_telefone,
+              "cd_celular"          => $this->cd_celular,
               "ic_tipo_documento"   => $this->ic_tipo_documento,
               "cd_cpf"              => $this->cd_cpf,
               "cd_cnpj"             => $this->cd_cnpj,

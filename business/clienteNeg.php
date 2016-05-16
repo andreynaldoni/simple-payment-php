@@ -23,7 +23,10 @@
             if(isset($cliente)){
                 // Criptografa senha em Hash MD5
                 $cliente->setCdSenha(hash('md5', $cliente->getCdSenha()));
-                
+                // Valida campos obrigatórios
+                if(!$this->camposObrigatorios($cliente)){
+                    return;
+                }
                 $clienteDAO = new ClienteDAO();
                 // Verifica email cadastrado
                 $retorno = $clienteDAO->checkEmail($cliente->getNmEmailCliente());
@@ -46,7 +49,16 @@
                 }
             }
         }
-
+        
+        private function camposObrigatorios($cliente){
+            if($cliente->getNmCliente() == "" || $cliente->getCdCpf() == "" ||
+               $cliente->getNmEmailCliente() == "" || $cliente->getCdSenha() == ""){
+                echo '<h2 class="text-center">Você não preencheu todos os campos obrigatórios. :(</h2>';
+                return false;
+            }
+            return true;
+        }
+        
         function login(){
             $email = $_POST['user']['email'];
             $senha = $_POST['user']['password'];

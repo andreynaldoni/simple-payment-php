@@ -74,8 +74,11 @@ class SimplePayment {
             $this->controller = isset($path[0]) ? $path[0] . '-controller' : null;
             $this->action = isset($path[0]) ? $path[1] : null;
             
-            //Format params
-            $this->params = array_values($path);
+            if(count($path) > 2){
+                unset($path[0]);
+				unset($path[1]);
+                $this->params = array_values($path);
+            }
         }
     }
 }

@@ -17,7 +17,11 @@
             <br>
             <?php
                 $produtoNeg = new ProdutoNeg();
-                $produtos = $produtoNeg->getList();
+                if(count($this->params) > 1){
+                    $produtos = $produtoNeg->getProdutoPorCategoria($this->params[0]);
+                }else {
+                    $produtos = $produtoNeg->getList();
+                }
                 
                 $row = 1;
                 
@@ -28,11 +32,7 @@
             ?>
             <div class="col-sm-4">
                 <a href="#" data-toggle="modal" data-target="#produto<?= $atual->getCdProduto() ?>">
-                    <?php if($atual->getImProduto() != null){ ?>
-                    <img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">
-                    <?php }else{ ?>
-                    <img src="<?= HOME_PATH ?>/public/img/produto/no-photo.svg" alt="Sem foto" width="150" height="150">
-                    <?php } ?>
+                    <img class="img-circle" src="<?= image_show('/produto/' . $atual->getImProduto()) ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">                   
                 </a>
                 <h2><?= $atual->getNmProduto() ?></h2>
                 <p class="text-center">

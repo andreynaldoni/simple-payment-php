@@ -73,7 +73,7 @@ function DBDelete($table, $where = null){
 		if(!mysqli_num_rows($result)){
 			return false;
 		}else{
-			while ($res = mysqli_fetch_object($result, $class_name)){
+			while ($res = mysqli_fetch_object($result, str_replace('_','', $class_name))){
 				$data[] = $res;
 			}
 			return $data;

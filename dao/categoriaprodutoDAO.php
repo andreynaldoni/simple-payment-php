@@ -2,12 +2,12 @@
 //Config & Connection
 include_once 'connection.php';
 include_once 'database.php';
-include_once 'models/produto.php';
+include_once 'models/categoriaproduto.php';
 
-    class ProdutoDAO {
+    class CategoriaProdutoDAO {
         
-        function getProduto($produto){
-            $link = DBSelect('Produto', $produto->getProduto());
+        function getCategoriaProduto($categoria){
+            $link = DBSelect('Categoria_Produto', $categoria>getCategoriaProduto());
             if($link != null){
                 return $link;
             } else {
@@ -15,33 +15,33 @@ include_once 'models/produto.php';
             }
         }
         
-        function listProduto($params = null){
-            $link = DBSelect('Produto', $params);
+        function listCategoriaProduto(){
+            $link = DBSelect('Categoria_Produto');
             if($link != null){
                 return $link;
             } else {
                 return "Ocorreu um erro.";
             }
         }
-               
-        function insertProduto($produto){
-            if(DBInsert('Produto', $produto->getProduto(), true)){
+                
+        function insertCategoriaProduto($categoria){
+            if(DBInsert('Categoria_Produto', $categoria->getCategoriaProduto(), true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        function updateProduto($produto){
-            if(DBUpdate('Produto', $produto->getProduto(), "cd_produto = " . $produto->getCdProduto(),true)){
+        function updateCategoriaProduto($categoria){
+            if(DBUpdate('Categoria_Produto', $categoria->getCategoriaProduto(), "cd_categoria = " . $categoria->getCdCategoria(),true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        public function deleteProduto($produto){
-            if(DBDelete('Produto', $produto->getProduto())){
+        public function deleteCategoriaProduto($categoria){
+            if(DBDelete('Categoria_Produto', $categoria->getCategoriaProduto())){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";

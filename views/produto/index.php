@@ -15,11 +15,14 @@
         
         $produtoNeg->updateProduto($produto);
     }
+    
+    $produtoNeg = new ProdutoNeg();
+    $produtos = $produtoNeg->getList();
 ?>
     <br>
     <div class="container">
         <div class="panel panel-default">
-            <div class="panel-heading bg-primary"><h3 class="text-center" style="margin: 0">Tabela de Produtos</h3></div>
+            <div class="panel-heading bg-primary"><h3 class="text-center" style="margin: 0">Tabela de <?= count($produtos) ?> Produto(s)</h3></div>
                 <div class="table-responsive prod">
                     <table class="table table-striped prod" style="vertical-align: middle">
                         <thead>
@@ -34,10 +37,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
-                            $produtoNeg = new ProdutoNeg();
-                            $produtos = $produtoNeg->getList();
-                            
+                        <?php                            
                             foreach($produtos as $produto => $atual){
                         ?>
                             <tr>
@@ -57,11 +57,7 @@
                                 ?>
                                 <td class="text-center"><b>R$ <?= number_format($atual->getVlProduto(), 2, ',', '.') ?></b></td>
                                 <td class="text-center"><?= $atual->getQtProduto() ?></td>
-                                <?php if($atual->getImProduto() != null){ ?>
-                                <td class="text-center"><img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150"></td>
-                                <?php }else{ ?>
-                                <td class="text-center"><img src="<?= HOME_PATH ?>/public/img/produto/no-photo.svg" alt="Sem foto" width="150" height="150"></td>
-                                <?php } ?>
+                                <td class="text-center"><img class="img-circle" src="<?= image_show('/produto/' . $atual->getImProduto()) ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150"></td>
                                 <td class="text-center"><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdProduto() ?>">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </button></td>

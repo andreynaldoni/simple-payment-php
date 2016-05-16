@@ -1,3 +1,11 @@
+<?php
+    include_once 'business/categoriaprodutoNeg.php';
+    
+    $categoriaprodutoNeg = new CategoriaProdutoNeg();
+    
+    $categorias = $categoriaprodutoNeg->getList();
+    
+?>
     <div class="navbar-wrapper">
         <div class="container">
             <nav class="navbar-inverse navbar-fixed-top">
@@ -20,10 +28,9 @@
                                     <span class="caret"></span> 
                                 </a> 
                                 <ul class="dropdown-menu" aria-labelledby="cardapio">
-                                    <li><a href="<?= HOME_PATH ?>">Menu</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="<?= HOME_PATH ?>">Pizzas</a></li> 
-                                    <li><a href="<?= HOME_PATH ?>">Bebidas</a></li>
+                                <?php foreach($categorias as $categoria => $atual){ ?>
+                                    <li><a href="<?= HOME_PATH . '/home/index/' . $atual->getCdCategoria() ?>"><?= $atual->getNmCategoria() ?></a></li>
+                                <?php } ?>
                                     <!--<li role="separator" class="divider"></li>-->  
                                 </ul> 
                             </li>
