@@ -28,12 +28,13 @@ include_once 'models/cliente.php';
             return "Ocorreu um erro.";
         }
         
-        public function deleteCliente($cliente){
-            if(DBDelete('Cliente', $cliente->getCliente())){
+        public function deleteCliente($id){
+            if(DBDelete('Cliente', "cd_cliente = " . $id)){
                 return "Executado com sucesso.";
             }
             return "Ocorreu um erro.";
         }
+        
         public function getLogin($email, $senha){
             $params = array(
                 "nm_email_cliente" => $email,
