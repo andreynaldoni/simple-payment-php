@@ -1,9 +1,20 @@
 <?php
     include_once "business/produtoNeg.php";
+    $produtoNeg = new produtoNeg();
+    
+    if(isset($_POST['insert'])){
+        $produto = new Produto();
+        $produto->setNmProduto($_POST['produto']['nm_produto']);
+        $produto->setDsProduto($_POST['produto']['ds_produto']);
+        $produto->setVlProduto($_POST['produto']['vl_produto']);
+        $produto->setQtProduto($_POST['produto']['qt_produto']);
+        $produto->setImProduto($_POST['produto']['im_produto']);
+        
+        $produtoNeg->gravarProduto($produto);
+    }
     
     if(isset($_POST['update'])){
         $produto = new Produto();
-        
         $produto->setCdProduto($_POST['produto']['cd_produto']);
         $produto->setNmProduto($_POST['produto']['nm_produto']);
         $produto->setDsProduto($_POST['produto']['ds_produto']);
@@ -11,14 +22,11 @@
         $produto->setQtProduto($_POST['produto']['qt_produto']);
         $produto->setImProduto($_POST['produto']['im_produto']);
         
-        $produtoNeg = new produtoNeg();
-        
         $produtoNeg->updateProduto($produto);
     }
+    
     if(isset($_POST['delete'])){
-        $_SESSION['cd_produto'] = $_POST['produto']['cd_produto'];
-        $produtoNeg = new produtoNeg();
-        $produtoNeg->deleteProduto();
+        $produtoNeg ->deleteProduto($_POST['produto']['cd_produto']);
     }
     
     $produtoNeg = new ProdutoNeg();
@@ -27,7 +35,13 @@
     <br>
     <div class="container">
         <div class="panel panel-default">
-            <div class="panel-heading bg-primary"><h3 class="text-center" style="margin: 0">Tabela de <?= count($produtos) ?> Produto(s)</h3></div>
+            <div class="panel-heading bg-primary">
+                <h3 class="text-center" style="margin: 0">Tabela de <?= count($produtos) ?> Produto(s)
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cadastrar">
+                        <i class="glyphicon glyphicon-plus-sign" style="font-size: 1.8em;vertical-align: middle"></i>
+                    </button>
+                </h3>
+            </div>
                 <div class="table-responsive prod">
                     <table class="table table-striped prod" style="vertical-align: middle">
                         <thead>
@@ -73,6 +87,7 @@
                 </table>
             </div>
         </div>
+<!--      ----------------------------------CÓDIGO DA MODAL DE UPDATE/DELETE----------------------------------       -->
         <?php foreach($produtos as $produto => $atual){ ?>
         <div class="modal fade" id="<?= $atual->getCdProduto() ?>" tabindex="-1" role="dialog" aria-labelledby="ProdutoEditar" aria-hidden="true">
             <form method="post" enctype="multipart/form-data">
@@ -133,11 +148,7 @@
                         </div>
                         <div class="col-sm-12">
                             <input name="produto[im_produto]" type="hidden" value="<?= $atual->getImProduto()?>"/>
-                            <?php if($atual->getImProduto() != null){ ?>
-                            <img class="img-circle" src="<?= HOME_PATH ?>/public/img/produto/<?= $atual->getImProduto() ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">
-                            <?php }else{ ?>
-                            <img src="<?= HOME_PATH ?>/public/img/produto/no-photo.svg" alt="Sem foto" width="150" height="150">
-                            <?php } ?>
+                            <img class="img-circle" src="<?= image_show('/produto/' . $atual->getImProduto()) ?>" alt="<?= $atual->getNmProduto() ?>" width="150" height="150">
                         </div>
                         <div class="col-sm-6" style="margin-top: 15px">
                             <input name="produto[im_produto]" type="file"/>
@@ -154,3 +165,78 @@
             </form>
         </div>
         <?php } ?>
+<!--      ----------------------------------CÓDIGO DA MODAL DE CADASTRAR----------------------------------       -->
+        <div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="ProdutoCadastrar" aria-hidden="true">
+            <form method="post" enctype="multipart/form-data">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h2 class="modal-title text-center" id="ProdutoCadastrar"><b>Novo Produto</b></h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="produto[cd_produto]">Código:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input name="produto[cd_produto]" type="hidden" />
+                                <input name="produto[cd_produto]" type="text" class="form-control"  disabled/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="produto[nm_produto]">Nome:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
+                                <input name="produto[nm_produto]" type="text" class="form-control"  maxlength="60"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-sm-12">
+                            <label for="produto[ds_produto]">Descrição:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+                                <input name="produto[ds_produto]" type="text" class="form-control"  maxlength="100"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-sm-6">
+                            <label for="produto[vl_produto]">Valor:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                <input name="produto[vl_produto]" type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="produto[qt_produto]">Quantidade:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
+                                <input name="produto[qt_produto]" type="number" step="1" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-sm-12">
+                            <label for="produto[im_produto]" style="margin-top: 10px">Imagem:</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <input name="produto[im_produto]" type="hidden" />
+                            <img class="img-circle" src="<?= image_show() ?>" alt="" width="150" height="150">
+                        </div>
+                        <div class="col-sm-6" style="margin-top: 15px">
+                            <input name="produto[im_produto]" type="file"/>
+                        </div>    
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="insert" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+                </div>
+            </div>
+            </form>
+        </div>

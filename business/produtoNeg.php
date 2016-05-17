@@ -50,23 +50,28 @@
                 }
 
                 $ProdutoDAO->updateProduto($produto);
-                //header('Location: ' . HOME_PATH . '/Produto/index');
             }
         }
          
         function gravarProduto($produto){
             if(isset($produto)){
                 $ProdutoDAO = new ProdutoDAO();
+                
+                if($_FILES['produto']['name']['im_produto'] != null){
+                    $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1];      
+                    $this->setProdutoImg($img_name);
+                    $produto->setImProduto($img_name);
+                }
+                
                 $ProdutoDAO->insertProduto($produto);
                 
-                //header('Location: ' . HOME_PATH . '/Produto/index');
             }
         }
         
-        function deleteProduto(){
-            if(isset($_SESSION['cd_produto'])){
+        function deleteProduto($id){
+            if(isset($id)){
                 $ProdutoDAO = new ProdutoDAO();
-                $ProdutoDAO->deleteProduto($_SESSION['cd_produto']);
+                $ProdutoDAO->deleteProduto($id);
             }
         }
     }

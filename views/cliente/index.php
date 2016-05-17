@@ -1,5 +1,6 @@
 <?php
     include_once "business/clienteNeg.php";
+    $ClienteNeg = new clienteNeg();
     
     if(isset($_POST['update'])){
         $cliente = new Cliente();
@@ -25,20 +26,19 @@
         $cliente->setCdOperadoraCartao($_POST['cd_operadora_cartao']);
         $cliente->setDtValidadeCartao($_POST['dt_validade_cartao']);
         
-        $_SESSION['clienteUpdate'] = $cliente;
-        
-        $clienteNeg = new clienteNeg();
-        $clienteNeg->updateCliente();
+        $clienteNeg->updateCliente($cliente);
     }
     if(isset($_POST['delete'])){
-        $_SESSION['cd_cliente'] = $_POST['cd_cliente'];
-                
-        $clienteNeg = new clienteNeg();
-        $clienteNeg->deleteCliente();
+        $clienteNeg->deleteCliente($_POST['cd_cliente']);
     }
+    
+    $clientes = $ClienteNeg->getList();
 ?>
-    <h3 class="text-center">Tabela de Clientes</h3>
+    
     <div class="container">
+        <div class="panel-heading bg-primary">
+            <h3 class="text-center" style="margin: 0">Tabela de <?= count($clientes) ?> Cliente(s)</h3>
+        </div>
         <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -66,10 +66,7 @@
                 </tr>
             </thead>
             <tbody>
-<?php
-    $ClienteNeg = new clienteNeg();
-    $clientes = $ClienteNeg->getList();
-    
+<?php    
     foreach($clientes as $cliente => $atual){
 ?>
 <tr>
@@ -109,11 +106,11 @@
     <form method="post" action="<?= HOME_PATH ?>/cliente/index">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <div class="modal-header bg-primary">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Editando <?= $atual->getNmCliente() . " " . $atual->getNmSobrenome() ?></h4>
+            <h2 class="modal-title text-center" id="ProdutoEditar"><b>Editando - <?= $atual->getNmCliente() . " " . $atual->getNmSobrenome() ?></b></h2>
         </div>
         <div class="modal-body">
             <div class="table-responsive">

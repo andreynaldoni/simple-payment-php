@@ -9,36 +9,27 @@
         function getList(){             
             $IngredienteDAO = new IngredienteDAO();
             $Ingredientes = $IngredienteDAO->listIngrediente();
-                
             return $Ingredientes;
         }
          
-        function updateIngrediente(){
-            if(isset($_SESSION['ingredienteUpdate'])){
-                $Ingrediente = $_SESSION['ingredienteUpdate'];
-                 
+        function updateIngrediente($Ingrediente){
+            if(isset($Ingrediente)){
                 $IngredienteDAO = new IngredienteDAO();
                 $IngredienteDAO->updateIngrediente($Ingrediente);
-                
-                header('Location: ' . HOME_PATH . '/ingrediente/index');
             }
         }
         
-        function deleteIngrediente(){
-            if(isset($_SESSION['cd_ingrediente'])){
+        function deleteIngrediente($id){
+            if(isset($id)){
                 $IngredienteDAO = new IngredienteDAO();
-                $IngredienteDAO->deleteIngrediente($_SESSION['cd_ingrediente']);
+                $IngredienteDAO->deleteIngrediente($id);
             }
         }
          
-        function gravarIngrediente(){
-            if(isset($_SESSION['IngredienteInsert'])){
-                $Ingrediente = $_SESSION['IngredienteInsert'];
-                
+        function gravarIngrediente($ingrediente){
+            if(isset($ingrediente)){
                 $IngredienteDAO = new IngredienteDAO();
-                $IngredienteDAO->insertIngrediente($Ingrediente);
-                
-                header('Location: ' . HOME_PATH . '/ingrediente/index');
+                $IngredienteDAO->insertIngrediente($ingrediente);
             }
         }
     }

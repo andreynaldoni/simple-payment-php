@@ -4,7 +4,6 @@ class IngredienteController{
         $this->params = array(
             'title'=>'ingrediente'
         );
-        $this->params = array_merge($this->params, $params);
         
         //Header & Footer
         require 'views/header.php';

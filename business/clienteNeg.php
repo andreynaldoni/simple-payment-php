@@ -9,21 +9,17 @@
             return  $clientes;
         }
 
-        function updateCliente(){
-            $cliente = $_SESSION['clienteUpdate'];
+        function updateCliente($cliente){
             if(isset($cliente)){
-                
                 $clienteDAO = new ClienteDAO();
                 $clienteDAO->updateCliente($cliente);
-                
-                header('Location: ' . HOME_PATH . '/cliente/index');
             }
         }
         
-        function deleteCliente(){
-            if(isset($_SESSION['cd_cliente'])){
+        function deleteCliente($id){
+            if(isset($id)){
                 $clienteDAO = new ClienteDAO();
-                $clientes = $clienteDAO->deleteCliente($_SESSION['cd_cliente']);
+                $clientes = $clienteDAO->deleteCliente($id);
             }
         }
 
