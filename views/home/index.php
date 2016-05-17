@@ -89,7 +89,7 @@
                                         
                                         if(count($ingredientes) > 0){
                                 ?>
-                                <h2><b>Ingredientes</b></h2>
+                                <h2><b>Acompanhamentos</b></h2>
                                 <!--<h4 class="text-center">
                                     <b>
                                     *A pizza é confeccionada com bordas recheadas de Catupiry&trade;.

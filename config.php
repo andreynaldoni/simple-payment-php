@@ -35,7 +35,7 @@
             require_once 'views/errors/404.php';
             return;
         }*/
-        require_once $file;
+        require_once strtolower($file);
     }
     // Javascript redirect
     function redirect($link = ""){

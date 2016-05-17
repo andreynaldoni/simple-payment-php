@@ -2,7 +2,6 @@
 //Config & Connection
 include_once 'connection.php';
 include_once 'database.php';
-include_once 'models/ingrediente.php';
 
     class IngredienteDAO {
         
