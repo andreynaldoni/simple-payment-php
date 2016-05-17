@@ -4,7 +4,6 @@ class ProdutoController{
         $this->params = array(
             'title'=>'Produto'
         );
-        $this->params = array_merge($this->params, $params);
         
         //Header & Footer
         require 'views/header.php';

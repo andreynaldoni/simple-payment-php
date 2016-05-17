@@ -2,7 +2,7 @@
 class IngredienteController{
     function index($params = []){       
         $this->params = array(
-            'title'=>'ingrediente'
+            'title'=>'Ingrediente'
         );
         
         //Header & Footer
@@ -15,7 +15,7 @@ class IngredienteController{
     }
     function Cadastro(){
         $this->params = array(
-            'title'=>'Cadastrar ingrediente'
+            'title'=>'Cadastrar Ingrediente'
         );
         //Header & Footer
         require 'views/header.php';

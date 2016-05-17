@@ -21,7 +21,7 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?= HOME_PATH ?>"><i class="glyphicon glyphicon-tag"></i> Promoções</a></li>
+                            <!--<li><a href="< HOME_PATH ?>"><i class="glyphicon glyphicon-tag"></i> Promoções</a></li>-->
                             <li class="dropdown">
                                 <a id="cardapio" href="<?= HOME_PATH ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
                                     <i class="glyphicon glyphicon-book"></i> Cardápio 

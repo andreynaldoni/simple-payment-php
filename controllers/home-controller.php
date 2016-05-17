@@ -30,13 +30,8 @@ class HomeController{
         $this->params = array(
             'title'=>'Logout'
         );
-        //Header & Footer
-        require 'views/header.php';
-        require 'views/menu.php';
         //View->Home->Logout
         require 'views/home/logout.php';
-        //Footer
-        require 'views/footer.php';
     }
     function logoff(){
         //Header & Footer

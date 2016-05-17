@@ -6,16 +6,25 @@
              
         }
         
-        function getList(){             
-            $IngredienteDAO = new IngredienteDAO();
-            $Ingredientes = $IngredienteDAO->listIngrediente();
-            return $Ingredientes;
+        function getIngredientePorCodigo($cd_produto){
+            if($cd_produto != null){
+                $cd_produto = '(' . $cd_produto . ')';
+                $cd_produto = 'SELECT * FROM tb_ingrediente WHERE cd_ingrediente IN ' . $cd_produto;
+                $ingredienteDAO = new IngredienteDAO();
+                return $ingredienteDAO->getIngredienteNoFrills($cd_produto);
+            }
         }
-         
-        function updateIngrediente($Ingrediente){
-            if(isset($Ingrediente)){
-                $IngredienteDAO = new IngredienteDAO();
-                $IngredienteDAO->updateIngrediente($Ingrediente);
+        
+        function getList(){
+            $ingredienteDAO = new IngredienteDAO();
+            $ingredientes = $ingredienteDAO->listIngrediente();
+            return $ingredientes;
+        }
+                 
+        function updateIngrediente($ingrediente){
+            if(isset($ingrediente)){
+                $ingredienteDAO = new IngredienteDAO();
+                $ingredienteDAO->updateIngrediente($ingrediente);
             }
         }
         

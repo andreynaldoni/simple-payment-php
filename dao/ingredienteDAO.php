@@ -2,12 +2,21 @@
 //Config & Connection
 include_once 'connection.php';
 include_once 'database.php';
-include_once 'models/ingrediente.php';
 
     class IngredienteDAO {
         
-        function getIngrediente($Ingrediente){
-            $link = DBSelect('Ingrediente',$Ingrediente->getIngrediente());
+        function getIngrediente($ingrediente){
+            $link = DBSelect('Ingrediente', $ingrediente->getIngrediente());
+            if($link != null){
+                return $link;
+            } else {
+                return "Ocorreu um erro.";
+            }
+        }
+        
+        function getIngredienteNoFrills($query){
+            
+            $link = DBSelectNoFrills('Ingrediente', $query);
             if($link != null){
                 return $link;
             } else {
@@ -31,9 +40,9 @@ include_once 'models/ingrediente.php';
                 return "Ocorreu um erro.";
             }
         }
-        
-        function updateIngrediente($Ingrediente){
-            if(DBUpdate('Ingrediente',$Ingrediente->getIngrediente(), "cd_ingrediente = " . $Ingrediente->getCdIngrediente(), true)){
+
+        function updateIngrediente($ingrediente){
+            if(DBUpdate('Ingrediente', $ingrediente->getIngrediente(), "cd_ingrediente = " . $ingrediente->getCdIngrediente(), true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";

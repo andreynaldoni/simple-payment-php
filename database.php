@@ -43,6 +43,19 @@ function DBDelete($table, $where){
 */
 
 //Função para Ler Dados
+	function DBSelectNoFrills($class_name, $query){
+		$result = DBExecute($query);
+		
+		if(!mysqli_num_rows($result)){
+			return false;
+		}else{
+			while ($res = mysqli_fetch_object($result, str_replace('_','', $class_name))){
+				$data[] = $res;
+			}
+			return $data;
+		}
+	}
+
 	function DBSelect($class_name, $params = null, $fields = null){
 		$table = DB_PREFIX . '_' . strtolower($class_name);
 		

@@ -1,8 +1,8 @@
 <?php
     if(isset($_SESSION['cliente'])){
-        header('Location:' . HOME_PATH);
+        redirect('/');
     }
-    include_once "business/clienteNeg.php";
+    include_once 'business/clienteNeg.php';
     if(isset($_POST['user']))
     {
         $login = new clienteNeg();
