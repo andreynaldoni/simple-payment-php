@@ -32,12 +32,20 @@
             $this->cd_produto = $cd_produto;   
         }
         
-        public function getTotalProdutoPedido(){
+        public function getVlTotalProdutoPedido(){
             return $this->vl_total_produto_pedido;
         }
         
-        public function setTotalProdutoPedido($vl_total_produto_pedido){
+        public function setVlTotalProdutoPedido($vl_total_produto_pedido){
             $this->vl_total_produto_pedido = $vl_total_produto_pedido;
+        }
+        
+        public function getDsObs(){
+            return $this->ds_obs;
+        }
+        
+        public function setDsObs($ds_obs){
+            $this->ds_obs = $ds_obs;
         }
         
         public function getQtProdutoPedido(){

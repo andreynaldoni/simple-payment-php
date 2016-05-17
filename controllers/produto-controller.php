@@ -1,11 +1,11 @@
 <?php 
 class ProdutoController{
-    function index($params = []){       
+    function index(){       
         $this->params = array(
             'title'=>'Produto'
         );
         
-        //Header & Footer
+        //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home
@@ -17,7 +17,7 @@ class ProdutoController{
         $this->params = array(
             'title'=>'Cadastrar Produto'
         );
-        //Header & Footer
+        //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home->Login

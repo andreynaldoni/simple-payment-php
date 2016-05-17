@@ -1,11 +1,11 @@
 <?php 
 class PedidoController{
-    function index($params = []){       
+    function index(){       
         $this->params = array(
             'title'=>'Pedido'
         );
         
-        //Header & Footer
+        //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home

@@ -1,6 +1,6 @@
 <?php 
 class ErrorController{
-    function notFound($params = []){
+    function notFound(){
         $this->params = array(
             'title'=>'Página não encontrada'
         );

@@ -23,8 +23,6 @@
                  
                 $ingredienteProdutoDAO = new ingredienteProdutoDAO();
                 $ingredienteProdutoDAO->updateIngredienteProduto($ingredienteproduto);
-                
-                //header('Location: ' . HOME_PATH . '/ingrediente/index');
             }
         }
         
@@ -40,8 +38,6 @@
                 
                 $ingredienteProdutoDAO = new ingredienteProdutoDAO();
                 $ingredienteProdutoDAO->insertIngredienteProduto($ingrediente);
-                
-                //header('Location: ' . HOME_PATH . '/ingrediente/index');
             }
         }
     }
