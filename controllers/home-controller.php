@@ -1,12 +1,11 @@
 <?php 
 class HomeController{
-    function index($params = []){       
+    function index(){       
         $this->params = array(
-            'title'=>'Home'
+            'title'=>'Cardápio'
         );
-        $this->params = array_merge($this->params, $params);
         
-        //Header & Footer
+        //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home
@@ -18,7 +17,7 @@ class HomeController{
         $this->params = array(
             'title'=>'Login'
         );
-        //Header & Footer
+        //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home->Login
@@ -33,20 +32,11 @@ class HomeController{
         //View->Home->Logout
         require 'views/home/logout.php';
     }
-    function logoff(){
-        //Header & Footer
-        require 'views/header.php';
-        require 'views/menu.php';
-        //View->Home->Login
-        //require 'views/home/logoff.php';
-        //Footer
-        require 'views/footer.php';
-    }
     function admin(){
         $this->params = array(
             'title'=>'Admin'
         );
-        //Header & Footer
+        //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home->Admin

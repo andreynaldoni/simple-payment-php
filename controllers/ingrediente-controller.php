@@ -1,11 +1,11 @@
 <?php 
 class IngredienteController{
-    function index($params = []){       
+    function index(){       
         $this->params = array(
             'title'=>'Ingrediente'
         );
         
-        //Header & Footer
+        //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home
@@ -13,11 +13,11 @@ class IngredienteController{
         //Footer
         require 'views/footer.php';
     }
-    function Cadastro(){
+    function cadastrar(){
         $this->params = array(
             'title'=>'Cadastrar Ingrediente'
         );
-        //Header & Footer
+        //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home->Login
@@ -25,8 +25,8 @@ class IngredienteController{
         //Footer
         require 'views/footer.php';
     }
-    function Edicao(){
-        //Header & Footer
+    function editar(){
+        //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';
         //View->Home->Login
