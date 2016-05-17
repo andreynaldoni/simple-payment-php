@@ -10,6 +10,10 @@
     <script type="text/javascript">$('.carousel').carousel({interval: 7000});$(document).on('click','.navbar-collapse.in',function(e) {
     if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {$(this).collapse('hide');}});
     $(window).resize(function(){$('.table-responsive.prod').css('height', $(window).height() - 260 + 'px');});
-    $('.table-responsive.prod').css('height', $(window).height() - 260 + 'px');</script>
+    $('.table-responsive.prod').css('height', $(window).height() - 260 + 'px');
+    <?php if(isset($_SESSION['script'])){
+        echo $_SESSION['script'];
+    } ?>
+    </script>
 </body>
 </html>

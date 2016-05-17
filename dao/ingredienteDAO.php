@@ -15,6 +15,16 @@ include_once 'models/ingrediente.php';
             }
         }
         
+        function getIngredienteNoFrills($query){
+            
+            $link = DBSelectNoFrills('Ingrediente', $query);
+            if($link != null){
+                return $link;
+            } else {
+                return "Ocorreu um erro.";
+            }
+        }
+        
         function listIngrediente(){
             $link = DBSelect('Ingrediente');
             if($link != null){

@@ -2,9 +2,8 @@
 class IngredienteController{
     function index($params = []){       
         $this->params = array(
-            'title'=>'ingrediente'
+            'title'=>'Ingrediente'
         );
-        $this->params = array_merge($this->params, $params);
         
         //Header & Footer
         require 'views/header.php';
@@ -16,7 +15,7 @@ class IngredienteController{
     }
     function Cadastro(){
         $this->params = array(
-            'title'=>'Cadastrar ingrediente'
+            'title'=>'Cadastrar Ingrediente'
         );
         //Header & Footer
         require 'views/header.php';

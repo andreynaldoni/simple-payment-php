@@ -24,7 +24,7 @@
         }
         
        public function getDsIngrediente(){
-            return $this-ds_ingrediente;
+            return $this->ds_ingrediente;
         }
         
        public function setDsIngrediente($ds_ingrediente){

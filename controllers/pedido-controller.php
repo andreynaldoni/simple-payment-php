@@ -4,7 +4,6 @@ class PedidoController{
         $this->params = array(
             'title'=>'Pedido'
         );
-        $this->params = array_merge($this->params, $params);
         
         //Header & Footer
         require 'views/header.php';

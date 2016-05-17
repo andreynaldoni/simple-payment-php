@@ -12,11 +12,8 @@
         function updateCliente(){
             $cliente = $_SESSION['clienteUpdate'];
             if(isset($cliente)){
-                
                 $clienteDAO = new ClienteDAO();
                 $clienteDAO->updateCliente($cliente);
-                
-                header('Location: ' . HOME_PATH . '/cliente/index');
             }
         }
         
@@ -48,7 +45,7 @@
                             
                             $_SESSION['cliente'] = $cliente;
                             
-                            redirect();
+                            redirect('/');
                     }else{
                         echo '<h2 class="text-center">Não foi possível cadastrar-lo. :(<br>Tente novamente</h2>';
                     }
@@ -77,19 +74,17 @@
             
             if(isset($login)){
                 $_SESSION['cliente'] = $login[0];
-                redirect();
+                redirect('/');
             }else{
-                redirect('/home/login');
+                echo '<h2 class="text-center">Usuário e/ou senha inválido(s).</h2>';
             }
         }
         
         function logout(){
-        session_destroy();
-        unset ($_SESSION['cliente']);
-        unset ($_SESSION['email']);
-        unset ($_SESSION['senha']);
+            session_destroy();
+            unset ($_SESSION['cliente']);
 
-        header('Location: ' . HOME_PATH . '/home/index');
+            redirect('/');
         }
     }
 ?>

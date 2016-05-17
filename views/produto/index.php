@@ -145,7 +145,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="delete" class="btn btn-primary">Excluir</button>
+                    <button type="submit" name="delete" class="btn btn-danger">Excluir</button>
                     <button type="submit" name="update" class="btn btn-primary">Salvar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                 </div>

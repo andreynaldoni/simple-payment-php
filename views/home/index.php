@@ -1,6 +1,8 @@
 <?php
     include_once 'business/clienteNeg.php';
     include_once 'business/produtoNeg.php';
+    include_once 'business/ingredienteprodutoNeg.php';
+    include_once 'business/ingredienteNeg.php';
 ?>
 
     <div id="cardapio" class="container">
@@ -17,6 +19,9 @@
             <br>
             <?php
                 $produtoNeg = new ProdutoNeg();
+                $ingredienteprodutoNeg = new IngredienteProdutoNeg();
+                $ingredienteNeg = new IngredienteNeg();
+                
                 if(count($this->params) > 1){
                     $produtos = $produtoNeg->getProdutoPorCategoria($this->params[0]);
                 }else {
@@ -25,11 +30,14 @@
                 
                 $row = 1;
                 
+                $_SESSION['script'] = '';
+                
                 foreach($produtos as $produto => $atual){
                     if($atual->getQtProduto() > 0){
                         if($row % 3 == 0){
                             echo '<div class="row">';
                         }
+                        $_SESSION['script'] = $_SESSION['script'] . '$("#mais'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$(this).attr("field");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());isNaN(t)?$("#qtd'.$atual->getCdProduto().'").val(0):$("#qtd'.$atual->getCdProduto().'").val(t+1)}),$("#menos'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$("#qtd'.$atual->getCdProduto().'");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());!isNaN(t)&&t>0?$("#qtd'.$atual->getCdProduto().'").val(t-1):$("#qtd'.$atual->getCdProduto().'").val(0)});';
             ?>
             <div class="col-sm-4">
                 <a href="#" data-toggle="modal" data-target="#produto<?= $atual->getCdProduto() ?>">
@@ -61,45 +69,51 @@
                                 <label for="qtd">Quantidade: </label>
                                 <div class="form-inline">
                                     <div class="input-group">
-                                        <span class="input-group-addon btn"><i class="glyphicon glyphicon-plus"></i></span>
-                                        <input type="text" id="qtd" class="form-control text-center" value="1" size="6">
-                                        <span class="input-group-addon btn"><i class="glyphicon glyphicon-minus"></i></span>
+                                        <span class="input-group-addon btn" id="mais<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-plus"></i></span>
+                                        <input type="text" id="qtd<?= $atual->getCdProduto() ?>" class="form-control text-center" value="1" size="6">
+                                        <span class="input-group-addon btn" id="menos<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-minus"></i></span>
                                     </div>
                                 </div>
                                 <hr>
+                                <?php
+                                    $ingredientesProduto = $ingredienteprodutoNeg->getIngredienteProduto($atual->getCdProduto());
+                                    
+                                    if($ingredientesProduto != "Ocorreu um erro."){              
+                                        unset($ingredienteparams);
+                                        foreach($ingredientesProduto as $temp){
+                                            $ingredienteparams[] = $temp->getCdIngrediente();
+                                        }
+                                        
+                                        $ingparams = implode(', ', $ingredienteparams);
+                                        $ingredientes =  $ingredienteNeg->getIngredientePorCodigo($ingparams);
+                                        
+                                        if(count($ingredientes) > 0){
+                                ?>
                                 <h2><b>Ingredientes</b></h2>
-                                <h4 class="text-center">
+                                <!--<h4 class="text-center">
                                     <b>
                                     *A pizza é confeccionada com bordas recheadas de Catupiry&trade;.
                                     </b>
-                                </h4>
+                                </h4>-->
                                 <div class="row">
+                                <?php foreach ($ingredientes as $ingrediente => $ingtemp) { ?>
                                     <div class="col-xs-4">
                                         <div class="checkbox">
                                             <label>
-                                                <h4><input type="checkbox"> Sem cebola</h4>
+                                                <h4><input type="checkbox" value="<?= $ingtemp->getCdIngrediente() ?>"> <?= $ingtemp->getNmIngrediente() ?></h4>
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
-                                        <div class="checkbox">
-                                            <label>
-                                                <h4><input type="checkbox"> Sem azeitona</h4>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="checkbox">
-                                            <label>
-                                                <h4><input type="checkbox"> Sem borda recheada</h4>
-                                            </label>
-                                        </div>
-                                    </div>
+                                <?php }?>
                                 </div>
+                                <?php
+                                        }
+                                    }
+                                ?>
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <h4 class="text-justify"><b>Observações:</b></h4>
-                                        <textarea class="form-control" rows="3">Pouco azeite, ao ponto, [...]</textarea>
+                                        <textarea class="form-control" rows="3" placeholder="Pouco azeite, ao ponto, com gelo, [...]"></textarea>
                                     </div>
                                 </div> 
                             </div>

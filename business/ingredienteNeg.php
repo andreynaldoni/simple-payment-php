@@ -6,6 +6,15 @@
              
         }
         
+        function getIngredientePorCodigo($cd_produto){
+            if($cd_produto != null){
+                $cd_produto = '(' . $cd_produto . ')';
+                $cd_produto = 'SELECT * FROM tb_ingrediente WHERE cd_ingrediente IN ' . $cd_produto;
+                $ingredienteDAO = new IngredienteDAO();
+                return $ingredienteDAO->getIngredienteNoFrills($cd_produto);
+            }
+        }
+        
         function getList(){             
             $ingredienteDAO = new IngredienteDAO();
             $ingredientes = $ingredienteDAO->listIngrediente();
