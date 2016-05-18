@@ -6,9 +6,13 @@
         $produto = new Produto();
         $produto->setNmProduto($_POST['produto']['nm_produto']);
         $produto->setDsProduto($_POST['produto']['ds_produto']);
-        $produto->setVlProduto($_POST['produto']['vl_produto']);
         $produto->setQtProduto($_POST['produto']['qt_produto']);
         $produto->setImProduto($_POST['produto']['im_produto']);
+        //Valor - Produto
+        $valor = $_POST['produto']['vl_produto'];
+        $valor = str_replace('.', '', $valor);
+        $valor = str_replace(',', '.', $valor);
+        $produto->setVlProduto($valor);
         
         $produtoNeg->gravarProduto($produto);
     }
@@ -18,9 +22,13 @@
         $produto->setCdProduto($_POST['produto']['cd_produto']);
         $produto->setNmProduto($_POST['produto']['nm_produto']);
         $produto->setDsProduto($_POST['produto']['ds_produto']);
-        $produto->setVlProduto($_POST['produto']['vl_produto']);
         $produto->setQtProduto($_POST['produto']['qt_produto']);
         $produto->setImProduto($_POST['produto']['im_produto']);
+        //Valor - Produto
+        $valor = $_POST['produto']['vl_produto'];
+        $valor = str_replace('.', '', $valor);
+        $valor = str_replace(',', '.', $valor);
+        $produto->setVlProduto($valor);
         
         $produtoNeg->updateProduto($produto);
     }
@@ -43,7 +51,7 @@
                 </h3>
             </div>
                 <div class="table-responsive prod">
-                    <table class="table table-striped prod" style="vertical-align: middle">
+                    <table class="table table-striped prod">
                         <thead>
                             <tr>
                                 <th class="text-center">ID</th>
@@ -87,7 +95,6 @@
                 </table>
             </div>
         </div>
-<!--      ----------------------------------CÓDIGO DA MODAL DE UPDATE/DELETE----------------------------------       -->
         <?php foreach($produtos as $produto => $atual){ ?>
         <div class="modal fade" id="<?= $atual->getCdProduto() ?>" tabindex="-1" role="dialog" aria-labelledby="ProdutoEditar" aria-hidden="true">
             <form method="post" enctype="multipart/form-data">
@@ -131,14 +138,14 @@
                             <label for="produto[vl_produto]">Valor:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                <input name="produto[vl_produto]" type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control" value="<?= $atual->getVlProduto() ?>"/>
+                                <input name="produto[vl_produto]" type="text" class="form-control" data-mask="#.##0,00" data-mask-reverse="true" placeholder="Ex: R$ 5,00" maxlength="10" value="<?= $atual->getVlProduto() ?>"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="produto[qt_produto]">Quantidade:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                <input name="produto[qt_produto]" type="number" step="1" class="form-control" value="<?= $atual->getQtProduto() ?>"/>
+                                <input name="produto[qt_produto]" type="text" class="form-control" data-mask="00000000000" maxlength="11" value="<?= $atual->getQtProduto() ?>"/>
                             </div>
                         </div>
                     </div>
@@ -165,7 +172,6 @@
             </form>
         </div>
         <?php } ?>
-<!--      ----------------------------------CÓDIGO DA MODAL DE CADASTRAR----------------------------------       -->
         <div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="ProdutoCadastrar" aria-hidden="true">
             <form method="post" enctype="multipart/form-data">
             <div class="modal-dialog" role="document">
@@ -183,14 +189,14 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                 <input name="produto[cd_produto]" type="hidden" />
-                                <input name="produto[cd_produto]" type="text" class="form-control"  disabled/>
+                                <input name="produto[cd_produto]" type="text" class="form-control"  disabled placeholder="*"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="produto[nm_produto]">Nome:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
-                                <input name="produto[nm_produto]" type="text" class="form-control"  maxlength="60"/>
+                                <input name="produto[nm_produto]" type="text" class="form-control"  maxlength="60" placeholder="Ex: Coca Cola"/>
                             </div>
                         </div>
                     </div>
@@ -199,7 +205,7 @@
                             <label for="produto[ds_produto]">Descrição:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
-                                <input name="produto[ds_produto]" type="text" class="form-control"  maxlength="100"/>
+                                <input name="produto[ds_produto]" type="text" class="form-control"  maxlength="100" placeholder="Ex: Garrafa 600ml"/>
                             </div>
                         </div>
                     </div>
@@ -208,14 +214,14 @@
                             <label for="produto[vl_produto]">Valor:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                <input name="produto[vl_produto]" type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control" />
+                                <input name="produto[vl_produto]" type="text" class="form-control" data-mask="#.##0,00" data-mask-reverse="true" placeholder="Ex: R$ 5,00" maxlength="10"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="produto[qt_produto]">Quantidade:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                <input name="produto[qt_produto]" type="number" step="1" class="form-control" />
+                                <input name="produto[qt_produto]" type="text" data-mask="00000000000" maxlength="11" class="form-control" placeholder="Ex: 100"/>
                             </div>
                         </div>
                     </div>
@@ -233,7 +239,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="insert" class="btn btn-primary">Salvar</button>
+                    <button type="submit" name="insert" class="btn btn-success">Cadastrar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                 </div>
                 </div>

@@ -1,10 +1,12 @@
 <?php 
 class HomeController{
-    function index(){       
+    function index($params = null){       
         $this->params = array(
             'title'=>'Cardápio'
         );
-        
+        if($params != null){
+            $this->params = array_merge($this->params, $params);
+        }
         //Header & Menu
         require 'views/header.php';
         require 'views/menu.php';

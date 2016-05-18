@@ -11,8 +11,9 @@
     if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {$(this).collapse('hide');}});
     $(window).resize(function(){$('.table-responsive.prod').css('height', $(window).height() - 260 + 'px');});
     $('.table-responsive.prod').css('height', $(window).height() - 260 + 'px');
-    <?php if(isset($_SESSION['script'])){
-        echo $_SESSION['script'];
+    <?php if(isset($this->params['script'])){
+        echo $this->params['script'];
+        $this->params['script'] = "";
     } ?>
     </script>
 </body>

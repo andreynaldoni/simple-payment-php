@@ -29,9 +29,9 @@
             return false;
         }
          
-        function getList(){             
+        function getList($params = null){             
             $ProdutoDAO = new ProdutoDAO();
-            return $ProdutoDAO->listProduto();
+            return $ProdutoDAO->listProduto($params);
         }
         
         function getProdutoPorCategoria($cd_categoria){

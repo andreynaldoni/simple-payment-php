@@ -3,9 +3,21 @@
     include_once 'business/produtoNeg.php';
     include_once 'business/ingredienteprodutoNeg.php';
     include_once 'business/ingredienteNeg.php';
+    include_once 'business/pedidoNeg.php';
     include_once 'business/produtopedidoNeg.php';
     
     if(isset($_POST['produto'])){
+        if(!isset($_SESSION['pedido'])){
+            $_SESSION['pedido'] = new Pedido();
+            if(isset($_SESSION['cliente'])){
+                $_SESSION['pedido']->setCdCliente($_SESSION['cliente']->getCdCliente());
+            }
+        }
+        
+        if(!isset($_SESSION['produtopedido'])){
+            $_SESSION['produtopedido'] = [];
+        }
+        
         $produtoPedido = new ProdutoPedido();
         
         $produtoPedido->setCdProduto($_POST['produto']['codigo']);
@@ -13,13 +25,13 @@
         $produtoPedido->setVlTotalProdutoPedido($_POST['produto']['quantidade'] * $_POST['produto']['valor']);
         $produtoPedido->setDsObs($_POST['produto']['obs']);
         
-        if ($_POST['produto']['ingrediente'] != null){
-            $ing = "#" . implode(',', $_POST['produto']['ingrediente']) . "#";
+        if (isset($_POST['produto']['ingrediente'])){
+            $ing = implode(',', $_POST['produto']['ingrediente']) . "#";
             $produtoPedido->setDsObs($ing . $produtoPedido->getDsObs());
         }
+        $_SESSION['produtopedido'][] = $produtoPedido;
         
-        $produtoPedidoNeg = new ProdutoPedidoNeg();
-        $produtoPedidoNeg->gravarProdutoPedido($produtoPedido);
+        redirect('/');
     }
 ?>
 
@@ -46,16 +58,15 @@
                     $produtos = $produtoNeg->getList();
                 }
                 
+                $script = '';
                 $row = 1;
-                
-                $_SESSION['script'] = '';
-                
+                                
                 foreach($produtos as $produto => $atual){
                     if($atual->getQtProduto() > 0){
                         if($row % 3 == 0){
                             echo '<div class="row">';
                         }
-                        $_SESSION['script'] = $_SESSION['script'] . '$("#mais'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$(this).attr("field");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());isNaN(t)?$("#qtd'.$atual->getCdProduto().'").val(0):$("#qtd'.$atual->getCdProduto().'").val(t+1)}),$("#menos'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$("#qtd'.$atual->getCdProduto().'");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());!isNaN(t)&&t>0?$("#qtd'.$atual->getCdProduto().'").val(t-1):$("#qtd'.$atual->getCdProduto().'").val(0)});';
+                        $script = $script . '$("#mais'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$(this).attr("field");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());isNaN(t)?$("#qtd'.$atual->getCdProduto().'").val(0):$("#qtd'.$atual->getCdProduto().'").val(t+1)}),$("#menos'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$("#qtd'.$atual->getCdProduto().'");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());!isNaN(t)&&t>0?$("#qtd'.$atual->getCdProduto().'").val(t-1):$("#qtd'.$atual->getCdProduto().'").val(0)});';
             ?>
             <div class="col-sm-4">
                 <a href="#" data-toggle="modal" data-target="#produto<?= $atual->getCdProduto() ?>">
@@ -155,6 +166,7 @@
                         $row++;
                     }
                 }
+                $this->params = array_merge(array('script' => $script), $this->params);
                 //if ($row % 3 != 1) echo "</div>";
             ?>
         </div>

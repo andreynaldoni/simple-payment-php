@@ -60,7 +60,7 @@
             return array(
                 "cd_pedido"        => $this->cd_pedido,
                 "dt_emissao"       => $this->dt_emissao,
-                "vl_pedido"        => $this->vl_pedido,
+                "vl_total_pedido"  => $this->vl_total_pedido,
                 "ic_cancelado"     => $this->ic_cancelado,
                 "qt_total_parcela" => $this->qt_total_parcela,
                 "cd_cliente"       => $this->cd_cliente

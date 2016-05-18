@@ -5,8 +5,8 @@ include_once 'database.php';
 
     class ProdutoPedidoDAO {
         
-        function getProduto($produtoPedido){
-            $link = DBSelect('Produto_Pedido', $produtoPedido->getProdutoProduto());
+        function getProdutoPedido($produtoPedido){
+            $link = DBSelect('Produto_Pedido', $produtoPedido->getProdutoPedido());
             if($link != null){
                 return $link;
             } else {
@@ -14,7 +14,7 @@ include_once 'database.php';
             }
         }
         
-        function listProduto($params = null){
+        function listProdutoPedido($params = null){
             $link = DBSelect('Produto_Pedido', $params);
             if($link != null){
                 return $link;
@@ -23,23 +23,23 @@ include_once 'database.php';
             }
         }
                
-        function insertProduto($produtoPedido){
-            if(DBInsert('Produto_Pedido', $produtoPedido->getProdutoProduto(), true)){
+        function insertProdutoPedido($produtoPedido){
+            if(DBInsert('Produto_Pedido', $produtoPedido->getProdutoPedido(), true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        function updateProduto($produtoPedido){
-            if(DBUpdate('Produto_Pedido', $produtoPedido->getProdutoProduto(), "cd_produto = " . $produtoPedido->getCdProdutoPedido(),true)){
+        function updateProdutoPedido($produtoPedido){
+            if(DBUpdate('Produto_Pedido', $produtoPedido->getProdutoPedido(), "cd_produto = " . $produtoPedido->getCdProdutoPedido(),true)){
                 return "Executado com sucesso.";
             } else {
                 return "Ocorreu um erro.";
             }
         }
         
-        public function deleteProduto($id){
+        public function deleteProdutoPedido($id){
             if(DBDelete('Produto_Pedido', 'cd_produto_pedido = ' . $id)){
                 return "Executado com sucesso.";
             } else {

@@ -40,13 +40,19 @@
                                 if(isset($_SESSION['cliente'])){
                                     $cliente = $_SESSION['cliente'];
                             ?>
-                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?= $cliente->getNmCliente() ?></a></li>
-                                    <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?= $cliente->getNmCliente() ?></a></li>
+                                <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                             <?php } else { ?>
-                                    <li><a href="<?= HOME_PATH ?>/cliente/cadastrar"><span class="glyphicon glyphicon-user"></span> Registrar-se</a></li>
-                                    <li><a href="<?= HOME_PATH ?>/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                <li><a href="<?= HOME_PATH ?>/cliente/cadastrar"><span class="glyphicon glyphicon-user"></span> Registrar-se</a></li>
+                                <li><a href="<?= HOME_PATH ?>/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <?php } ?>
-                            <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido</a></li>
+                            <li>
+                                <a href="<?= HOME_PATH ?>/pedido/checkout"><i class="glyphicon glyphicon-shopping-cart"></i> Pedido
+                                    <?php if(isset($_SESSION['produtopedido'])){
+                                        echo '<span class="badge">' . count($_SESSION['produtopedido']) . '</span>';
+                                    } ?>
+                                </a>
+                            </li>
                             <li><a href="<?= HOME_PATH ?>/home/admin"><span class="glyphicon glyphicon-wrench"></span> Admin</a></li>
                         </ul>
                     </div>
