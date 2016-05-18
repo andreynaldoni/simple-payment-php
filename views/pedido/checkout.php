@@ -20,7 +20,7 @@
             
     ?>
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped">
                 <thead>
                     <tr class="text-center">
                         <th>Nº</th>
@@ -35,6 +35,8 @@
                 <tbody>
                 <?php
                         $produtoNeg = new ProdutoNeg();
+                        $ingredienteprodutoNeg = new IngredienteProdutoNeg();
+                        $ingredienteNeg = new IngredienteNeg();
                         $produtoPedido = $_SESSION['produtopedido'];
                         
                         $script = '';
@@ -56,6 +58,14 @@
                         <?php  
                             $ing = substr($atual->getDsObs(), 0, strpos($atual->getDsObs(), '#'));
                             $obs = substr($atual->getDsObs(), strlen($ing) + 1);
+                            $ingobs = '';
+                            if(strlen($ing) > 0){
+                                $ingredientes =  $ingredienteNeg->getIngredientePorCodigo($ing);
+                                foreach ($ingredientes as $key => $value) {
+                                    $ingobs .= $value->getNmIngrediente() . ' / ';
+                                }
+                                echo $ingobs . $obs;
+                            }
                         ?>
                         </td>
                         <td class="text-center">
@@ -73,7 +83,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <h3><?= $produto->getDsProduto() ?></h3>
-                                            <h1 class="text-danger"><span class="preco">De: </span><b><s>R$ <?=number_format(($produto->getVlProduto() * 1.05), 2, ',', '.') ?></s></b></h1>
+                                            <h1 class="text-danger"><span class="preco">De: </span><b><s>R$ <?= number_format(($produto->getVlProduto() * 1.05), 2, ',', '.') ?></s></b></h1>
                                             <h1 class="text-success"><span class="preco">Por: </span><b>R$ <?= number_format($produto->getVlProduto(), 2, ',', ' ') ?></b></h1>
                                             <div class="form-inline">
                                                 <label for="qtd">Quantidade: </label>
@@ -85,12 +95,8 @@
                                             </div>
                                             <hr>
                                             <?php
-                                                $ingredienteprodutoNeg = new IngredienteProdutoNeg();
-                                                $ingredienteNeg = new IngredienteNeg();
-                                                
-                                                $ingredientes =  $ingredienteNeg->getIngredientePorCodigo($ing);
-                                                
-                                                if(count($ingredientes) > 0){
+                                                if(isset($ingredientes)){
+                                                    if(count($ingredientes) > 0){
                                             ?>
                                             <h2><b>Acompanhamentos</b></h2>
                                             <div class="row">
@@ -102,7 +108,10 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                            <?php } ?>
+                                            <?php
+                                                    }
+                                                }
+                                            ?>
                                             </div>
                                             <?php } ?>
                                             <div class="row">
