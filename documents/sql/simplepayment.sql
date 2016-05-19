@@ -28,6 +28,7 @@ CREATE TABLE tb_cliente
     cd_cliente 			INTEGER NOT NULL AUTO_INCREMENT,
     nm_cliente 			VARCHAR(60) NOT NULL,
     nm_sobrenome 		VARCHAR(100),
+    ic_admin_usuario    CHAR(1),
     dt_nascimento       DATE,
     cd_telefone 		INTEGER,
     cd_celular 		    BIGINT,
@@ -375,14 +376,14 @@ INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_p
 VALUES (14, 5, 20, 1);
 
 -- CLIENTE 
-INSERT INTO tb_cliente (nm_cliente, nm_sobrenome, dt_nascimento, cd_telefone, cd_celular, ic_tipo_documento, cd_cpf, cd_cnpj, nm_pais, sg_estado, nm_cidade, cd_cep, nm_bairro, nm_rua, cd_numero, ds_complemento, nm_email_cliente, cd_cartao_cliente, cd_operadora_cartao, dt_validade_cartao, cd_senha)
-VALUES ('Genoveva', 'Santos', NULL, 1334738100, NULL, 'F', '26325872800', '', 'Brasil', 'SP', 'Praia Grande', '11700080', 'Boqueirão ', 'Avenida Paris ', '30', 'ap', 'genovevisdasilva@gmail.com', '', '', curdate(), '202cb962ac59075b964b07152d234b70') ;
+INSERT INTO tb_cliente (nm_cliente, nm_sobrenome, ic_admin_usuario, dt_nascimento, cd_telefone, cd_celular, ic_tipo_documento, cd_cpf, cd_cnpj, nm_pais, sg_estado, nm_cidade, cd_cep, nm_bairro, nm_rua, cd_numero, ds_complemento, nm_email_cliente, cd_cartao_cliente, cd_operadora_cartao, dt_validade_cartao, cd_senha)
+VALUES ('Genoveva', 'Santos', 'U', NULL, 1334738100, NULL, 'F', '26325872800', '', 'Brasil', 'SP', 'Praia Grande', '11700080', 'Boqueirão ', 'Avenida Paris ', '30', 'ap', 'genovevisdasilva@gmail.com', '', '', curdate(), '202cb962ac59075b964b07152d234b70') ;
 
-INSERT INTO tb_cliente (nm_cliente, nm_sobrenome, dt_nascimento, cd_telefone, cd_celular, ic_tipo_documento, cd_cpf, cd_cnpj, nm_pais, sg_estado, nm_cidade, cd_cep, nm_bairro, nm_rua, cd_numero, ds_complemento, nm_email_cliente, cd_cartao_cliente, cd_operadora_cartao, dt_validade_cartao, cd_senha)
-VALUES ('Gisele', 'Silva', NULL, 1134738180, NULL, 'F', '75786244407', '', 'Brasil', 'SP', 'Praia Grande', '11725380', 'Tude Bastos', 'Rua padre gastão', '444', 'casa', 'yunesnoronha@gmail.com', '', '', curdate(), '202cb962ac59075b964b07152d234b70');
+INSERT INTO tb_cliente (nm_cliente, nm_sobrenome, ic_admin_usuario, dt_nascimento, cd_telefone, cd_celular, ic_tipo_documento, cd_cpf, cd_cnpj, nm_pais, sg_estado, nm_cidade, cd_cep, nm_bairro, nm_rua, cd_numero, ds_complemento, nm_email_cliente, cd_cartao_cliente, cd_operadora_cartao, dt_validade_cartao, cd_senha)
+VALUES ('Gisele', 'Silva', 'A', NULL, 1134738180, NULL, 'F', '75786244407', '', 'Brasil', 'SP', 'Praia Grande', '11725380', 'Tude Bastos', 'Rua padre gastão', '444', 'casa', 'yunesnoronha@gmail.com', '', '', curdate(), '202cb962ac59075b964b07152d234b70');
 
-INSERT INTO tb_cliente (nm_cliente, nm_sobrenome, dt_nascimento, cd_telefone, cd_celular, ic_tipo_documento, cd_cpf, cd_cnpj, nm_pais, sg_estado, nm_cidade, cd_cep, nm_bairro, nm_rua, cd_numero, ds_complemento, nm_email_cliente, cd_cartao_cliente, cd_operadora_cartao, dt_validade_cartao, cd_senha)
-VALUES ('Gertrudes', 'Selfie', NULL, NULL, 13988849091, 'F', '57338831700', '', 'Brasil', 'SP', 'Praia Grande', '11700080', 'Boqueirão ', 'Rua Mário Tamashiro - até 299/300 ', '300', 'ap', 'a@a.com', '', '', curdate(), '202cb962ac59075b964b07152d234b70');
+INSERT INTO tb_cliente (nm_cliente, nm_sobrenome, ic_admin_usuario, dt_nascimento, cd_telefone, cd_celular, ic_tipo_documento, cd_cpf, cd_cnpj, nm_pais, sg_estado, nm_cidade, cd_cep, nm_bairro, nm_rua, cd_numero, ds_complemento, nm_email_cliente, cd_cartao_cliente, cd_operadora_cartao, dt_validade_cartao, cd_senha)
+VALUES ('Gertrudes', 'Selfie', 'U', NULL, NULL, 13988849091, 'F', '57338831700', '', 'Brasil', 'SP', 'Praia Grande', '11700080', 'Boqueirão ', 'Rua Mário Tamashiro - até 299/300 ', '300', 'ap', 'a@a.com', '', '', curdate(), '202cb962ac59075b964b07152d234b70');
 
 /*
 -- CABECA

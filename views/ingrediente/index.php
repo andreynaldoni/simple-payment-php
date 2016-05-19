@@ -27,43 +27,45 @@
     
     $ingredientes = $ingredienteNeg->getList();
 ?>
-    
     <div class="container">
-        <div class="panel-heading bg-primary">
-            <h3 class="text-center" style="margin: 0">Tabela de <?= count($ingredientes) ?> Ingrediente(s)
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cadastrar">
-                    <i class="glyphicon glyphicon-plus-sign" style="font-size: 1.8em;vertical-align: middle"></i>
-                </button>
-            </h3>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Estoque</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                    foreach($ingredientes as $Ingrediente => $atual){
-                ?>
-                    <tr>
-                        <td><?= $atual->getCdIngrediente() ?></td>
-                        <td><?= $atual->getNmIngrediente() ?></td>
-                        <td><?= $atual->getDsIngrediente() ?></td>
-                        <td><?= $atual->getQtIngrediente() ?></td>
-                        <td><?= $atual->getVlIngrediente() ?></td>
-                        <td><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdIngrediente() ?>"  >
-                            <i class="glyphicon glyphicon-pencil"></i>
-                        </button></td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
+        <div class="panel panel-default">
+            <div class="panel-heading bg-primary">
+                <h3 class="text-center" style="margin: 0">Tabela de <?= count($ingredientes) ?> Ingrediente(s)
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cadastrar">
+                        <i class="glyphicon glyphicon-plus-sign" style="font-size: 1.8em;vertical-align: middle"></i>
+                    </button>
+                </h3>
+            </div>
+            <div class="table-responsive prod">
+                <table class="table table-striped prod">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Estoque</th>
+                            <th>Valor</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        foreach($ingredientes as $Ingrediente => $atual){
+                    ?>
+                        <tr>
+                            <td><?= $atual->getCdIngrediente() ?></td>
+                            <td><?= $atual->getNmIngrediente() ?></td>
+                            <td><?= $atual->getDsIngrediente() ?></td>
+                            <td><?= $atual->getQtIngrediente() ?></td>
+                            <td>R$ <?= number_format($atual->getVlIngrediente(), 2, ',', '.') ?></td>
+                            <td><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdIngrediente() ?>"  >
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </button></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <?php foreach($ingredientes as $Ingrediente => $atual){ ?>
@@ -148,14 +150,14 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                     <input name="ingrediente[cd_ingrediente]" type="hidden" />
-                                    <input name="ingrediente[cd_ingrediente]" type="text" class="form-control"  disabled/>
+                                    <input name="ingrediente[cd_ingrediente]" type="text" class="form-control" disabled placeholder="*"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="ingrediente[nm_ingrediente]">Nome:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
-                                    <input name="ingrediente[nm_ingrediente]" type="text" class="form-control"  maxlength="60"/>
+                                    <input name="ingrediente[nm_ingrediente]" type="text" class="form-control" maxlength="60" placeholder="Ex.: Coca Cola"/>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +166,7 @@
                                 <label for="ingrediente[ds_ingrediente]">Descrição:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
-                                    <input name="ingrediente[ds_ingrediente]" type="text" class="form-control"  maxlength="100"/>
+                                    <input name="ingrediente[ds_ingrediente]" type="text" class="form-control" maxlength="100" placeholder="Ex.: Refrigerante 600ml"/>
                                 </div>
                             </div>
                         </div>
@@ -173,14 +175,14 @@
                                 <label for="ingrediente[vl_ingrediente]">Valor:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                    <input name="ingrediente[vl_ingrediente]" type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control" />
+                                    <input name="ingrediente[vl_ingrediente]" type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control" placeholder="Ex.: 6.00"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="ingrediente[qt_ingrediente]">Quantidade:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                    <input name="ingrediente[qt_ingrediente]" type="number" step="1" class="form-control" />
+                                    <input name="ingrediente[qt_ingrediente]" type="number" step="1" class="form-control" value="1"/>
                                 </div>
                             </div>
                         </div>

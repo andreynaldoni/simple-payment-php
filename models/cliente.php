@@ -4,6 +4,7 @@
         private $cd_cliente;
         private $nm_cliente;
         private $nm_sobrenome;
+        private $ic_admin_usuario;
         private $dt_nascimento;
         private $cd_telefone;
         private $cd_celular;
@@ -46,6 +47,14 @@
         
         public function setNmSobrenome($nm_sobrenome){
             $this->nm_sobrenome = $nm_sobrenome;
+        }
+        
+        public function getIcAdminUsuario(){
+            $this->ic_admin_usuario = $ic_admin_usuario;
+        }
+        
+        public function setIcAdminUsuario($ic_admin_usuario){
+            $this->ic_admin_usuario = $ic_admin_usuario;
         }
         
         public function getDtNascimento(){
@@ -205,6 +214,7 @@
               "cd_cliente"          => $this->cd_cliente,
               "nm_cliente"          => $this->nm_cliente,
               "nm_sobrenome"        => $this->nm_sobrenome,
+              "ic_admin_usuario"    => $this->ic_admin_usuario,
               "dt_nascimento"       => $this->dt_nascimento,
               "cd_telefone"         => $this->cd_telefone,
               "cd_celular"          => $this->cd_celular,

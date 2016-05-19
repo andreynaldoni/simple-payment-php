@@ -119,7 +119,7 @@
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="compl">Complemento:</label>
-                    <input type="text" class="form-control" name="cliente[compl]" placeholder="Complemento">
+                    <input type="text" class="form-control" name="cliente[compl]" placeholder="Complemento" maxlength="40">
                 </div>
             </div>
         </div>
@@ -175,6 +175,7 @@ if (isset($_POST['cliente'])) {
     
     $clienteModel->setNmCliente($_POST['cliente']['nome-cliente']);
     $clienteModel->setNmSobrenome($_POST['cliente']['sobrenome']);
+    $clienteModel->setIcAdminUsuario('U');
     // Data de Nascimento
     $dtnascimento = $_POST['cliente']['data-nascimento'];
     $dtnascimento = str_replace('/','', $dtnascimento);
