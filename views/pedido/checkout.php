@@ -77,14 +77,19 @@
                             <td class="text-center">
                             <?php  
                                 $ing = substr($atual->getDsObs(), 0, strpos($atual->getDsObs(), '#'));
-                                $obs = substr($atual->getDsObs(), strlen($ing) + 1);
-                                $ingobs = '';
-                                if(strlen($ing) > 0){
-                                    $ingredientes =  $ingredienteNeg->getIngredientePorCodigo($ing);
-                                    foreach ($ingredientes as $key => $value) {
-                                        $ingobs .= $value->getNmIngrediente() . ' / ';
+                                if($ing == ""){
+                                    $obs = $atual->getDsObs();
+                                    echo $obs;
+                                }else{
+                                    $obs = substr($atual->getDsObs(), strlen($ing) + 1);
+                                    $ingobs = '';
+                                    if(strlen($ing) > 0){
+                                        $ingredientes =  $ingredienteNeg->getIngredientePorCodigo($ing);
+                                        foreach ($ingredientes as $key => $value) {
+                                            $ingobs .= $value->getNmIngrediente() . ' / ';
+                                        }
+                                        echo $ingobs . $obs;
                                     }
-                                    echo $ingobs . $obs;
                                 }
                             ?>
                             </td>
