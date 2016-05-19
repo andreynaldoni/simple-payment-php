@@ -56,11 +56,10 @@
                                 </a>
                             </li>
                             <?php
-                                if(isset($_SESSION['cliente'])){
-                                    if($_SESSION['cliente']->getIcAdminUsuario() == 'A'){
+                                if(admin_check()){
                             ?>
                             <li><a href="<?= HOME_PATH ?>/home/admin"><span class="glyphicon glyphicon-wrench"></span> Admin</a></li>
-                            <?php }}?>
+                            <?php }?>
                         </ul>
                     </div>
                 </div>

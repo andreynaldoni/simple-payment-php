@@ -51,7 +51,7 @@
     // Check ADM
     function admin_check(){
         if(isset($_SESSION['cliente'])){
-            if($_SESSION['cliente']->getIcAdminUsuario == 'A'){
+            if($_SESSION['cliente']->getIcAdminUsuario() == 'A'){
                 return true;
             }
             return false;
