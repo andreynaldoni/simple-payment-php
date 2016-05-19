@@ -42,7 +42,7 @@
         echo "<script>document.location.href='" . HOME_PATH . $link . "'</script>";
     }
     // Image show
-    function image_show($img){
+    function image_show($img = null){
         if(file_exists('public/img' . $img) && is_file('public/img' . $img)){
             return HOME_PATH . '/public/img' . $img;
         }
