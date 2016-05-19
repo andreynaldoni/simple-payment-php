@@ -102,7 +102,7 @@
                                     <div class="form-inline">
                                         <div class="input-group">
                                             <span class="input-group-addon btn" id="mais<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-plus"></i></span>
-                                            <input type="text" name="produto[quantidade]" id="qtd<?= $atual->getCdProduto() ?>" class="form-control text-center" value="1" size="6">
+                                            <input type="text" data-mask="00" name="produto[quantidade]" id="qtd<?= $atual->getCdProduto() ?>" class="form-control text-center" value="1" size="6">
                                             <span class="input-group-addon btn" id="menos<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-minus"></i></span>
                                         </div>
                                     </div>

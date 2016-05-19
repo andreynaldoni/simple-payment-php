@@ -1,8 +1,8 @@
 <?php
     // Session Intialize
     session_start();
-	//$db_url = parse_url(getenv('JAWSDB_URL')); // Production Environment
-    $db_url = parse_url(getenv('MYSQL_LOCAL_DB')); // Local Development Environment
+	$db_url = parse_url(getenv('JAWSDB_URL')); // Production Environment
+    //$db_url = parse_url(getenv('MYSQL_LOCAL_DB')); // Local Development Environment
     
     define('DB_HOSTNAME', $db_url['host']);
 	define('DB_USERNAME', $db_url['user']);
@@ -11,8 +11,8 @@
 	define('DB_PREFIX','tb');
 	define('DB_CHARSET','utf8');
     // URL
-    //define('HOME_PATH', 'https://php-payment.herokuapp.com'); // Production Path
-	define('HOME_PATH', 'http://localhost/simple-payment-php'); // Local Development Path
+    define('HOME_PATH', 'https://php-payment.herokuapp.com'); // Production Path
+	//define('HOME_PATH', 'http://localhost/simple-payment-php'); // Local Development Path
     // Application
 	require_once 'app.php';
     // PHP_ENV ? production : development
@@ -48,7 +48,16 @@
         }
         return HOME_PATH . '/public/img/produto/no-photo.svg';
     }
-    
+    // Check ADM
+    function admin_check(){
+        if(isset($_SESSION['cliente'])){
+            if($_SESSION['cliente']->getIcAdminUsuario == 'A'){
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
     // Start the application
     $app = new SimplePayment();
 ?>

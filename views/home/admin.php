@@ -1,4 +1,8 @@
-
+<?php 
+    if(!admin_check()){
+        redirect('/');
+    }
+?>
 <div class="container">
     <div class="row">
         <div class="col-md-6">

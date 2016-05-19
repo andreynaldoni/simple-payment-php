@@ -1,6 +1,11 @@
 <?php
     include_once "business/clienteNeg.php";
-    $ClienteNeg = new clienteNeg();
+    
+    if(!admin_check()){
+        redirect('/');
+    }
+    
+    $clienteNeg = new clienteNeg();
     
     if(isset($_POST['update'])){
         $cliente = new Cliente();
@@ -32,7 +37,7 @@
         $clienteNeg->deleteCliente($_POST['cd_cliente']);
     }
     
-    $clientes = $ClienteNeg->getList();
+    $clientes = $clienteNeg->getList();
 ?>
     
     <div class="container">

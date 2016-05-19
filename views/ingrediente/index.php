@@ -1,5 +1,10 @@
 <?php
     include_once "business/ingredienteNeg.php";
+    
+    if(!admin_check()){
+        redirect('/');
+    }
+    
     $ingredienteNeg = new IngredienteNeg();
     
     if(isset($_POST['insert'])){

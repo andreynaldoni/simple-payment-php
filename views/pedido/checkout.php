@@ -12,6 +12,21 @@
             redirect('/pedido/checkout');
         }
     }
+    
+    if(isset($_POST['produto'])){
+        
+        $linha = $_POST['produto']['linha'] - 1;
+        
+        $_SESSION['produtopedido'][$linha]->setQtProdutoPedido($_POST['produto']['quantidade']);
+        $_SESSION['produtopedido'][$linha]->setVlTotalProdutoPedido($_POST['produto']['quantidade'] * $_POST['produto']['valor']);
+        $_SESSION['produtopedido'][$linha]->setDsObs($_POST['produto']['obs']);
+        
+        if (isset($_POST['produto']['ingrediente'])){
+            $ing = implode(',', $_POST['produto']['ingrediente']) . "#";
+            $_SESSION['produtopedido'][$linha]->setDsObs($ing . $_SESSION['produtopedido'][$linha]->getDsObs());
+        }
+        
+    }
 ?>
     <div class="container">
     <?php
@@ -28,6 +43,7 @@
                         <tr class="text-center">
                             <th>Nº</th>
                             <th>Produto</th>
+                            <th class="text-center">Imagem</th>
                             <th class="text-center">Quantidade</th>
                             <th class="text-center">Observações</th>
                             <th class="text-center">Editar</th>
@@ -56,7 +72,8 @@
                         <tr>
                             <td><b><?= $row ?></b></td>
                             <td><?= $produto->getNmProduto() ?></td>
-                            <td class="text-center">R$<?= number_format($produto->getVlProduto(), 2, ',', '.') ?> x <?= $atual->getQtProdutoPedido() ?></td>
+                            <td class="text-center"><img class="img-circle" src="<?= image_show('/produto/' . $produto->getImProduto()) ?>" alt="<?= $produto->getDsProduto() ?>" width="100" height="100"></td>
+                            <td class="text-center"><b><span class="text-success">R$<?= number_format($produto->getVlProduto(), 2, ',', '.') ?></span></b> x <b><?= $atual->getQtProdutoPedido() ?></b></td>
                             <td class="text-center">
                             <?php  
                                 $ing = substr($atual->getDsObs(), 0, strpos($atual->getDsObs(), '#'));
@@ -76,60 +93,90 @@
                                     <i class="glyphicon glyphicon-pencil" style="vertical-align: text-top;"></i>
                                 </button>
                                 <div class="modal fade" id="produtoPedidoEdit<?= $row ?>" tabindex="-1" role="dialog" aria-labelledby="Produto<?= $atual->getCdProduto() ?>">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-primary">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <h2 class="modal-title" id="Produto"><b><?= $produto->getNmProduto() ?></b></h2>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h3><?= $produto->getDsProduto() ?></h3>
-                                                <h1 class="text-danger"><span class="preco">De: </span><b><s>R$ <?= number_format(($produto->getVlProduto() * 1.05), 2, ',', '.') ?></s></b></h1>
-                                                <h1 class="text-success"><span class="preco">Por: </span><b>R$ <?= number_format($produto->getVlProduto(), 2, ',', ' ') ?></b></h1>
-                                                <div class="form-inline">
-                                                    <label for="qtd">Quantidade: </label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon btn" id="mais<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-plus"></i></span>
-                                                        <input type="text" name="produto[quantidade]" id="qtd<?= $atual->getCdProduto() ?>" class="form-control text-center" value="1" size="6">
-                                                        <span class="input-group-addon btn" id="menos<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-minus"></i></span>
-                                                    </div>
+                                    <form method="POST">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h2 class="modal-title" id="Produto"><b><?= $produto->getNmProduto() ?></b></h2>
                                                 </div>
-                                                <hr>
-                                                <?php
-                                                    if(isset($ingredientes)){
-                                                        if(count($ingredientes) > 0){
-                                                ?>
-                                                <h2><b>Acompanhamentos</b></h2>
-                                                <div class="row">
-                                                <?php foreach ($ingredientes as $ingrediente => $ingtemp) { ?>
-                                                    <div class="col-xs-4">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <h4><input type="checkbox" name="produto[ingrediente][]" checked value="<?= $ingtemp->getCdIngrediente() ?>"> <?= $ingtemp->getNmIngrediente() ?></h4>
-                                                            </label>
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="produto[linha]" value="<?= $row ?>">
+                                                    <input type="hidden" name="produto[valor]" value="<?= $produto->getVlProduto() ?>">
+                                                    <h3><?= $produto->getDsProduto() ?></h3>
+                                                    <img class="img-circle" src="<?= image_show('/produto/' . $produto->getImProduto()) ?>" alt="<?= $produto->getDsProduto() ?>" width="150" height="150">
+                                                    <h1 class="text-danger"><span class="preco">De: </span><b><s>R$ <?= number_format(($produto->getVlProduto() * 1.05), 2, ',', '.') ?></s></b></h1>
+                                                    <h1 class="text-success"><span class="preco">Por: </span><b>R$ <?= number_format($produto->getVlProduto(), 2, ',', ' ') ?></b></h1>
+                                                    <div class="form-inline">
+                                                        <label for="qtd">Quantidade: </label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon btn" id="mais<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-plus"></i></span>
+                                                            <input type="text" data-mask="00" name="produto[quantidade]" id="qtd<?= $atual->getCdProduto() ?>" class="form-control text-center" value="<?= $atual->getQtProdutoPedido() ?>" size="6">
+                                                            <span class="input-group-addon btn" id="menos<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-minus"></i></span>
                                                         </div>
                                                     </div>
-                                                <?php
+                                                    <hr>
+                                                    <?php
+                                                        $ingredientesProduto = $ingredienteprodutoNeg->getIngredienteProduto($atual->getCdProduto());
+                                                        
+                                                        if($ingredientesProduto != "Ocorreu um erro."){
+                                                            unset($ingredienteparams);
+                                                            foreach($ingredientesProduto as $temp){
+                                                                $ingredienteparams[] = $temp->getCdIngrediente();
+                                                            }
+                                                            
+                                                            $ingparams = implode(', ', $ingredienteparams);
+                                                            $ingprod =  $ingredienteNeg->getIngredientePorCodigo($ingparams);
+                                                            
+                                                            if(count($ingprod) > 0){
+                                                                $ing = explode(',', $ing);
+                                                    ?>
+                                                    <h2><b>Acompanhamentos</b></h2>
+                                                    <div class="row">
+                                                    <?php foreach ($ingprod as $ingrediente => $ingtemp) { ?>
+                                                        <div class="col-xs-4">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                <?php
+                                                                    $checked = false;
+                                                                    foreach ($ing as $chave => $valor) {
+                                                                        if($ingtemp->getCdIngrediente() == $valor){
+                                                                            $checked = true;
+                                                                        }
+                                                                    }
+                                                                    if($checked){
+                                                                ?>
+                                                                    <h4><input type="checkbox" name="produto[ingrediente][]" value="<?= $ingtemp->getCdIngrediente() ?>" checked> <?= $ingtemp->getNmIngrediente() ?></h4>
+                                                                <?php
+                                                                    }else{
+                                                                ?>
+                                                                    <h4><input type="checkbox" name="produto[ingrediente][]" value="<?= $ingtemp->getCdIngrediente() ?>"> <?= $ingtemp->getNmIngrediente() ?></h4>
+                                                                <?php } ?>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    <?php
+                                                            }
                                                         }
-                                                    }
-                                                ?>
-                                                </div>
-                                                <?php } ?>
-                                                <div class="row">
-                                                    <div class="col-xs-12">
-                                                        <h4 class="text-justify"><b>Observações:</b></h4>
-                                                        <textarea class="form-control" name="produto[obs]" rows="3" placeholder="Pouco azeite, ao ponto, com gelo, [...]"></textarea>
+                                                    ?>
+                                                    </div>
+                                                    <?php } ?>
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <h4 class="text-justify"><b>Observações:</b></h4>
+                                                            <textarea class="form-control" name="produto[obs]" rows="3" placeholder="Pouco azeite, ao ponto, com gelo, [...]"><?= $obs ?></textarea>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
-                                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+                                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </td>
                             <td class="text-center">
@@ -148,6 +195,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <h4 class="text-center">(<?= $produto->getDsProduto() ?>)</h4>
+                                                    <img class="img-circle" src="<?= image_show('/produto/' . $produto->getImProduto()) ?>" alt="<?= $produto->getDsProduto() ?>" width="150" height="150">
                                                     <h3>Você tem certeza que deseja remover este produto?</h3>
                                                     <input type="hidden" name="delete[codigo]" value="<?= $row ?>">
                                                 </div>

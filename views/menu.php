@@ -28,6 +28,8 @@
                                     <span class="caret"></span> 
                                 </a> 
                                 <ul class="dropdown-menu" aria-labelledby="cardapio">
+                                    <li><a href="<?= HOME_PATH ?>">Cardápio Completo</a></li>
+                                    <li role="separator" class="divider">
                                 <?php foreach($categorias as $categoria => $atual){ ?>
                                     <li><a href="<?= HOME_PATH . '/home/index/' . $atual->getCdCategoria() ?>"><?= $atual->getNmCategoria() ?></a></li>
                                 <?php } ?>
@@ -53,7 +55,12 @@
                                     } ?>
                                 </a>
                             </li>
+                            <?php
+                                if(isset($_SESSION['cliente'])){
+                                    if($_SESSION['cliente']->getIcAdminUsuario == 'A'){
+                            ?>
                             <li><a href="<?= HOME_PATH ?>/home/admin"><span class="glyphicon glyphicon-wrench"></span> Admin</a></li>
+                            <?php }}?>
                         </ul>
                     </div>
                 </div>

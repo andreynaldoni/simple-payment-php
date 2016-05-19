@@ -1,5 +1,10 @@
 <?php
     include_once "business/produtoNeg.php";
+    
+    if(!admin_check()){
+        redirect('/');
+    }
+    
     $produtoNeg = new produtoNeg();
     
     if(isset($_POST['insert'])){
