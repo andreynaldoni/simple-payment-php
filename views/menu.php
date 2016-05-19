@@ -57,7 +57,7 @@
                             </li>
                             <?php
                                 if(isset($_SESSION['cliente'])){
-                                    if($_SESSION['cliente']->getIcAdminUsuario == 'A'){
+                                    if($_SESSION['cliente']->getIcAdminUsuario() == 'A'){
                             ?>
                             <li><a href="<?= HOME_PATH ?>/home/admin"><span class="glyphicon glyphicon-wrench"></span> Admin</a></li>
                             <?php }}?>

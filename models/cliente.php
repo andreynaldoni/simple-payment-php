@@ -50,7 +50,7 @@
         }
         
         public function getIcAdminUsuario(){
-            $this->ic_admin_usuario = $ic_admin_usuario;
+            return $this->ic_admin_usuario;
         }
         
         public function setIcAdminUsuario($ic_admin_usuario){
