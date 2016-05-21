@@ -9,8 +9,7 @@
         
         $url = 'https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/' . $_POST['notificationCode'] . '?email=' . $email . '&token=' . $token;
 
-        $pedidoNeg = new PedidoNeg();        
-        $pedido = $_SESSION['pedido'];
+        $pedidoNeg = new PedidoNeg();
         
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -26,6 +25,9 @@
         $transaction = simplexml_load_string($transaction);
 
         $status = $transaction->status;
+        $pedido = $pedidoNeg->getPedido(array(
+            'cd_pedido' => 9//(string)$transaction->reference
+        ))[0];
         
         switch ($status) {
             // Aguardando pagamento
@@ -68,10 +70,8 @@
                 # code...
                 break;
         }
-        
         $pedidoNeg->updatePedido($pedido);
-        
-        print_r($status);
-           
+    }else{
+        redirect('/');
     }
 ?>
