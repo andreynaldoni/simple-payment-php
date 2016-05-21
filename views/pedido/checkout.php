@@ -248,7 +248,8 @@
         </div>
     <?php
         }else{
-            echo '<h1 class="text-center">Você não possui produtos em seu carrinho!<br><br><b><a href="' . HOME_PATH . '">Clique aqui</a></b> para voltar ao <b>Cardápio</b> :)</h1>';
+            echo '<h1 class="text-center">Você não possui produtos em seu carrinho!<br><br><b><a href="' . HOME_PATH . '">Clique aqui</a></b> para voltar ao <b>Cardápio</b> :)</h1><br>';
+            echo '<h3 class="text-center">Caso você não tenha pago este pedido, <a href="' . HOME_PATH . '/cliente/profile'  .'">clique aqui</a></h3>';
         } 
     ?>
     </div>
