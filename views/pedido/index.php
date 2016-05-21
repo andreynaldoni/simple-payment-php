@@ -18,6 +18,7 @@
     
     $pedidos = $pedidoNeg->getPedido();
     
+    $row = 1;
     /*$cliente          = new Clientne();
     $produtopedido    = new ProdutoPedido();
     $pedido           = new Pedido();*/
@@ -43,13 +44,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($pedidos as $pedido => $atual){ ?>
+                            <?php foreach($pedidos as $pedido => $atual){ 
+                                $cliente = $clienteNeg->getList(array(
+                                    'cd_cliente' => $atual->getCdCliente()
+                                ))[0];    
+                            ?>
                             <tr>
                                 <td class="text-center"><b><?= $atual->getCdPedido() ?></b></td>
                                 <td class="text-center"><b><?= date_format(date_create($atual->getDtEmissao()), 'd/m/Y')?></b></td>
                                 <td class="text-center"><b>R$ <?= number_format($atual->getVlTotalPedido(), 2, ',', '.') ?></b></td>
                                 <td class="text-center"><b><?= $atual->getIcCancelado() ?></b></td>
-                                <td class="text-center"><b><?= $atual->getCdCliente() ?></b></td>
+                                <td class="text-center"><b><?= $cliente->getNmCliente() . ' ' . $cliente->getNmSobrenome() ?></b></td>
                                 <td class="text-center">
                                     <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#produtoPedidoEdit<?= $row ?>">
                                         <i class="glyphicon glyphicon-eye-open" style="vertical-align: text-top;"></i>

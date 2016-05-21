@@ -20,19 +20,19 @@
             <div class="col-sm-3 col-sm-offset-2">
                 <div class="form-group">
                     <label for="nome-cliente"><i class="obrigatorio">*</i> Nome:</label>
-                    <input type="text" class="form-control" name="cliente[nome-cliente]" placeholder="Ex.: João" maxlength="60">
+                    <input type="text" class="form-control" name="cliente[nome-cliente]" placeholder="Ex.: João" maxlength="60" required>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="sobrenome"> Sobrenome:</label>
-                    <input type="text" class="form-control" name="cliente[sobrenome]" placeholder="Ex.: da Silva">
+                    <label for="sobrenome"><i class="obrigatorio">*</i> Sobrenome:</label>
+                    <input type="text" class="form-control" name="cliente[sobrenome]" placeholder="Ex.: da Silva" required>
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="cpf"><i class="obrigatorio">*</i> CPF:</label>
-                    <input type="text" class="form-control" name="cliente[cpf]" data-mask="000.000.000-00" data-mask-reverse="true" placeholder="CPF">
+                    <input type="text" class="form-control" name="cliente[cpf]" data-mask="000.000.000-00" data-mask-reverse="true" placeholder="CPF" required>
                 </div>
             </div>
         </div>
@@ -135,19 +135,19 @@
             <div class="col-sm-4 col-sm-offset-2">
                 <div class="form-group">
                     <label for="email"><i class="obrigatorio">*</i> E-mail:</label>
-                    <input type="email" class="form-control" name="cliente[email]" placeholder="seu@email.com">
+                    <input type="email" class="form-control" name="cliente[email]" placeholder="seu@email.com" required>
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="senha"><i class="obrigatorio">*</i> Senha:</label>
-                    <input type="Password" class="form-control" name="cliente[senha]" placeholder="Senha">
+                    <input type="Password" class="form-control" name="cliente[senha]" placeholder="Senha" required>
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="senha2"><i class="obrigatorio">*</i> Confirmar senha:</label>
-                    <input type="Password" class="form-control" name="cliente[senha2]" placeholder="Confirmar senha">
+                    <input type="Password" class="form-control" name="cliente[senha2]" placeholder="Confirmar senha" required>
                 </div>
             </div>
         </div>

@@ -105,8 +105,8 @@
             
             if(isset($this->xml->code)){
                 header('Location: https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=' . $this->xml->code);
-                return true;
                 unset($_SESSION['produtopedido']);
+                return true;
             }
             
             return false;
