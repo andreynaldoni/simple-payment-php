@@ -26,7 +26,7 @@
 
         $status = $transaction->status;
         $pedido = $pedidoNeg->getPedido(array(
-            'cd_pedido' => 9//(string)$transaction->reference
+            'cd_pedido' => (string)$transaction->reference
         ))[0];
         
         switch ($status) {
