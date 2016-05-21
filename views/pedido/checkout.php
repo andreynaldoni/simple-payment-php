@@ -44,7 +44,7 @@
                 <h3 class="text-center" style="margin: 0"></i>Pedido - <?= count($_SESSION['produtopedido']) ?> Produto(s)
             </div>
             <div class="table-responsive grid">
-                <table class="table table-striped grid">
+                <table class="table table-striped table-hover grid">
                     <thead>
                         <tr class="text-center">
                             <th>Nº</th>
@@ -108,7 +108,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header bg-primary">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                     <h2 class="modal-title" id="Produto"><b><?= $produto->getNmProduto() ?></b></h2>

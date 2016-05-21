@@ -46,7 +46,7 @@
                 <h3 class="text-center" style="margin: 0">Tabela de <?= count($clientes) ?> Cliente(s)</h3>
             </div>
             <div class="table-responsive prod">
-                <table class="table table-striped prod">
+                <table class="table table-striped table-hover prod">
                     <thead>
                         <tr>
                             <th>ID          </th>

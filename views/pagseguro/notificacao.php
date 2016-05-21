@@ -1,7 +1,7 @@
 <?php
     include_once 'business/pedidoNeg.php';
     
-    header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
+    header('access-control-allow-origin: https://sandbox.pagseguro.uol.com.br');
     
     if(isset($_POST['notificationType']) && $_POST['notificationType'] == 'transaction'){
         $email = 'andreynaldoni@gmail.com';

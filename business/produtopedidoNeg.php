@@ -2,9 +2,9 @@
     include "dao/produtopedidoDAO.php";
      
     class ProdutoPedidoNeg{
-        function getList(){             
+        function getList($params = null){             
             $produtoPedidoDAO = new ProdutoPedidoDAO();
-            $produtosPedido = $ProdutoPedidoDAO->listProdutoPedido();
+            $produtosPedido = $produtoPedidoDAO->listProdutoPedido($params);
                 
             return $produtosPedido;
         }

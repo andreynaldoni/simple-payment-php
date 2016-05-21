@@ -56,7 +56,8 @@
         
         private function camposObrigatorios($cliente){
             if($cliente->getNmCliente() == "" || $cliente->getCdCpf() == "" ||
-               $cliente->getNmEmailCliente() == "" || $cliente->getCdSenha() == ""){
+               $cliente->getNmEmailCliente() == "" || $cliente->getCdSenha() == "" ||
+               $cliente->getNmSobrenome() == ""){
                 echo '<h2 class="text-center">Você não preencheu todos os campos obrigatórios. :(</h2>';
                 return false;
             }
