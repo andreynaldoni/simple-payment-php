@@ -31,7 +31,6 @@
     
     if(isset($_SESSION['pedidopreso'])){
         $pedido = $_SESSION['pedidopreso'];
-        unset($_SESSION['pedidopreso']);
     }else{
         // Registra Pedido
         $pedido->setDtEmissao($data);
@@ -73,7 +72,9 @@
         $produtopedido->setDsObs($atual->getDsObs());
         $produtopedido->setQtProdutoPedido($atual->getQtProdutoPedido());
         
-        $produtopedidoNeg->gravarProdutoPedido($produtopedido);
+        if(!isset($_SESSION['pedidopreso'])){
+            $produtopedidoNeg->gravarProdutoPedido($produtopedido);
+        }
         // Id e Valor total do pedido
         $id += 1;
         $vltotal += $atual->getVlTotalProdutoPedido();
@@ -83,6 +84,7 @@
     
     $pedidoNeg->updatePedido($pedido);
     
+    unset($_SESSION['pedidopreso']);
     $_SESSION['pedido'] = $pedido;
     // Informações do cliente
     $pagseguro->buyer(array(
