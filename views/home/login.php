@@ -1,10 +1,12 @@
 <?php
+    include_once 'business/clienteNeg.php';
+    
     if(isset($_SESSION['cliente'])){
         redirect('/');
+        exit();
     }
-    include_once 'business/clienteNeg.php';
-    if(isset($_POST['user']))
-    {
+    
+    if(isset($_POST['user'])){
         $login = new clienteNeg();
         $login->login();
     }

@@ -7,12 +7,6 @@
     include_once 'business/produtopedidoNeg.php';
     
     if(isset($_POST['produto'])){
-        if(!isset($_SESSION['pedido'])){
-            $_SESSION['pedido'] = new Pedido();
-            if(isset($_SESSION['cliente'])){
-                $_SESSION['pedido']->setCdCliente($_SESSION['cliente']->getCdCliente());
-            }
-        }
         
         if(!isset($_SESSION['produtopedido'])){
             $_SESSION['produtopedido'] = [];

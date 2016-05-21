@@ -1,6 +1,7 @@
 <?php 
     if(!admin_check()){
         redirect('/');
+        exit();
     }
 ?>
 <div class="container">

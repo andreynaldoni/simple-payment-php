@@ -42,7 +42,7 @@
                                 if(isset($_SESSION['cliente'])){
                                     $cliente = $_SESSION['cliente'];
                             ?>
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?= $cliente->getNmCliente() ?></a></li>
+                                <li><a href="<?= HOME_PATH ?>/cliente/profile"><span class="glyphicon glyphicon-user"></span> <?= $cliente->getNmCliente() ?></a></li>
                                 <li><a href="<?= HOME_PATH ?>/home/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                             <?php } else { ?>
                                 <li><a href="<?= HOME_PATH ?>/cliente/cadastrar"><span class="glyphicon glyphicon-user"></span> Registrar-se</a></li>

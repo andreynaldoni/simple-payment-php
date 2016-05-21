@@ -28,19 +28,25 @@
     
     $id               = 1;
     $vltotal          = 0;
-    // Registra Pedido
-    $pedido->setDtEmissao($data);
-    $pedido->setIcCancelado('F');
-    $pedido->setCdCliente($cliente->getCdCliente());
     
-    $pedidoNeg->gravarPedido($pedido);
-    
-    // Obtem Pedido Registrado (Com código)
-    $pedido = $pedidoNeg->getPedido(array(
-        'dt_emissao'   => $data,
-        'ic_cancelado' => 'F',
-        'cd_cliente'   => $cliente->getCdCliente()
-    ))[0];
+    if(isset($_SESSION['pedidopreso'])){
+        $pedido = $_SESSION['pedidopreso'];
+        unset($_SESSION['pedidopreso']);
+    }else{
+        // Registra Pedido
+        $pedido->setDtEmissao($data);
+        $pedido->setIcCancelado('F');
+        $pedido->setCdCliente($cliente->getCdCliente());
+        
+        $pedidoNeg->gravarPedido($pedido);
+        
+        // Obtem Pedido Registrado (Com código)
+        $pedido = $pedidoNeg->getPedido(array(
+            'dt_emissao'   => $data,
+            'ic_cancelado' => 'F',
+            'cd_cliente'   => $cliente->getCdCliente()
+        ))[0];
+    }
     
     $pagseguro->currency('BRL');
     $pagseguro->reference($pedido->getCdPedido());
