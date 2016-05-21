@@ -11,7 +11,6 @@
                  
         function updatePedido($pedido){
             if(isset($pedido)){
-                 
                 $pedidoDAO = new PedidoDAO();
                 $pedidoDAO->updatePedido($pedido);
             }

@@ -5,8 +5,8 @@ include_once 'database.php';
 
     class clienteDAO {
         
-        function listCliente(){
-            $retorno = DBSelect('cliente');
+        function listCliente($params = null){
+            $retorno = DBSelect('cliente', $params);
             if($retorno != null){
                 return $retorno;
             }    

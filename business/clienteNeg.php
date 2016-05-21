@@ -2,9 +2,9 @@
     include "dao/clienteDAO.php";
      
     class clienteNeg{
-        function getList(){             
+        function getList($params = null){             
             $clienteDAO = new ClienteDAO();
-            $clientes = $clienteDAO->listCliente();
+            $clientes = $clienteDAO->listCliente($params);
             
             return  $clientes;
         }

@@ -30,8 +30,14 @@
 ?>
     <div class="container">
     <?php
-        if(isset($_SESSION['produtopedido'])){
-            
+        if(count($this->params) > 1){
+            if($this->params[0] == 'erropedido'){
+                echo '<h1 class="text-center">Pedido <b>' . $_SESSION['pedido']->getCdPedido() . '</b> cancelado.</h1><br>'.
+                '<h3 class="text-center">Ocorreu um erro ao processar seu pedido, por favor, tente novamente.</h3>';
+            }    
+        }
+        
+        if(isset($_SESSION['produtopedido'])){   
     ?>
         <div class="panel panel-default">
             <div class="panel-heading bg-primary">
@@ -176,7 +182,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+                                                    <a href="<?= HOME_PATH . '/pedido/checkout' ?>"><button type="button" class="btn btn-default">Voltar</button></a>
                                                     <button type="submit" class="btn btn-primary">Salvar</button>
                                                 </div>
                                             </div>
@@ -238,7 +244,7 @@
             <button class="btn btn-primary"><i class="glyphicon glyphicon-triangle-left" style="vertical-align: text-top; padding-right:5px"></i> Voltar ao Cardápio</button>
         </a>
         <div class="pull-right">
-            <a href="<?= HOME_PATH . '/pedido/pagamento' ?>"><button class="btn btn-success">Fechar pedido <i class="glyphicon glyphicon-triangle-right" style="vertical-align: text-top; padding-left:5px"></i></button></a>
+            <a href="<?= HOME_PATH . '/pagseguro' ?>"><button class="btn btn-success">Enviar pedido <i class="glyphicon glyphicon-send" style="vertical-align: text-top; padding-left:5px"></i></button></a>
         </div>
     <?php
         }else{

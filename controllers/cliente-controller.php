@@ -4,7 +4,6 @@ class ClienteController{
         $this->params = array(
             'title'=>'Cliente'
         );
-        
         //Header & Footer
         require 'views/header.php';
         require 'views/menu.php';
@@ -13,10 +12,13 @@ class ClienteController{
         //Footer
         require 'views/footer.php';
     }
-    function cadastrar(){
+    function cadastrar($params = null){
         $this->params = array(
             'title'=>'Cadastro de cliente'
         );
+        if($params != null){
+            $this->params = array_merge($this->params, $params);
+        }
         //Header & Footer
         require 'views/header.php';
         require 'views/menu.php';

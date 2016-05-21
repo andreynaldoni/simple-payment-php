@@ -6,6 +6,14 @@
 ?>
 
 <div class="container">
+    <?php 
+        if(count($this->params) > 1){
+            if($this->params[0] == 'erropedido'){
+                echo '<h1 class="text-center">É necessário se registrar antes de efetuar o pedido :)</h1><br>'.
+                '<h3 class="text-center">Caso seja cadastrado, efetue o login pelo menu acima.</h3>';
+            }    
+        }
+    ?>
     <form method="POST">
         <h1 class="text-center">Cliente</h1>
         <div class="row">
