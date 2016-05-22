@@ -88,6 +88,7 @@
                                 <div class="modal-body">
                                     <!--<h3>Promoção de final de semana :)</h3>-->
                                     <h3><?= $atual->getDsProduto() ?></h3>
+                                    <img class="img-circle" src="<?= image_show('/produto/' . $atual->getImProduto()) ?>" alt="<?= $atual->getDsProduto() ?>" width="200" height="200">
                                     <h1 class="text-danger"><span class="preco">De: </span><b><s>R$ <?= number_format(($atual->getVlProduto() * 1.10), 2, ',', '.') ?></s></b></h1>
                                     <h1 class="text-success"><span class="preco">Por: </span><b>R$ <?= number_format($atual->getVlProduto(), 2, ',', ' ')  ?></b></h1>
                                     <input type="hidden" name="produto[codigo]" value="<?= $atual->getCdProduto() ?>">

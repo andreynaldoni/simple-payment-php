@@ -195,17 +195,17 @@ VALUES ('Pizzas Salgadas','Pizzas tradicionais.');
 -- PRODUTOS
 -- Refrigerantes;
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Coca Cola', 'Refrigerante de 600ml', 6.50, 10, '1.jpg', 1);
+VALUES ('Coca Cola', 'Refrigerante de 600ml', 4.50, 10, '1.jpg', 1);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Coca Cola', 'Refrigerante de 1 litro', 10.00, 12, '2.jpg', 1);
+VALUES ('Coca Cola', 'Refrigerante de 1 litro', 6.00, 12, '2.jpg', 1);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Guarana Antartica', 'Refrigerante de 600ml', 4.50, 10, '3.jpg', 1);
+VALUES ('Guaraná Antártica', 'Refrigerante de 600ml', 4.50, 10, '3.jpg', 1);
 
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Guarana Antartica', 'Refrigerante de 2 litros', 8.50, 10, '4.jpg', 1);
+VALUES ('Guaraná Antártica', 'Refrigerante de 2 litros', 8.50, 10, '4.jpg', 1);
 
 -- Cervejas
 
@@ -213,14 +213,14 @@ INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produ
 VALUES ('Cerveja Brahma', 'Cerveja de 600ml', 6.50, 10, '5.jpg', 2);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Cerveja Brahma', 'Cerveja de litrao', 10.00, 12, '6.jpg', 2);
+VALUES ('Cerveja Brahma', 'Cerveja de litrão', 10.00, 12, '6.jpg', 2);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
 VALUES ('Cerveja Skol', 'Cerveja de 600ml', 4.50, 10, '7.jpg', 2);
 
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Cerveja Skol', 'Cerveja de litrao', 9.00, 10, '8.jpg', 2);
+VALUES ('Cerveja Skol', 'Cerveja de litrão', 9.00, 10, '8.jpg', 2);
 
 -- Comidas
 
@@ -228,40 +228,40 @@ INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produ
 VALUES ('Pizza Mussarela', 'Molho, mussarela e orégano.', 18.00, 10, '9.jpg', 6);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Pizza Napolitana', 'Molho, mussarela, tomate, parmesão e orégano.', 18.00, 10, NULL, 6);
+VALUES ('Pizza Napolitana', 'Molho, mussarela, tomate, parmesão e orégano.', 18.00, 10, '10.jpg', 6);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Pizza Portuguesa', 'Molho, mussarela, presunto, cebola, ovos, azeitona e orégano.', 0.50, 10, NULL, 6);
+VALUES ('Pizza Portuguesa', 'Molho, mussarela, presunto, cebola, ovos, azeitona e orégano.', 17, 10, '11.jpg', 6);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Pizza Provolone', 'Molho, mussarela, provolone e orégano.', 25.00, 10, NULL, 6);
+VALUES ('Pizza Provolone', 'Molho, mussarela, provolone e orégano.', 25.00, 10, '12.jpg', 6);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Pizza Siciliana', 'Molho, mussarela, champignon, bacon, pimentão, azeitona e orégano., ', 35.00, 10, NULL, 6);
+VALUES ('Pizza Siciliana', 'Molho, mussarela, champignon, bacon, pimentão, azeitona e orégano., ', 35.00, 10, '13.jpg', 6);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Pizza Vegetariana', 'Molho, mussarela, escarola, tomate, milho, ervilha e orégano.', 25.00, 10, NULL, 6);
+VALUES ('Pizza Vegetariana', 'Molho, mussarela, escarola, tomate, milho, ervilha e orégano.', 25.00, 10, '14.jpg', 6);
 
 
 -- Sobremesas
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Pedaço Torta mousse de chocolate', 'Pedaço mousse de chocolate', 17.00, 10, NULL, 3);
+VALUES ('Torta mousse de chocolate', 'Pedaço mousse de chocolate', 17.00, 10, '15.jpg', 3);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Rocambole de chocolate com doce de leite', 'Rocambole de chocolate com doce de leite', 20.00, 12, NULL, 3);
+VALUES ('Rocambole de chocolate com doce de leite', 'Rocambole de chocolate com doce de leite', 20.00, 12, '16.jpg', 3);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Mousse de chocolate', 'Mousse de chocolate', 17.00, 10, NULL, 3);
+VALUES ('Mousse de chocolate', 'Mousse de chocolate', 17.00, 10, '17.jpg', 3);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Sorvete 2 bolas', 'Sorvete 2 bolas', 13.00, 10, NULL, 3);
+VALUES ('Sorvete 2 bolas', 'Sorvete 2 bolas', 13.00, 10, '18.jpg', 3);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Banana Brule', 'Banana Brule', 17.00, 10, NULL, 3);
+VALUES ('Banana Brulee', 'Banana Brulee', 17.00, 10, '19.jpg', 3);
 
 INSERT INTO tb_produto (nm_produto, ds_produto, vl_produto, qt_produto, im_produto, cd_categoria)
-VALUES ('Picole Diletto', 'Picole Diletto', 10.00, 10, NULL, 3);
+VALUES ('Picolé Diletto', 'Picolé Diletto', 10.00, 10, '20.jpg', 3);
 
 
 -- IGREDIENTE
