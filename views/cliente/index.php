@@ -10,34 +10,64 @@
     if(isset($_POST['update'])){
         $cliente = new Cliente();
         
-        $cliente->setCdCliente($_POST['cd_cliente']);
-        $cliente->setNmCliente($_POST['nm_cliente']);
-        $cliente->setNmSobrenome($_POST['nm_sobrenome']);
-        $cliente->setCdTelefone($_POST['cd_telefone']); 
-        $cliente->setCdCelular($_POST['cd_celular']); 
-        $cliente->setIcTipoDocumento($_POST['ic_tipo_documento']);
-        $cliente->setCdCpf($_POST['cd_cpf']);
-        $cliente->setCdCnpj($_POST['cd_cnpj']);  
-        $cliente->setNmPais($_POST['nm_pais']);
-        $cliente->setSgEstado($_POST['sg_estado']);
-        $cliente->setNmCidade($_POST['nm_cidade']);
-        $cliente->setCdCep($_POST['cd_cep']);
-        $cliente->setNmBairro($_POST['nm_bairro']);
-        $cliente->setNmRua($_POST['nm_rua']);
-        $cliente->setCdNumero($_POST['cd_numero']);
-        $cliente->setDsComplemento($_POST['ds_complemento']);
-        $cliente->setNmEmailCliente($_POST['nm_email_cliente']);
-        $cliente->setCdCartaoCliente($_POST['cd_cartao_cliente']);
-        $cliente->setCdOperadoraCartao($_POST['cd_operadora_cartao']);
-        $cliente->setDtValidadeCartao($_POST['dt_validade_cartao']);
+        $cliente->setCdCliente($_POST['cliente']['codigo']);
+        $cliente->setNmCliente($_POST['cliente']['nome-cliente']);
+        $cliente->setNmSobrenome($_POST['cliente']['sobrenome']);
+        $cliente->setIcAdminUsuario($_POST['cliente']['admin-usuario']);
+        $cliente->setIcTipoDocumento($_POST['cliente']['tipo-documento']);
+        $cliente->setDtNascimento($_POST['cliente']['data-nascimento']);
+        
+        // Telefone
+        $telefone = $_POST['cliente']['telefone'];
+        if(strlen($telefone) == 14){
+            $telefone = str_replace(' ','', str_replace('-','', str_replace('(', '', str_replace(')', '', $telefone))));
+            $cliente->setCdTelefone($telefone);
+        }
+        // Celular
+        $celular = $_POST['cliente']['celular'];
+        if(strlen($celular) == 15){
+            $celular = str_replace(' ','', str_replace('-','', str_replace('(', '', str_replace(')', '', $celular))));
+            $cliente->setCdCelular($celular);
+        }
+        // CPF
+         if(isset($_POST['cliente']['cpf'])){
+            $cpf = $_POST['cliente']['cpf'];
+            $cpf = str_replace('-', '', str_replace('.', '', $cpf));
+            $cliente->setCdCpf($cpf);
+        }else{
+            if(strlen($cnpj = $_POST['cliente']['cnpj']) == 18){
+                $cnpj = $_POST['cliente']['cnpj'];
+                $cnpj = str_replace('-', '', str_replace('.', '', $cnpj));
+                $cliente->setCdCnpj($cnpj);
+            }else{
+                echo '<h2 class="text-center">Você informou um CNPJ inválido :(</h2>';
+                return;
+            }
+        }
+        
+        $cliente->setNmPais('Brasil');
+        $cliente->setSgEstado($_POST['cliente']['estado']);
+        $cliente->setNmCidade($_POST['cliente']['cidade']);
+        $cliente->setNmBairro($_POST['cliente']['bairro']);
+        $cliente->setNmRua($_POST['cliente']['rua']);
+        $cliente->setCdNumero($_POST['cliente']['numero']);
+        $cliente->setDsComplemento($_POST['cliente']['complemento']);
+        $cliente->setNmEmailCliente($_POST['cliente']['email']);
+        /*$cliente->setCdCartaoCliente($_POST['cartao-cliente']);
+        $cliente->setCdOperadoraCartao($_POST['operadora-cartao']);
+        $cliente->setDtValidadeCartao($_POST['validade-cartao']);*/
         
         $clienteNeg->updateCliente($cliente);
     }
     if(isset($_POST['delete'])){
-        $clienteNeg->deleteCliente($_POST['cd_cliente']);
+        $clienteNeg->deleteCliente($_POST['codigo']);
     }
     
     $clientes = $clienteNeg->getList();
+    
+    $row = 1;
+    $script = '';
+    
 ?>
     
     <div class="container">
@@ -49,15 +79,15 @@
                 <table class="table table-striped table-hover prod">
                     <thead>
                         <tr>
-                            <th>ID          </th>
-                            <th>Nome        </th>
-                            <th>Telefone    </th>
-                            <th>Celular     </th>
-                            <th>Fís./Jur.   </th>
-                            <th>CPF         </th>
-                            <th>CNPJ        </th>
-                            <th>Email       </th>
-                            <th>Ação        </th>
+                            <th class="text-center">ID</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Celular</th>
+                            <th>Fís./Jur.</th>
+                            <th>CPF</th>
+                            <th>CNPJ</th>
+                            <th>Email</th>
+                            <th class="text-center">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,15 +95,15 @@
                         foreach($clientes as $cliente => $atual){
                     ?>
                         <tr>
-                            <td><?= $atual->getCdCliente()         ?></td>
-                            <td><?= $atual->getNmCliente()         ?></td>
-                            <td><?= $atual->getCdTelefone()        ?></td>
-                            <td><?= $atual->getCdCelular()         ?></td>
-                            <td><?= $atual->getIcTipoDocumento()   ?></td>
-                            <td><?= $atual->getCdCpf()             ?></td>
-                            <td><?= $atual->getCdCnpj()             ?></td>
-                            <td><?= $atual->getNmEmailCliente()    ?></td>
-                            <td><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdCliente() ?>"  >
+                            <td class="text-center"><?= $atual->getCdCliente() ?></td>
+                            <td><?= $atual->getNmCliente() ?></td>
+                            <td data-mask="(00) 0000-0000"><?php if($atual->getCdTelefone() != '0') echo $atual->getCdTelefone() ?></td>
+                            <td data-mask="(00) 0000-00000"><?php if($atual->getCdCelular() != '0') echo $atual->getCdCelular() ?></td>
+                            <td class="text-center"><?= $atual->getIcTipoDocumento() ?></td>
+                            <td data-mask="000.000.000-00"><?= $atual->getCdCpf() ?></td>
+                            <td data-mask="00.000.000/0000-00"><?= $atual->getCdCnpj() ?></td>
+                            <td><?= $atual->getNmEmailCliente()?></td>
+                            <td class="text-center"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#<?= $atual->getCdCliente() ?>"  >
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </button></td>
                         </tr>
@@ -84,7 +114,7 @@
         </div>
     </div>
     <?php foreach($clientes as $cliente => $atual){ ?>
-    <div class="modal fade" id='<?= $atual->getCdCliente() ?>' tabindex="-1" role="dialog" aria-labelledby="ClienteEditar" aria-hidden="true">
+    <div class="modal fade" id="<?= $atual->getCdCliente() ?>"" tabindex="-1" role="dialog" aria-labelledby="ClienteEditar" aria-hidden="true">
         <form method="post" action="<?= HOME_PATH ?>/cliente/index">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -97,173 +127,220 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-6">
-                            <label for="cliente[cd_cliente]">Código:</label>
+                            <label for="cliente[codigo]">Código:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input name="cliente[cd_cliente]" type="hidden" value="<?= $atual->getCdCliente()?>"/>
-                                <input name="cliente[cd_cliente]" type="text" class="form-control" value="<?= $atual->getCdCliente()?>" disabled/>
+                                <input name="cliente[codigo]" type="hidden" value="<?= $atual->getCdCliente()?>"/>
+                                <input name="cliente[codigo]" type="text" class="form-control" value="<?= $atual->getCdCliente()?>" disabled>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label for="cliente[nm_cliente]">Nome:</label>
+                            <label for="cliente[nome-cliente]">Nome:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
-                                <input name="cliente[nm_cliente]" type="text" class="form-control" value="<?= $atual->getNmCliente()?>" maxlength="60"/>
+                                <input name="cliente[nome-cliente]" type="text" class="form-control" value="<?= $atual->getNmCliente()?>" placeholder="Ex.: João" maxlength="60" required>
                             </div>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px">
                         <div class="col-sm-6">
-                            <label for="cliente[cd_telefone]">Telefone:</label>
+                            <label for="cliente[sobrenome]">Sobrenome:</label>
+                            <div class="input-group">                                
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
+                                <input type="text" class="form-control" name="cliente[sobrenome]" value="<?= $atual->getNmSobrenome()?>" placeholder="Ex.: da Silva" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="cliente[telefone]">Telefone:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                <input name="cliente[cd_telefone]" type="text" data-mask="(00) 0000-0000" class="form-control" value="<?= $atual->getCdTelefone() ?>" maxlength="15"/>
+                                <input name="cliente[telefone]" type="text" data-mask="(00) 0000-0000" class="form-control" value="<?php if($atual->getCdTelefone() != '0') echo $atual->getCdTelefone() ?>" placeholder="(13) 3333-3333">
                             </div>
                         </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
                         <div class="col-sm-6">
-                            <label for="cliente[cd_celular]">Celular:</label>
+                            <label for="cliente[celular]">Celular:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                                <input name="cliente[cd_celular]" type="text" data-mask="(00) 00000-0000" class="form-control" value="<?= $atual->getCdCelular() ?>" maxlength="15"/>
+                                <input name="cliente[celular]" type="text" data-mask="(00) 00000-0000" class="form-control" value="<?php if($atual->getCdCelular() != '0') echo $atual->getCdCelular() ?>" placeholder="(13) 99999-9999">
                             </div>
                         </div>
-                    </div>
-                    <div class="row" style="margin-top: 10px">
                         <div class="col-sm-6">
-                            <label for="cliente[ic_tipo_documento]">Fis./Jur.:</label>
+                            <label for="cliente[tipo-documento]">Fis./Jur.:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-                                <select class="form-control" name="cliente[ic_tipo_documento]">
-                                    <option value="F">F - Físico</option>
-                                    <option value="J">J - Jurídico</option>
+                                <select class="form-control" id="tipo-documento<?= $row ?>" name="cliente[tipo-documento]">
+                                    <option value="F" <?php if($atual->getIcTipoDocumento() == "F") echo "selected" ?>>F - Físico</option>
+                                    <option value="J" <?php if($atual->getIcTipoDocumento() == "J") echo "selected" ?>>J - Jurídico</option>
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
                         <div class="col-sm-6">
-                            <label for="cliente[cd_cpf]">CPF:</label>
+                            <label for="cliente[cpf]">CPF:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input name="cliente[cd_cpf]" type="text" class="form-control" data-mask="000.000.000-00" data-mask-reverse="true" value="<?= $atual->getCdCpf() ?>" maxlength="100"/>
+                                <input name="cliente[cpf]" id="cpf<?= $row ?>" type="text" class="form-control" data-mask="000.000.000-00" value="<?= $atual->getCdCpf() ?>" placeholder="CPF" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="row" style="margin-top: 10px">
                         <div class="col-sm-6">
-                            <label for="cliente[cd_cnpj]">CNPJ:</label>
+                            <label for="cliente[cnpj]">CNPJ:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
-                                <input name="cliente[cd_cnpj]" type="text" class="form-control" data-mask="00.000.000/0000-00" data-mask-reverse="true" value="<?= $atual->getCdCnpj() ?>" maxlength="100"/>
+                                <input name="cliente[cnpj]" id="cnpj<?= $row ?>" type="text" class="form-control" data-mask="00.000.000/0000-00" value="<?= $atual->getCdCnpj() ?>" placeholder="CNPJ" required>
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-6">
+                            <label for="cliente[pais]">País:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                                <input name="cliente[pais]" type="text" class="form-control" value="<= $atual->getNmPais() ?>" maxlength="60">
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-sm-6">
+                            <label for="cliente[estado]">Estado:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                                <select name="cliente[estado]" class="form-control" style="">
+                                    <option value="AC" <?php if($atual->getSgEstado() == "AC") echo "selected" ?>>AC - Acre</option>
+                                    <option value="AL" <?php if($atual->getSgEstado() == "AL") echo "selected" ?>>AL - Alagoas</option>
+                                    <option value="AP" <?php if($atual->getSgEstado() == "AP") echo "selected" ?>>AP - Amapá</option>
+                                    <option value="AM" <?php if($atual->getSgEstado() == "AM") echo "selected" ?>>AM - Amazonas</option>
+                                    <option value="BA" <?php if($atual->getSgEstado() == "BA") echo "selected" ?>>BA - Bahia</option>
+                                    <option value="CE" <?php if($atual->getSgEstado() == "CE") echo "selected" ?>>CE - Ceará</option>
+                                    <option value="DF" <?php if($atual->getSgEstado() == "DF") echo "selected" ?>>DF - Distrito Federal</option>
+                                    <option value="ES" <?php if($atual->getSgEstado() == "ES") echo "selected" ?>>ES - Espírito Santo</option>
+                                    <option value="GO" <?php if($atual->getSgEstado() == "GO") echo "selected" ?>>GO - Goiás</option>
+                                    <option value="MA" <?php if($atual->getSgEstado() == "MA") echo "selected" ?>>MA - Maranhão</option>
+                                    <option value="MT" <?php if($atual->getSgEstado() == "MT") echo "selected" ?>>MT - Mato Grosso</option>
+                                    <option value="MS" <?php if($atual->getSgEstado() == "MS") echo "selected" ?>>MS - Mato Grosso do Sul</option>
+                                    <option value="MG" <?php if($atual->getSgEstado() == "MG") echo "selected" ?>>MG - Minas Gerais</option>
+                                    <option value="PA" <?php if($atual->getSgEstado() == "PA") echo "selected" ?>>PA - Pará</option>
+                                    <option value="PB" <?php if($atual->getSgEstado() == "PB") echo "selected" ?>>PB - Paraíba</option>
+                                    <option value="PR" <?php if($atual->getSgEstado() == "PR") echo "selected" ?>>PR - Paraná</option>
+                                    <option value="PE" <?php if($atual->getSgEstado() == "PE") echo "selected" ?>>PE - Pernambuco</option>
+                                    <option value="PI" <?php if($atual->getSgEstado() == "PI") echo "selected" ?>>PI - Piauí</option>
+                                    <option value="RJ" <?php if($atual->getSgEstado() == "RJ") echo "selected" ?>>RJ - Rio de Janeiro</option>
+                                    <option value="RN" <?php if($atual->getSgEstado() == "RN") echo "selected" ?>>RN - Rio Grande do Norte</option>
+                                    <option value="RS" <?php if($atual->getSgEstado() == "RS") echo "selected" ?>>RS - Rio Grande do Sul</option>
+                                    <option value="RO" <?php if($atual->getSgEstado() == "RO") echo "selected" ?>>RO - Rondônia</option>
+                                    <option value="RR" <?php if($atual->getSgEstado() == "RR") echo "selected" ?>>RR - Roraima</option>
+                                    <option value="SC" <?php if($atual->getSgEstado() == "SC") echo "selected" ?>>SC - Santa Catarina</option>
+                                    <option value="SP" <?php if($atual->getSgEstado() == "SP") echo "selected" ?>>SP - São Paulo</option>
+                                    <option value="SE" <?php if($atual->getSgEstado() == "SE") echo "selected" ?>>SE - Sergipe</option>
+                                    <option value="TO" <?php if($atual->getSgEstado() == "TO") echo "selected" ?>>TO - Tocantins</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label for="cliente[nm_pais]">País:</label>
+                            <label for="cliente[cidade]">Cidade:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                <input name="cliente[nm_pais]" type="text" class="form-control" value="<?= $atual->getNmPais() ?>" maxlength="60"/>
+                                <input name="cliente[cidade]" type="text" class="form-control" value="<?= $atual->getNmCidade() ?>" maxlength="60" placeholder="Cidade">
                             </div>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px">
                         <div class="col-sm-6">
-                            <label for="cliente[sg_estado]">Estado:</label>
+                            <label for="cliente[bairro]">Bairro:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                <input name="cliente[sg_estado]" type="text" class="form-control" value="<?= $atual->getSgEstado() ?>" maxlength="2"/>
+                                <input name="cliente[bairro]" type="text" class="form-control" value="<?= $atual->getNmBairro() ?>" maxlength="60" placeholder="Bairro">
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label for="cliente[nm_cidade]">Cidade:</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                <input name="cliente[nm_cidade]" type="text" class="form-control" value="<?= $atual->getNmCidade() ?>" maxlength="60"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 10px">
-                        <div class="col-sm-6">
-                            <label for="cliente[cd_cep]">CEP:</label>
+                            <label for="cliente[cep]">CEP:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
-                                <input name="cliente[cd_cep]" type="text" class="form-control" value="<?= $atual->getCdCep() ?>" data-mask="00000-000" data-mask-reverse="true"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="cliente[nm_bairro]">Bairro:</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                <input name="cliente[nm_bairro]" type="text" class="form-control" value="<?= $atual->getNmBairro() ?>" maxlength="60"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 10px">
-                        <div class="col-sm-12">
-                            <label for="cliente[nm_rua]">Logradouro:</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                <input name="cliente[nm_rua]" type="text" class="form-control" value="<?= $atual->getNmRua() ?>" maxlength="100"/>
+                                <input name="cliente[cep]" type="text" class="form-control" value="<?= $atual->getCdCep() ?>" data-mask="00000-000" placeholder="CEP">
                             </div>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px">
                         <div class="col-sm-6">
-                            <label for="cliente[cd_numero]">Número:</label>
+                            <label for="cliente[rua]">Logradouro:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                                <input name="cliente[rua]" type="text" class="form-control" value="<?= $atual->getNmRua() ?>" maxlength="100" placeholder="Rua">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="cliente[numero]">Número:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
-                                <input name="cliente[cd_numero]" type="text" class="form-control" value="<?= $atual->getCdNumero() ?>" data-mask="000000" data-mask-reverse="true"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="cliente[ds_complemento]">Complemento:</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                <input name="cliente[ds_complemento]" type="text" class="form-control" value="<?= $atual->getDsComplemento() ?>" maxlength="40"/>
+                                <input name="cliente[numero]" type="text" class="form-control" value="<?= $atual->getCdNumero() ?>" data-mask="0000000000" placeholder="Nº">
                             </div>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px">
-                        <div class="col-sm-12">
-                            <label for="cliente[nm_email_cliente]">Email:</label>
+                        <div class="col-sm-6">
+                            <label for="cliente[complemento]">Complemento:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                                <input name="cliente[complemento]" type="text" class="form-control" value="<?= $atual->getDsComplemento() ?>" maxlength="40" placeholder="Complemento">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="cliente[email]">Email:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                <input name="cliente[nm_email_cliente]" type="email" class="form-control" value="<?= $atual->getNmEmailCliente() ?>" maxlength="100"/>
+                                <input name="cliente[email]" type="email" class="form-control" value="<?= $atual->getNmEmailCliente() ?>" maxlength="100" placeholder="Ex.: seu@email.com" required>
                             </div>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px">
-                        <div class="col-sm-6">
-                            <label for="cliente[cd_cartao_cliente]">Cartao:</label>
+                        <!--<div class="col-sm-6">
+                            <label for="cliente[cartao-cliente]">Cartao:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
-                                <input name="cliente[cd_cartao_cliente]" type="text" class="form-control" value="<?= $atual->getCdCartaoCliente() ?>" maxlength="20"/>
+                                <input name="cliente[cartao-cliente]" type="text" class="form-control" value="<?= $atual->getCdCartaoCliente() ?>" maxlength="20">
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label for="cliente[cd_operadora_cartao]">Operadora:</label>
+                            <label for="cliente[operadora-cartao]">Operadora:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
-                                <input name="cliente[cd_operadora_cartao]" type="text" class="form-control" value="<?= $atual->getCdOperadoraCartao() ?>" maxlength="100"/>
+                                <input name="cliente[operadora-cartao]" type="text" class="form-control" value="<?= $atual->getCdOperadoraCartao() ?>" maxlength="100">
                             </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 10px">
+                        </div>-->
                         <div class="col-sm-6">
-                            <label for="cliente[dt_validade_cartao]">Validade:</label>
+                            <label for="cliente[data-nascimento]">Data de Nascimento:</label>
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <input name="cliente[dt_validade_cartao]" type="text" data-mask="00/00/0000" data-mask-reverse="true" class="form-control" value="<?= $atual->getDtValidadeCartao() ?>" maxlength="10"/>
-                            </div>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <?php
+                                    if($atual->getDtNascimento() != null){
+                                        $data = date('d-m-Y', strtotime($atual->getDtNascimento()));
+                                    }else{
+                                        $data = '';
+                                    }
+                                ?>
+                                <input type="text" class="form-control" name="cliente[data-nascimento]" data-mask="00/00/0000" placeholder="01/01/1990" value="<?=  $data ?>">
+                            </div>    
                         </div>
                         <div class="col-sm-6">
-                            <label for="cliente[ic_admin_usuario]">Tipo de acesso:</label>
+                            <label for="cliente[admin-usuario]">Tipo de acesso:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <select class="form-control" name="cliente[ic_admin_usuario]">
-                                    <option value="A">A - Administrador</option>
-                                    <option value="U">U - Usuário</option>
+                                <select class="form-control" name="cliente[admin-usuario]">
+                                    <option value="A" <?php if($atual->getIcAdminUsuario() == "A") echo "selected" ?>>A - Administrador</option>
+                                    <option value="U" <?php if($atual->getIcAdminUsuario() == "U") echo "selected" ?>>U - Usuário</option>
                                 </select>
                             </div>
                         </div>
                     </div>
+                    <!--<div class="row" style="margin-top: 10px">
+                        <div class="col-sm-6">
+                            <label for="cliente[validade-cartao]">Validade:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input name="cliente[validade-cartao]" type="text" data-mask="00/00/0000"  class="form-control" value="<?= $atual->getDtValidadeCartao() ?>" maxlength="10"/>
+                            </div>
+                        </div>
+                    </div>-->
                 </div>
                 <div class="modal-footer">
                     <button type="submit" name="delete" class="btn btn-danger" >Excluir</button>
@@ -274,6 +351,23 @@
             </div>
         </form>
     </div>
-<?php } ?>
+<?php
+        $script .=   "var change" .  $row  . " = function () {" .
+                "if($('#tipo-documento" .  $row  . "').val() == 'F'){" .
+                        "$('#cpf" .  $row  . "').prop('disabled', false);" .
+                        "$('#cnpj" .  $row  . "').prop('disabled', true);". 
+                    "}else{" .
+                        "$('#cpf" .  $row  . "').prop('disabled', true);" .
+                        "$('#cnpj" .  $row  . "').prop('disabled', false);" .
+                    "}".
+                "};".
+                "change" .  $row  . "();" .
+                "$('#tipo-documento" .  $row  . "').on('click', function() {" .
+                    "change" .  $row  . "()" .
+                "});";
+        $row++;
+     }
+     $this->params['script'] = $script;
+?>
 
                     

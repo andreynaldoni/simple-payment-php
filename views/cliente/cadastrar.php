@@ -26,13 +26,13 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="sobrenome"><i class="obrigatorio">*</i> Sobrenome:</label>
-                    <input type="text" class="form-control" name="cliente[sobrenome]" placeholder="Ex.: da Silva" required>
+                    <input type="text" class="form-control" name="cliente[sobrenome]" placeholder="Ex.: da Silva" maxlength="100" required>
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="cpf"><i class="obrigatorio">*</i> CPF:</label>
-                    <input type="text" class="form-control" name="cliente[cpf]" data-mask="000.000.000-00" data-mask-reverse="true" placeholder="CPF" required>
+                    <input type="text" class="form-control" name="cliente[cpf]" data-mask="000.000.000-00" placeholder="CPF" required>
                 </div>
             </div>
         </div>
@@ -40,20 +40,20 @@
         <div class="row">
             <div class="col-sm-2 col-sm-offset-2">
                 <div class="form-group">
-                    <label for="telefone">Data de Nascimento:</label>
-                    <input type="text" class="form-control" name="cliente[data-nascimento]" data-mask="00/00/0000" data-mask-reverse="true" placeholder="01/01/1990">
+                    <label for="data-nascimento">Data de Nascimento:</label>
+                    <input type="text" class="form-control" name="cliente[data-nascimento]" data-mask="00/00/0000" placeholder="01/01/1990">
                 </div>    
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="telefone">Telefone:</label>
-                    <input type="text" class="form-control" name="cliente[telefone]" data-mask="(00) 0000-0000" data-mask-reverse="true" placeholder="(13) 3333-3333">
+                    <input type="text" class="form-control" name="cliente[telefone]" data-mask="(00) 0000-0000" placeholder="(13) 3333-3333">
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="celular">Celular:</label>
-                    <input type="text" class="form-control" name="cliente[celular]" data-mask="(00) 00000-0000" data-mask-reverse="true" placeholder="(13) 99999-9999">
+                    <input type="text" class="form-control" name="cliente[celular]" data-mask="(00) 00000-0000" placeholder="(13) 99999-9999">
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <div class="col-sm-2 col-sm-offset-2">
                 <div class="form-group">
                     <label for="cep">CEP:</label>
-                    <input type="text" class="form-control" name="cliente[cep]" data-mask="00000-000" data-mask-reverse="true" placeholder="CEP">
+                    <input type="text" class="form-control" name="cliente[cep]" data-mask="00000-000" placeholder="CEP">
                 </div>
             </div>
             <div class="col-sm-2">
@@ -101,13 +101,13 @@
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="cidade">Cidade:</label>
-                    <input type="text" class="form-control" name="cliente[cidade]" placeholder="Praia Grande">
+                    <input type="text" class="form-control" name="cliente[cidade]" placeholder="Praia Grande" maxlength="60">
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="bairro">Bairro:</label>
-                    <input type="text" class="form-control" name="cliente[bairro]" placeholder="Boqueirão">
+                    <input type="text" class="form-control" name="cliente[bairro]" placeholder="Boqueirão" maxlength="60">
                 </div>
             </div>
         </div>
@@ -115,13 +115,13 @@
             <div class="col-sm-4 col-sm-offset-2">
                 <div class="form-group">
                     <label for="endereco">Endereço:</label>
-                    <input type="text" class="form-control" name="cliente[endereco]" placeholder="Endereço">
+                    <input type="text" class="form-control" name="cliente[endereco]" placeholder="Endereço" maxlength="80">
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="numero">Número:</label>
-                    <input type="text" class="form-control" name="cliente[numero]" data-mask="000000" data-mask-reverse="true" placeholder="Número">
+                    <input type="text" class="form-control" name="cliente[numero]" data-mask="00000000000" placeholder="Número">
                 </div>
             </div>
             <div class="col-sm-2">
@@ -135,19 +135,19 @@
             <div class="col-sm-4 col-sm-offset-2">
                 <div class="form-group">
                     <label for="email"><i class="obrigatorio">*</i> E-mail:</label>
-                    <input type="email" class="form-control" name="cliente[email]" placeholder="seu@email.com" required>
+                    <input type="email" class="form-control" name="cliente[email]" placeholder="seu@email.com" maxlength="100" required>
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="senha"><i class="obrigatorio">*</i> Senha:</label>
-                    <input type="Password" class="form-control" name="cliente[senha]" placeholder="Senha" required>
+                    <input type="Password" class="form-control" name="cliente[senha]" placeholder="Senha" maxlength="32" required>
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="senha2"><i class="obrigatorio">*</i> Confirmar senha:</label>
-                    <input type="Password" class="form-control" name="cliente[senha2]" placeholder="Confirmar senha" required>
+                    <input type="Password" class="form-control" name="cliente[senha2]" placeholder="Confirmar senha" maxlength="32" required>
                 </div>
             </div>
         </div>
@@ -180,26 +180,29 @@ if (isset($_POST['cliente'])) {
         echo '<h2 class="text-center">A senha digitada não confere :(</h2>';
         return false;
     }
-    
+
     $clienteModel->setNmCliente($_POST['cliente']['nome-cliente']);
     $clienteModel->setNmSobrenome($_POST['cliente']['sobrenome']);
     $clienteModel->setIcAdminUsuario('U');
-    // Data de Nascimento
-    $dtnascimento = $_POST['cliente']['data-nascimento'];
-    $dtnascimento = str_replace('/','', $dtnascimento);
-    $clienteModel->setDtNascimento($dtnascimento);
+    $clienteModel->setDtNascimento($_POST['cliente']['data-nascimento']);
+    
     // Telefone
     $telefone = $_POST['cliente']['telefone'];
-    $telefone = str_replace(' ','', str_replace('-','', str_replace('(', '', str_replace(')', '', $telefone))));
-    $clienteModel->setCdTelefone($telefone);
+    if(strlen($telefone) == 14){
+        $telefone = str_replace(' ','', str_replace('-','', str_replace('(', '', str_replace(')', '', $telefone))));
+        $clienteModel->setCdTelefone($telefone);
+    }
     // Celular
     $celular = $_POST['cliente']['celular'];
-    $celular = str_replace(' ','', str_replace('-','', str_replace('(', '', str_replace(')', '', $celular))));
-    $clienteModel->setCdCelular($celular);
+    if(strlen($celular) == 15){
+        $celular = str_replace(' ','', str_replace('-','', str_replace('(', '', str_replace(')', '', $celular))));
+        $clienteModel->setCdCelular($celular);
+    }
     // CPF
     $cpf = $_POST['cliente']['cpf'];
     $cpf = str_replace('-', '', str_replace('.', '', $cpf));
     $clienteModel->setCdCpf($cpf);
+    
     // CEP
     $cep = $_POST['cliente']['cep'];
     $cep = str_replace('-', '', $cep);
