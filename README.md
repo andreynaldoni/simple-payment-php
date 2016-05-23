@@ -3,13 +3,11 @@ Simple Web Payment Transaction in PHP
 
 ### Table of contents:
 
-- [Simple Web Payment Transaction in PHP](#)
-		- [Table of contents:](#)
-			- [What you have to have in your system:](#)
-			- [What we recommend you to have in your system:](#)
-			- [Project structure (tree):](#)
-	- [How to setup your environment](#)
-	- [What if you want to test it online?](#)
+- [What you have to have in your system](#what-you-have-to-have-in-your-system)
+- [What we recommend you to have in your system](#what-we-recommend-you-to-have-in-your-system)
+- [Project structure (tree)](#project-structure-tree)
+- [How to setup your environment](#how-to-setup-your-environment)
+- [What if you want to test it online](#what-if-you-want-to-test-it-online)
 
 
 #### What you have to have in your system:
