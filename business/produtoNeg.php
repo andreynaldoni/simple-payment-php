@@ -30,18 +30,18 @@
         }
          
         function getList($params = null){             
-            $ProdutoDAO = new ProdutoDAO();
-            return $ProdutoDAO->listProduto($params);
+            $produtoDAO = new ProdutoDAO();
+            return $produtoDAO->listProduto($params);
         }
         
         function getProdutoPorCategoria($cd_categoria){
-            $ProdutoDAO = new ProdutoDAO();
-            return $ProdutoDAO->listProduto(array('cd_categoria' => $cd_categoria));
+            $produtoDAO = new ProdutoDAO();
+            return $produtoDAO->listProduto(array('cd_categoria' => $cd_categoria));
         }
          
         function updateProduto($produto){
             if(isset($produto)){
-                $ProdutoDAO = new ProdutoDAO();
+                $produtoDAO = new ProdutoDAO();
 
                 if($_FILES['produto']['name']['im_produto'] != null){
                     $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1];      
@@ -49,29 +49,40 @@
                     $produto->setImProduto($img_name);
                 }
 
-                $ProdutoDAO->updateProduto($produto);
+                $produtoDAO->updateProduto($produto);
             }
         }
          
         function gravarProduto($produto){
             if(isset($produto)){
-                $ProdutoDAO = new ProdutoDAO();
+                $produtoDAO = new ProdutoDAO();
                 
                 if($_FILES['produto']['name']['im_produto'] != null){
-                    $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1];      
+                    $produtoDAO->insertProduto($produto);
+                    
+                    $produto = $produtoDAO->listProduto(array(
+                       'nm_produto'=>$produto->getNmProduto(),
+                       'ds_produto'=>$produto->getDsProduto(),
+                       'qt_produto'=>$produto->getQtProduto(),
+                       'vl_produto'=>$produto->getVlProduto()
+                    ))[0];
+                    
+                    $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1]; 
                     $this->setProdutoImg($img_name);
                     $produto->setImProduto($img_name);
+                    
+                    $produtoDAO->updateProduto($produto);
+                }else{                
+                    $produtoDAO->insertProduto($produto);
                 }
-                
-                $ProdutoDAO->insertProduto($produto);
                 
             }
         }
         
         function deleteProduto($id){
             if(isset($id)){
-                $ProdutoDAO = new ProdutoDAO();
-                $ProdutoDAO->deleteProduto($id);
+                $produtoDAO = new ProdutoDAO();
+                $produtoDAO->deleteProduto($id);
             }
         }
     }
