@@ -1,4 +1,10 @@
-## Simple Web Payment Transaction in PHP
+Simple Web Payment Transaction in PHP
+===================
+
+### Table of contents:
+
+[TOC]
+
 
 #### What you have to have in your system:
 
@@ -14,26 +20,44 @@
 #### Project structure (tree):
 ```
   |php-payment/
+  |--business/
+  |  |--categoriaprodutoNeg.php
+  |  |--clienteNeg.php
+  |  |--ingredienteNeg.php
+  |  |--ingredienteprodutoNeg.php
+  |  |--pagSeguroNeg.php
+  |  |--pedidoNeg.php
+  |  |--produtoNeg.php
+  |  |--produtopedidoNeg.php
+  |
+  |--controllers/
+  |  |--cliente-controller.php
+  |  |--error-controller.php
+  |  |--home-controller.php
+  |  |--ingrediente-controller.php
+  |  |--pagseguro-controller.php
+  |  |--pedido-controller.php
+  |  |--produto-controller.php
+  |
   |--dao/
+  |  |--categoriaprodutoDAO.php
   |  |--clienteDAO.php
+  |  |--ingredienteDAO.php
+  |  |--ingredienteprodutoDAO.php
+  |  |--pedidoDAO.php
+  |  |--produtoDAO.php
+  |  |--produtopedidoDAO.php
   |
   |--documents/
   |  |--prototype/
   |    |--css/
-  |      |--bootstrap.min.css
+  |      |--bootstrap's.css files
   |    |--fonts/
-  |      |--glyphicons-halflings-regular.eot
-  |      |--glyphicons-halflings-regular.svg
-  |      |--glyphicons-halflings-regular.ttf
-  |      |--glyphicons-halflings-regular.woff
-  |      |--glyphicons-halflings-regular.woff2
+  |      |--glyphicons icons files
   |    |--img/
-  |      |--1.jpg
-  |      |--2.jpg
-  |      |--3.jpg
+  |      |--all images.jpg files
   |    |--js/
-  |      |--bootstrap.min.js
-  |      |--jquery-2.2.2.min.js
+  |      |--jquery & bootstrap .js files
   |    |--confirmacao.html
   |    |--index.html
   |    |--pagamento.html
@@ -50,16 +74,54 @@
   |    |--model simplepayment.png
   |    |--UC Produto Pedido Cliente e Pagamento.asta
   |    |--UC Simple Payment.pdf
-  |--model/
+  |
+  |--models/
+  |  |--categoriaproduto.php
   |  |--cliente.php
   |  |--clientepedido.php
   |  |--ingrediente.php
   |  |--ingredienteproduto.php
+  |  |--pagseguro.php
   |  |--pedido.php
   |  |--produto.php
   |  |--produtopedido.php
-  |--pagseguro/
-  |    |--[UOL's PagSeguro PHP module]
+  |
+  |--public/
+  |  |--css/
+  |     |--bootstrap css files.css
+  |  |--fonts/
+  |     |--glyphicons icons files
+  |  |--img/
+  |     |--all images.jpg files
+  |  |--js/
+  |     |--bootstrap & jquery.js files
+  |
+  |  |--views/
+  |     |--cliente/
+  |        |--cadastrar.php
+  |        |--index.php
+  |     |--errors/
+  |        |--404.php
+  |     |--home/
+  |        |--admin.php
+  |        |--index.php
+  |        |--login.php
+  |        |--logout.php
+  |     |--ingrediente/
+  |        |--index.php
+  |     |--pagseguro/
+  |        |--index.php
+  |     |--pedido/
+  |        |--checkout.php
+  |        |--index.php
+  |     |--produto/
+  |        |--produto.php
+  |     |--footer.php
+  |     |--header.php
+  |     |--menu.pgp
+  |
+  |--.htaccess
+  |--app.php
   |--config.php
   |--connection.php
   |--database.php
@@ -84,4 +146,9 @@ Type in your browser <http://localhost/simple-payment-php/> then <kbd>Enter</kbd
 
 ## What if you want to test it online?
 
-Click here :arrow_right: <http://php-payment.herokuapp.com/>
+Click here :arrow_right: <https://php-payment.herokuapp.com/>
+
+> **Note:**
+>
+> - This application was made as a college project with **learning purpose**.
+> - In order to make it work, you have to register at [UOL's pagseguro payment](https://pagseguro.uol.com.br/) service, and put your **SANDBOX** (Dedicated area test) credentials at the project.
