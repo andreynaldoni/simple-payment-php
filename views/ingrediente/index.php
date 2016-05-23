@@ -14,7 +14,7 @@
         $ingrediente->setVlIngrediente($_POST['ingrediente']['vl_ingrediente']);
         $ingrediente->setQtIngrediente($_POST['ingrediente']['qt_ingrediente']);
         
-        $IngredienteNeg->gravarIngrediente($ingrediente);
+        $ingredienteNeg->gravarIngrediente($ingrediente);
     }
     if(isset($_POST['update'])){
         $ingrediente = new Ingrediente();
@@ -114,7 +114,7 @@
                                 <label for="ingrediente[vl_ingrediente]">Valor:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                    <input name="ingrediente[vl_ingrediente]" type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control" value="<?= $atual->getVlIngrediente()?>" maxlength="60"/>
+                                    <input name="ingrediente[vl_ingrediente]" type="text" data-mask="#.##0,00" data-mask-reverse="true" placeholder="Ex: R$ 5,00" class="form-control" value="<?= $atual->getVlIngrediente()?>" maxlength="10"/>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                                 <label for="ingrediente[qt_ingrediente]">Quantidade:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                    <input name="ingrediente[qt_ingrediente]" type="number" step="1" class="form-control" value="<?= $atual->getQtIngrediente()?>" maxlength="60"/>
+                                    <input name="ingrediente[qt_ingrediente]" type="text" class="form-control" value="<?= $atual->getQtIngrediente()?>" data-mask="00000000000" maxlength="11"/>
                                 </div>
                             </div>
                         </div>
@@ -180,14 +180,14 @@
                                 <label for="ingrediente[vl_ingrediente]">Valor:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                    <input name="ingrediente[vl_ingrediente]" type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control" placeholder="Ex.: 6.00"/>
+                                    <input name="ingrediente[vl_ingrediente]" type="text" class="form-control" data-mask="#.##0,00" data-mask-reverse="true" placeholder="Ex: R$ 5,00" maxlength="10"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="ingrediente[qt_ingrediente]">Quantidade:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                    <input name="ingrediente[qt_ingrediente]" type="number" step="1" class="form-control" value="1"/>
+                                    <input name="ingrediente[qt_ingrediente]" type="text" class="form-control" data-mask="00000000000" maxlength="11"/>
                                 </div>
                             </div>
                         </div>
