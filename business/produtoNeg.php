@@ -6,12 +6,14 @@
         private function checkImg($produto){
             $type = $produto["type"]['im_produto'];
                         
-            if ($produto["size"]['im_produto'] > 500000) {
+            if ($produto["size"]['im_produto'] > 2048000) {
+                echo '<h1 class="text-center">Você não pode ultrapassar os 2MB de tamanho jovem! :)</h1>';
                 return false;
             }
             
             if($type != "image/jpg" && $type != "image/png" 
                 && $type != "image/jpeg" && $type != "image/gif" ) {
+                    echo '<h1 class="text-center">Jovem, isso não é imagem nem aqui nem na china! :(</h1>';
                 return false;
             }
             return true;
@@ -22,11 +24,7 @@
             
             if($_FILES['produto']['name']['im_produto'] == '') return;
             
-            if ($this->checkImg($_FILES['produto'])){
-                $sucesso = move_uploaded_file($_FILES['produto']['tmp_name']['im_produto'], $img_path . '/' . $imgname);
-                return $sucesso;
-            }
-            return false;
+            move_uploaded_file($_FILES['produto']['tmp_name']['im_produto'], $img_path . '/' . $imgname);
         }
          
         function getList($params = null){             
@@ -44,9 +42,15 @@
                 $produtoDAO = new ProdutoDAO();
 
                 if($_FILES['produto']['name']['im_produto'] != null){
-                    $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1];      
-                    $this->setProdutoImg($img_name);
-                    $produto->setImProduto($img_name);
+                    if ($this->checkImg($_FILES['produto'])){
+                        $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1];      
+                        $this->setProdutoImg($img_name);
+                        $produto->setImProduto($img_name);
+                    }else{
+                        $produto->setImProduto($this->getList(array(
+                           'cd_produto'=>$produto->getCdProduto() 
+                        ))[0]->getImProduto());
+                    }
                 }
 
                 $produtoDAO->updateProduto($produto);

@@ -26,6 +26,8 @@
                 
                 if($cliente->getDtNascimento() != null){
                     $cliente->setDtNascimento(date('Y-m-d', strtotime(str_replace('/', '-', $cliente->getDtNascimento()))));
+                }else{
+                    $cliente->setDtNascimento('0000-00-00');
                 }
                 
                 $clienteold = $this->getList(array('cd_cliente'=> $cliente->getCdCliente()))[0];
@@ -54,7 +56,11 @@
                 if(!$this->camposObrigatorios($cliente)){
                     return;
                 }
-                $cliente->setDtNascimento(date('Y-m-d', strtotime(str_replace('/', '-', $cliente->getDtNascimento()))));
+                if($cliente->getDtNascimento() != null){
+                    $cliente->setDtNascimento(date('Y-m-d', strtotime(str_replace('/', '-', $cliente->getDtNascimento()))));
+                }else{
+                    $cliente->setDtNascimento('0000-00-00');
+                }
                 
                 $clienteDAO = new ClienteDAO();
                 // Verifica email cadastrado

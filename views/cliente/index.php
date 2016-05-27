@@ -312,7 +312,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <?php
-                                    if($atual->getDtNascimento() != null){
+                                    if($atual->getDtNascimento() != '0000-00-00'){
                                         $data = date('d-m-Y', strtotime($atual->getDtNascimento()));
                                     }else{
                                         $data = '';
