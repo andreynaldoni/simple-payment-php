@@ -96,9 +96,9 @@
                                     <label for="qtd">Quantidade: </label>
                                     <div class="form-inline">
                                         <div class="input-group">
-                                            <span class="input-group-addon btn" id="mais<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-plus"></i></span>
-                                            <input type="text" data-mask="00" name="produto[quantidade]" id="qtd<?= $atual->getCdProduto() ?>" class="form-control text-center" value="1" size="6">
                                             <span class="input-group-addon btn" id="menos<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-minus"></i></span>
+                                            <input type="text" data-mask="00" name="produto[quantidade]" id="qtd<?= $atual->getCdProduto() ?>" class="form-control text-center" value="1" size="6">
+                                            <span class="input-group-addon btn" id="mais<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-plus"></i></span>
                                         </div>
                                     </div>
                                     <hr>
@@ -140,7 +140,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <h4 class="text-justify"><b>Observações:</b></h4>
-                                            <textarea class="form-control" name="produto[obs]" rows="3" placeholder="Pouco azeite, ao ponto, com gelo, [...]"></textarea>
+                                            <textarea class="form-control" name="produto[obs]" rows="3" placeholder="Pouco azeite, ao ponto, com gelo, [...]" maxlength="100"></textarea>
                                         </div>
                                     </div> 
                                 </div>

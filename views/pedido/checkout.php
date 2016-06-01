@@ -26,6 +26,13 @@
             $_SESSION['produtopedido'][$linha]->setDsObs($ing . $_SESSION['produtopedido'][$linha]->getDsObs());
         }
         
+        if ($_SESSION['produtopedido'][$linha]->getQtProdutoPedido() == 0){
+            array_splice($_SESSION['produtopedido'], $linha, 1);
+        }
+        
+        if(count($_SESSION['produtopedido']) == 0){
+            unset($_SESSION['produtopedido']);
+        }
     }
 ?>
     <div class="container">
@@ -85,7 +92,11 @@
                                 $ing = substr($atual->getDsObs(), 0, strpos($atual->getDsObs(), '#'));
                                 if($ing == ""){
                                     $obs = $atual->getDsObs();
-                                    echo $obs;
+                                    if(strlen($obs) > 20){
+                                        echo substr($obs, 0, 20) . '...';
+                                    }else{
+                                        echo $obs;
+                                    }                                    
                                 }else{
                                     $obs = substr($atual->getDsObs(), strlen($ing) + 1);
                                     $ingobs = '';
@@ -94,7 +105,11 @@
                                         foreach ($ingredientes as $key => $value) {
                                             $ingobs .= $value->getNmIngrediente() . ' / ';
                                         }
-                                        echo $ingobs . $obs;
+                                        if(strlen($obs) > 20){
+                                            echo substr($ingobs . $obs, 0, 20) . '...';
+                                        }else{
+                                            echo $ingobs . $obs;
+                                        }
                                     }
                                 }
                             ?>
@@ -123,9 +138,9 @@
                                                     <div class="form-inline">
                                                         <label for="qtd">Quantidade: </label>
                                                         <div class="input-group">
-                                                            <span class="input-group-addon btn" id="mais<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-plus"></i></span>
-                                                            <input type="text" data-mask="00" name="produto[quantidade]" id="qtd<?= $atual->getCdProduto() ?>" class="form-control text-center" value="<?= $atual->getQtProdutoPedido() ?>" size="6">
                                                             <span class="input-group-addon btn" id="menos<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-minus"></i></span>
+                                                            <input type="text" data-mask="00" name="produto[quantidade]" id="qtd<?= $atual->getCdProduto() ?>" class="form-control text-center" value="<?= $atual->getQtProdutoPedido() ?>" size="6">
+                                                            <span class="input-group-addon btn" id="mais<?= $atual->getCdProduto() ?>"><i class="glyphicon glyphicon-plus"></i></span>
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -177,7 +192,7 @@
                                                     <div class="row">
                                                         <div class="col-xs-12">
                                                             <h4 class="text-justify"><b>Observações:</b></h4>
-                                                            <textarea class="form-control" name="produto[obs]" rows="3" placeholder="Pouco azeite, ao ponto, com gelo, [...]"><?= $obs ?></textarea>
+                                                            <textarea class="form-control" name="produto[obs]" rows="3" placeholder="Pouco azeite, ao ponto, com gelo, [...]" maxlength="100"><?= $obs ?></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,7 +255,7 @@
         </div>
         <hr>
         <h2 class="text-center">Vamos fechar o pedido? :)</h2><br>
-        <a href="index.html">
+        <a href="<?= HOME_PATH ?>">
             <button class="btn btn-primary"><i class="glyphicon glyphicon-triangle-left" style="vertical-align: text-top; padding-right:5px"></i> Voltar ao Cardápio</button>
         </a>
         <div class="pull-right">
@@ -249,7 +264,7 @@
     <?php
         }else{
             echo '<h1 class="text-center">Você não possui produtos em seu carrinho!<br><br><b><a href="' . HOME_PATH . '">Clique aqui</a></b> para voltar ao <b>Cardápio</b> :)</h1><br>';
-            echo '<h3 class="text-center">Caso você não tenha pago este pedido, <a href="' . HOME_PATH . '/cliente/profile'  .'">clique aqui</a></h3>';
+            //echo '<h3 class="text-center">Caso você não tenha pago este pedido, <a href="' . HOME_PATH . '/cliente/profile'  .'">clique aqui</a></h3>';
         } 
     ?>
     </div>
