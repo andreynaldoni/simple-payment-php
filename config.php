@@ -12,7 +12,7 @@
 	define('DB_CHARSET','utf8');
     // URL
     define('HOME_PATH', 'https://php-payment.herokuapp.com'); // Production Path
-	//define('HOME_PATH', 'http://localhost/simple-payment-php'); // Local Development Path
+	//define('HOME_PATH', 'https://localhost/simple-payment-php'); // Local Development Path
     // Application
 	require_once 'app.php';
     // PHP_ENV ? production : development
@@ -57,6 +57,12 @@
             return false;
         }
         return false;
+    }
+    // HTTPS redirect
+    function https_check(){
+        if($_SERVER["HTTPS"] != "on"){
+            header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+        }
     }
     // Start the application
     $app = new SimplePayment();

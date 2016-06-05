@@ -1,9 +1,9 @@
 <?php
-    include_once 'business/categoriaprodutoNeg.php';
+    include_once 'business/categoriaNeg.php';
     
-    $categoriaprodutoNeg = new CategoriaProdutoNeg();
+    $categoriaNeg = new CategoriaNeg();
     
-    $categorias = $categoriaprodutoNeg->getList();
+    $categorias = $categoriaNeg->getList();
     
 ?>
     <div class="navbar-wrapper">

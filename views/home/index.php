@@ -1,7 +1,6 @@
 <?php
     include_once 'business/clienteNeg.php';
     include_once 'business/produtoNeg.php';
-    include_once 'business/ingredienteprodutoNeg.php';
     include_once 'business/ingredienteNeg.php';
     include_once 'business/pedidoNeg.php';
     include_once 'business/produtopedidoNeg.php';
@@ -43,7 +42,6 @@
             <br>
             <?php
                 $produtoNeg = new ProdutoNeg();
-                $ingredienteprodutoNeg = new IngredienteProdutoNeg();
                 $ingredienteNeg = new IngredienteNeg();
                 
                 if(count($this->params) > 1){
@@ -103,18 +101,10 @@
                                     </div>
                                     <hr>
                                     <?php
-                                        $ingredientesProduto = $ingredienteprodutoNeg->getIngredienteProduto($atual->getCdProduto());
+                                        $ingredientes = $ingredienteNeg->getList(array('cd_categoria' => $atual->getCdCategoria()));
                                         
-                                        if($ingredientesProduto != "Ocorreu um erro."){              
-                                            unset($ingredienteparams);
-                                            foreach($ingredientesProduto as $temp){
-                                                $ingredienteparams[] = $temp->getCdIngrediente();
-                                            }
-                                            
-                                            $ingparams = implode(', ', $ingredienteparams);
-                                            $ingredientes =  $ingredienteNeg->getIngredientePorCodigo($ingparams);
-                                            
-                                            if(count($ingredientes) > 0){
+                                        if(count($ingredientes) > 0){
+                                            if($ingredientes != 'Ocorreu um erro.'){
                                     ?>
                                     <h2><b>Acompanhamentos</b></h2>
                                     <!--<h4 class="text-center">
@@ -122,8 +112,13 @@
                                         *A pizza é confeccionada com bordas recheadas de Catupiry&trade;.
                                         </b>
                                     </h4>-->
-                                    <div class="row">
-                                    <?php foreach ($ingredientes as $ingrediente => $ingtemp) { ?>
+                                    <?php 
+                                                $rowing = 1;
+                                                foreach ($ingredientes as $ingrediente => $ingtemp) {
+                                                    if($rowing % 3 == 0){
+                                                        echo '<div class="row">';
+                                                    } 
+                                    ?>
                                         <div class="col-xs-4">
                                             <div class="checkbox">
                                                 <label>
@@ -131,9 +126,12 @@
                                                 </label>
                                             </div>
                                         </div>
-                                    <?php }?>
-                                    </div>
-                                    <?php
+                                    <?php 
+                                                if($rowing % 3 == 0){
+                                                    echo '</div>';
+                                                }
+                                                $rowing++;
+                                                }
                                             }
                                         }
                                     ?>

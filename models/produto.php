@@ -7,6 +7,7 @@
         private $vl_produto;
         private $qt_produto;
         private $im_produto;
+        private $cd_categoria;
         
         public function getCdProduto(){
             return $this->cd_produto;
@@ -56,14 +57,23 @@
             $this->im_produto = $im_produto;
         }
         
+        public function getCdCategoria(){
+            return $this->cd_categoria;
+        }
+        
+        public function setCdCategoria($cd_categoria){
+            $this->cd_categoria = $cd_categoria;
+        }
+        
         public function getProduto(){
             return array(
-              "cd_produto" => $this->cd_produto,
-              "nm_produto" => $this->nm_produto,
-              "ds_produto" => $this->ds_produto,
-              "vl_produto" => $this->vl_produto,
-              "qt_produto" => $this->qt_produto,
-              "im_produto" => $this->im_produto 
+              "cd_produto"   => $this->cd_produto,
+              "nm_produto"   => $this->nm_produto,
+              "ds_produto"   => $this->ds_produto,
+              "vl_produto"   => $this->vl_produto,
+              "qt_produto"   => $this->qt_produto,
+              "im_produto"   => $this->im_produto,
+              "cd_categoria" => $this->cd_categoria 
             );
         }
     }

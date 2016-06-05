@@ -14,10 +14,10 @@
                 return $ingredienteDAO->getIngredienteNoFrills($cd_produto);
             }
         }
-        
-        function getList(){
+                
+        function getList($params = null){
             $ingredienteDAO = new IngredienteDAO();
-            $ingredientes = $ingredienteDAO->listIngrediente();
+            $ingredientes = $ingredienteDAO->listIngrediente($params);
             return $ingredientes;
         }
                  

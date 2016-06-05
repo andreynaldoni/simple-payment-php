@@ -1,22 +1,20 @@
 SET foreign_key_checks = 0;
 -- SET @@auto_increment_increment=1;
-truncate table tb_categoria_produto;
+truncate table tb_categoria;
 truncate table tb_produto;
 truncate table tb_ingrediente;
 truncate table tb_cliente;
 truncate table tb_pedido;
 truncate table tb_parcela;
-truncate table tb_transacao;
-truncate table tb_ingrediente_produto;
+-- truncate table tb_transacao;
 truncate table tb_produto_pedido;
 
-drop table tb_categoria_produto;
+drop table tb_categoria;
 drop table tb_produto;
 drop table tb_ingrediente;
 drop table tb_cliente;
 drop table tb_pedido;
 drop table tb_parcela;
-drop table tb_transacao;
-drop table tb_ingrediente_produto;
+-- drop table tb_transacao;
 drop table tb_produto_pedido;
 -- SET foreign_key_checks = 1;

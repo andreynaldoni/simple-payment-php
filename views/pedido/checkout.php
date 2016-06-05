@@ -3,7 +3,6 @@
     include_once 'business/produtopedidoNeg.php';
     include_once 'business/produtoNeg.php';
     include_once 'business/ingredienteNeg.php';
-    include_once 'business/ingredienteprodutoNeg.php';
     
     if(isset($_POST['delete'])){
         array_splice($_SESSION['produtopedido'], $_POST['delete']['codigo'] - 1, 1);
@@ -67,7 +66,6 @@
                     <tbody>
                     <?php
                             $produtoNeg = new ProdutoNeg();
-                            $ingredienteprodutoNeg = new IngredienteProdutoNeg();
                             $ingredienteNeg = new IngredienteNeg();
                             $produtoPedido = $_SESSION['produtopedido'];
                             
@@ -145,18 +143,10 @@
                                                     </div>
                                                     <hr>
                                                     <?php
-                                                        $ingredientesProduto = $ingredienteprodutoNeg->getIngredienteProduto($atual->getCdProduto());
-                                                        
-                                                        if($ingredientesProduto != "Ocorreu um erro."){
-                                                            unset($ingredienteparams);
-                                                            foreach($ingredientesProduto as $temp){
-                                                                $ingredienteparams[] = $temp->getCdIngrediente();
-                                                            }
+                                                        $ingprod = $ingredienteNeg->getList(array('cd_categoria' => $produto->getCdCategoria()));
                                                             
-                                                            $ingparams = implode(', ', $ingredienteparams);
-                                                            $ingprod =  $ingredienteNeg->getIngredientePorCodigo($ingparams);
-                                                            
-                                                            if(count($ingprod) > 0){
+                                                        if(count($ingprod) > 0){
+                                                            if($ingprod != 'Ocorreu um erro.'){
                                                                 $ing = explode(',', $ing);
                                                     ?>
                                                     <h2><b>Acompanhamentos</b></h2>
@@ -184,11 +174,13 @@
                                                             </div>
                                                         </div>
                                                     <?php
-                                                            }
                                                         }
                                                     ?>
                                                     </div>
-                                                    <?php } ?>
+                                                    <?php
+                                                            } 
+                                                        } 
+                                                    ?>
                                                     <div class="row">
                                                         <div class="col-xs-12">
                                                             <h4 class="text-justify"><b>Observações:</b></h4>

@@ -25,7 +25,7 @@
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="remember-me"> Lembrar-me
+                    <input type="checkbox" value="remember-me" disabled> Lembrar-me
                 </label>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>

@@ -25,7 +25,7 @@ Simple Web Payment Transaction in PHP
 ```
   |php-payment/
   |--business/
-  |  |--categoriaprodutoNeg.php
+  |  |--categoriaNeg.php
   |  |--clienteNeg.php
   |  |--ingredienteNeg.php
   |  |--ingredienteprodutoNeg.php
@@ -44,7 +44,7 @@ Simple Web Payment Transaction in PHP
   |  |--produto-controller.php
   |
   |--dao/
-  |  |--categoriaprodutoDAO.php
+  |  |--categoriaDAO.php
   |  |--clienteDAO.php
   |  |--ingredienteDAO.php
   |  |--ingredienteprodutoDAO.php
@@ -80,7 +80,7 @@ Simple Web Payment Transaction in PHP
   |    |--UC Simple Payment.pdf
   |
   |--models/
-  |  |--categoriaproduto.php
+  |  |--categoria.php
   |  |--cliente.php
   |  |--clientepedido.php
   |  |--ingrediente.php

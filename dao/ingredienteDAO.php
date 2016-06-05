@@ -24,8 +24,8 @@ include_once 'database.php';
             }
         }
         
-        function listIngrediente(){
-            $link = DBSelect('Ingrediente');
+        function listIngrediente($params = null){
+            $link = DBSelect('Ingrediente', $params);
             if($link != null){
                 return $link;
             } else {

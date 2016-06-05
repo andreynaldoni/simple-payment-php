@@ -58,6 +58,7 @@ CREATE TABLE tb_pedido
     vl_total_pedido 	DECIMAL(10,2) NOT NULL,   
     ic_cancelado 		CHAR(2),
     qt_total_parcela 	INTEGER,
+    ds_pedido           VARCHAR(200),
     cd_cliente			INTEGER,
     PRIMARY KEY(cd_pedido)
 );
@@ -71,7 +72,7 @@ CREATE TABLE tb_parcela
     PRIMARY KEY(cd_pedido)
 );
 
-CREATE TABLE tb_transacao
+/*CREATE TABLE tb_transacao
 (
  cd_transacao  			INTEGER NOT NULL AUTO_INCREMENT,
  cd_pedido 				INTEGER,
@@ -85,17 +86,9 @@ CREATE TABLE tb_transacao
  ic_status_transacao 	INTEGER,
  nm_metodo_pagamento 	VARCHAR(60),
  PRIMARY KEY(cd_transacao)
-);
+);*/
 
 -- CRIAÇÃO DAS TABELAS DE RESOLUÇÃO
-
-CREATE TABLE tb_ingrediente_produto
-(
-	cd_produto 							INTEGER NOT NULL,
-    cd_ingrediente 						INTEGER NOT NULL,
-    qt_ingrediente_produto 				INTEGER NOT NULL,
-    vl_adicional_ingrediente_produto 	DECIMAL(10,2)
-);
 
 CREATE TABLE tb_produto_pedido
 (
@@ -108,7 +101,7 @@ CREATE TABLE tb_produto_pedido
     PRIMARY KEY(cd_produto_pedido)        
 );
 
-CREATE TABLE tb_categoria_produto
+CREATE TABLE tb_categoria
 (
 	cd_categoria INTEGER PRIMARY KEY AUTO_INCREMENT,
     nm_categoria VARCHAR(50),
@@ -116,29 +109,19 @@ CREATE TABLE tb_categoria_produto
 );
 
 ALTER TABLE tb_produto
-ADD CONSTRAINT FK_PRODUTO_CATEGORIA_PRODUTO
+ADD CONSTRAINT FK_PRODUTO_CATEGORIA
 FOREIGN KEY(cd_categoria)
-REFERENCES tb_categoria_produto(cd_categoria); 
+REFERENCES tb_categoria(cd_categoria); 
 
 ALTER TABLE tb_ingrediente
-ADD CONSTRAINT FK_INGREDIENTE_CATEGORIA_PRODUTO
+ADD CONSTRAINT FK_INGREDIENTE_CATEGORIA
 FOREIGN KEY(cd_categoria)
-REFERENCES tb_categoria_produto(cd_categoria); 
+REFERENCES tb_categoria(cd_categoria); 
 
 ALTER TABLE tb_pedido
 ADD CONSTRAINT FK_CLIENTE_PEDIDO
 FOREIGN KEY(cd_cliente)
 REFERENCES tb_cliente(cd_cliente);
-
-ALTER TABLE tb_ingrediente_produto
-ADD CONSTRAINT FK_PRODUTO_INGREDIENTE_PRODUTO
-FOREIGN KEY(cd_produto)
-REFERENCES tb_produto(cd_produto);
-
-ALTER TABLE tb_ingrediente_produto
-ADD CONSTRAINT FK_INGREDIENTE_INGREDIENTE_PRODUTO
-FOREIGN KEY(cd_ingrediente)
-REFERENCES tb_ingrediente(cd_ingrediente);
 
 ALTER TABLE tb_produto_pedido
 ADD CONSTRAINT FK_PEDIDO_PRODUTO_PEDIDO
@@ -155,10 +138,10 @@ ADD CONSTRAINT FK_PEDIDO_PARCELA
 FOREIGN KEY(cd_pedido)
 REFERENCES tb_pedido(cd_pedido);
 
-ALTER TABLE tb_transacao
+/*ALTER TABLE tb_transacao
 ADD CONSTRAINT FK_PEDIDO_TRANSACAO
 FOREIGN KEY(cd_pedido)
-REFERENCES tb_pedido(cd_pedido);
+REFERENCES tb_pedido(cd_pedido);*/
 
 -- configuração do auto_increment
 
@@ -167,29 +150,28 @@ ALTER TABLE tb_ingrediente AUTO_INCREMENT = 0;
 ALTER TABLE tb_cliente AUTO_INCREMENT = 0;
 ALTER TABLE tb_pedido AUTO_INCREMENT = 0;
 ALTER TABLE tb_parcela AUTO_INCREMENT = 0;
-ALTER TABLE tb_transacao AUTO_INCREMENT = 0;
-ALTER TABLE tb_ingrediente_produto AUTO_INCREMENT = 0;
+-- ALTER TABLE tb_transacao AUTO_INCREMENT = 0;
 ALTER TABLE tb_produto_pedido AUTO_INCREMENT = 0;
-ALTER TABLE tb_categoria_produto AUTO_INCREMENT = 0;
+ALTER TABLE tb_categoria AUTO_INCREMENT = 0;
 
 -- CARGA DE DADOS
 -- CATEGORIA PRODUTOS
-INSERT INTO tb_categoria_produto (nm_categoria, ds_categoria)
+INSERT INTO tb_categoria (nm_categoria, ds_categoria)
 VALUES ('Bebidas','Sucos, Refrigerantes e etc.');
 
-INSERT INTO tb_categoria_produto (nm_categoria, ds_categoria)
+INSERT INTO tb_categoria (nm_categoria, ds_categoria)
 VALUES ('Bebidas Alcoólicas','Ceverjas, Whiskeys, Vodkas, Vinhos, Cachaças e etc.');
 
-INSERT INTO tb_categoria_produto (nm_categoria, ds_categoria)
+INSERT INTO tb_categoria (nm_categoria, ds_categoria)
 VALUES ('Sobremesas Doces','Sorvetes, Tortas, Bolos e etc.');
 
-INSERT INTO tb_categoria_produto (nm_categoria, ds_categoria)
+INSERT INTO tb_categoria (nm_categoria, ds_categoria)
 VALUES ('Sobremesas Salgadas','Tortas salgadas, salgados de festa e etc.');
 
-INSERT INTO tb_categoria_produto (nm_categoria, ds_categoria)
+INSERT INTO tb_categoria (nm_categoria, ds_categoria)
 VALUES ('Pizzas Doces','Pizzas de sabores doces.');
 
-INSERT INTO tb_categoria_produto (nm_categoria, ds_categoria)
+INSERT INTO tb_categoria (nm_categoria, ds_categoria)
 VALUES ('Pizzas Salgadas','Pizzas tradicionais.');
  
 -- PRODUTOS
@@ -286,94 +268,6 @@ VALUES ('Limão', 'Rodelas', 100, 0.50, 1);
 
 INSERT INTO tb_ingrediente (nm_ingrediente, ds_ingrediente, qt_ingrediente, vl_ingrediente, cd_categoria)
 VALUES ('Laranja', 'Rodelas', 100, 0.50, 1);
-
--- INGREDIENTE PRODUTOS
--- Bebidas
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (1, 6, 25, 0.50);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (1, 7, 25, 0.50);
-
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (2, 6, 25, 0.50);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (2, 7, 25, 0.50);
-
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (3, 6, 25, 0.50);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (3, 7, 25, 0.50);
-
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (4, 6, 25, 0.50);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (4, 7, 25, 0.50);
--- Pizzas
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (9, 1, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (9, 2, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (9, 3, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (9, 4, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (9, 5, 20, 1);
-
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (10, 1, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (10, 2, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (10, 3, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (10, 4, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (10, 5, 20, 1);
-
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (11, 1, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (11, 2, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (11, 3, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (11, 4, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (11, 5, 20, 1);
-
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (12, 1, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (12, 2, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (12, 3, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (12, 4, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (12, 5, 20, 1);
-
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (13, 1, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (13, 2, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (13, 3, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (13, 4, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (13, 5, 20, 1);
-
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (14, 1, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (14, 2, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (14, 3, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (14, 4, 20, 1);
-INSERT INTO tb_ingrediente_produto (cd_produto, cd_ingrediente, qt_ingrediente_produto, vl_adicional_ingrediente_produto)
-VALUES (14, 5, 20, 1);
 
 -- CLIENTE 
 INSERT INTO tb_cliente (nm_cliente, nm_sobrenome, ic_admin_usuario, dt_nascimento, cd_telefone, cd_celular, ic_tipo_documento, cd_cpf, cd_cnpj, nm_pais, sg_estado, nm_cidade, cd_cep, nm_bairro, nm_rua, cd_numero, ds_complemento, nm_email_cliente, cd_cartao_cliente, cd_operadora_cartao, dt_validade_cartao, cd_senha)
