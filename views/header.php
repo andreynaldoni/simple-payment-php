@@ -1,4 +1,3 @@
-<?php https_check() ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#">
 <head>

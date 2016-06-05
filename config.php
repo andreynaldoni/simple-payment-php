@@ -58,12 +58,6 @@
         }
         return false;
     }
-    // HTTPS redirect
-    function https_check(){
-        if($_SERVER["HTTPS"] != "on"){
-            header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
-        }
-    }
     // Start the application
     $app = new SimplePayment();
 ?>
