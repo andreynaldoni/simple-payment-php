@@ -69,6 +69,6 @@
     <?php
         //Overlay background content
         if(!isset($this->params['menu_overlay'])){ 
-            echo "<br><br>\n";
+            echo "<br><br><br>\n";
         }
     ?>

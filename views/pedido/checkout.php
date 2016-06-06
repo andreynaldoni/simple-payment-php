@@ -149,7 +149,7 @@
                                                             if($ingprod != 'Ocorreu um erro.'){
                                                                 $ing = explode(',', $ing);
                                                     ?>
-                                                    <h2><b>Acompanhamentos</b></h2>
+                                                    <h2><b>Para deixar ainda mais gotoso :)</b></h2>
                                                     <?php 
                                                                 $rowing = 1;
                                                                 foreach ($ingprod as $ingrediente => $ingtemp) {

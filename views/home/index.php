@@ -27,7 +27,6 @@
         redirect('/');
     }
 ?>
-
     <div id="cardapio" class="container">
         <div class="text-center">
             <br>
@@ -49,7 +48,7 @@
                     echo '<h3><b><a href="' . HOME_PATH . '">Clique aqui</a></b> para visualizar o cardápio completo</h3>';
                 }else{
             ?>        
-                    <div class="row">
+                    <div class="row" style="margin-top: -20px">
                         <h1 class="text-center"><i class="glyphicon glyphicon-book" style="vertical-align: top;"></i> Cardápio :)</h1>
                         <hr>
                         <?php if(isset($_SESSION['cliente'])){
@@ -112,7 +111,7 @@
                                             if(count($ingredientes) > 0){
                                                 if($ingredientes != 'Ocorreu um erro.'){
                                     ?>
-                                    <h2><b>Acompanhamentos</b></h2>
+                                    <h2><b>Para deixar ainda mais gostoso :)</b></h2>
                                     <!--<h4 class="text-center">
                                         <b>
                                         *A pizza é confeccionada com bordas recheadas de Catupiry&trade;.

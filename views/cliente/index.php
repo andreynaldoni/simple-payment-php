@@ -95,7 +95,7 @@
                         foreach($clientes as $cliente => $atual){
                     ?>
                         <tr>
-                            <td class="text-center"><?= $atual->getCdCliente() ?></td>
+                            <td class="text-center"><b><?= $atual->getCdCliente() ?></b></td>
                             <td><?= $atual->getNmCliente() ?></td>
                             <td data-mask="(00) 0000-0000"><?php if($atual->getCdTelefone() != '0') echo $atual->getCdTelefone() ?></td>
                             <td data-mask="(00) 0000-00000"><?php if($atual->getCdCelular() != '0') echo $atual->getCdCelular() ?></td>
