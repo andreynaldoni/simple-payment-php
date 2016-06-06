@@ -2,8 +2,14 @@
     include "dao/ingredienteDAO.php";
      
     class IngredienteNeg{
-        function getIngrediente(){
-             
+        
+        private function camposObrigatorios($ingrediente){
+            if($ingrediente->getNmIngrediente() == "" || $ingrediente->getDsIngrediente() == "" ||
+               $ingrediente->getVlIngrediente() == "" || $ingrediente->getQtIngrediente() == "") {
+                echo '<h2 class="text-center">Você deve preencher todos os campos. :(</h2>';
+                return false;
+            }
+            return true;
         }
         
         function getIngredientePorCodigo($cd_produto){
@@ -23,6 +29,11 @@
                  
         function updateIngrediente($ingrediente){
             if(isset($ingrediente)){
+                
+                if(!$this->camposObrigatorios($ingrediente)){
+                    return;
+                }
+                
                 $ingredienteDAO = new IngredienteDAO();
                 $ingredienteDAO->updateIngrediente($ingrediente);
             }
@@ -37,6 +48,11 @@
          
         function gravarIngrediente($ingrediente){
             if(isset($ingrediente)){
+                
+                if(!$this->camposObrigatorios($ingrediente)){
+                    return;
+                }
+                                
                 $IngredienteDAO = new IngredienteDAO();
                 $IngredienteDAO->insertIngrediente($ingrediente);
             }

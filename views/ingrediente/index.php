@@ -45,11 +45,11 @@
                 <table class="table table-striped table-hover prod">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th class="text-center">ID</th>
                             <th>Nome</th>
                             <th>Descrição</th>
-                            <th>Estoque</th>
-                            <th>Valor</th>
+                            <th class="text-center">Estoque</th>
+                            <th class="text-center">Valor</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -58,11 +58,11 @@
                         foreach($ingredientes as $Ingrediente => $atual){
                     ?>
                         <tr>
-                            <td><?= $atual->getCdIngrediente() ?></td>
+                            <td class="text-center"><b><?= $atual->getCdIngrediente() ?></b></td>
                             <td><?= $atual->getNmIngrediente() ?></td>
                             <td><?= $atual->getDsIngrediente() ?></td>
-                            <td><?= $atual->getQtIngrediente() ?></td>
-                            <td>R$ <?= number_format($atual->getVlIngrediente(), 2, ',', '.') ?></td>
+                            <td class="text-center"><?= $atual->getQtIngrediente() ?></td>
+                            <td class="text-center"><b class="text-success">R$ <?= number_format($atual->getVlIngrediente(), 2, ',', '.') ?></b></td>
                             <td><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target="#<?= $atual->getCdIngrediente() ?>"  >
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </button></td>
@@ -129,9 +129,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         <button type="submit" name="delete" class="btn btn-danger" >Excluir</button>
                         <button type="submit" name="update" class="btn btn-primary" >Salvar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
                 </div>
             </div>
@@ -193,8 +193,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="insert" class="btn btn-success">Cadastrar</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="submit" name="insert" class="btn btn-success">Cadastrar</button>
                     </div>
                 </div>
             </div>

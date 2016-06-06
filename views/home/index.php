@@ -29,15 +29,6 @@
 ?>
 
     <div id="cardapio" class="container">
-        <div class="row">
-            <h1 class="text-center"><i class="glyphicon glyphicon-book" style="vertical-align: top;"></i> Cardápio :)</h1>
-            <hr>
-            <?php if(isset($_SESSION['cliente'])){
-                $cliente = $_SESSION['cliente'];
-            ?>
-            <h3 class="text-center">Olá <b><?=  $cliente->getNmCliente() ?></b> seja bem vindo(a), aqui você pode checar nosso cardápio ;)</h3>
-            <?php } ?>
-        </div>
         <div class="text-center">
             <br>
             <?php
@@ -52,13 +43,28 @@
                 
                 $script = '';
                 $row = 1;
-                                
-                foreach($produtos as $produto => $atual){
-                    if($atual->getQtProduto() > 0){
-                        if($row % 3 == 0){
-                            echo '<div class="row">';
-                        }
-                        $script = $script . '$("#mais'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$(this).attr("field");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());isNaN(t)?$("#qtd'.$atual->getCdProduto().'").val(0):$("#qtd'.$atual->getCdProduto().'").val(t+1)}),$("#menos'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$("#qtd'.$atual->getCdProduto().'");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());!isNaN(t)&&t>0?$("#qtd'.$atual->getCdProduto().'").val(t-1):$("#qtd'.$atual->getCdProduto().'").val(0)});';
+                          
+                if($produtos == 'Ocorreu um erro.'){
+                    echo '<h2><b>Ainda não temos nada para essa categoria</b> :(</h2>';
+                    echo '<h3><b><a href="' . HOME_PATH . '">Clique aqui</a></b> para visualizar o cardápio completo</h3>';
+                }else{
+            ?>        
+                    <div class="row">
+                        <h1 class="text-center"><i class="glyphicon glyphicon-book" style="vertical-align: top;"></i> Cardápio :)</h1>
+                        <hr>
+                        <?php if(isset($_SESSION['cliente'])){
+                            $cliente = $_SESSION['cliente'];
+                        ?>
+                        <h3 class="text-center">Olá <b><?=  $cliente->getNmCliente() ?></b> seja bem vindo(a), aqui você pode checar nosso cardápio ;)</h3>
+                        <?php } ?>
+                    </div>
+            <?php 
+                    foreach($produtos as $produto => $atual){
+                        if($atual->getQtProduto() > 0){
+                            if($row % 3 == 0){
+                                echo '<div class="row">';
+                            }
+                            $script = $script . '$("#mais'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$(this).attr("field");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());isNaN(t)?$("#qtd'.$atual->getCdProduto().'").val(0):$("#qtd'.$atual->getCdProduto().'").val(t+1)}),$("#menos'.$atual->getCdProduto().'").click(function(a){a.preventDefault(),fieldName=$("#qtd'.$atual->getCdProduto().'");var t=parseInt($("#qtd'.$atual->getCdProduto().'").val());!isNaN(t)&&t>0?$("#qtd'.$atual->getCdProduto().'").val(t-1):$("#qtd'.$atual->getCdProduto().'").val(0)});';
             ?>
             <div class="col-sm-4">
                 <a href="#" data-toggle="modal" data-target="#produto<?= $atual->getCdProduto() ?>">
@@ -101,10 +107,10 @@
                                     </div>
                                     <hr>
                                     <?php
-                                        $ingredientes = $ingredienteNeg->getList(array('cd_categoria' => $atual->getCdCategoria()));
-                                        
-                                        if(count($ingredientes) > 0){
-                                            if($ingredientes != 'Ocorreu um erro.'){
+                                            $ingredientes = $ingredienteNeg->getList(array('cd_categoria' => $atual->getCdCategoria()));
+                                            
+                                            if(count($ingredientes) > 0){
+                                                if($ingredientes != 'Ocorreu um erro.'){
                                     ?>
                                     <h2><b>Acompanhamentos</b></h2>
                                     <!--<h4 class="text-center">
@@ -113,11 +119,11 @@
                                         </b>
                                     </h4>-->
                                     <?php 
-                                                $rowing = 1;
-                                                foreach ($ingredientes as $ingrediente => $ingtemp) {
-                                                    if($rowing % 3 == 0){
-                                                        echo '<div class="row">';
-                                                    } 
+                                                    $rowing = 1;
+                                                    foreach ($ingredientes as $ingrediente => $ingtemp) {
+                                                        if($rowing % 3 == 0){
+                                                            echo '<div class="row">';
+                                                        }
                                     ?>
                                         <div class="col-xs-4">
                                             <div class="checkbox">
@@ -127,13 +133,13 @@
                                             </div>
                                         </div>
                                     <?php 
-                                                if($rowing % 3 == 0){
-                                                    echo '</div>';
-                                                }
-                                                $rowing++;
+                                                        if($rowing % 3 == 0){
+                                                            echo '</div>';
+                                                        }
+                                                        $rowing++;
+                                                    }
                                                 }
                                             }
-                                        }
                                     ?>
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -153,14 +159,15 @@
                 <br><br><br>
             </div>
             <?php
-                        if($row % 3 == 0){
-                            echo '</div>';
+                            if($row % 3 == 0){
+                                echo '</div>';
+                            }
+                            $row++;
                         }
-                        $row++;
                     }
+                    $this->params = array_merge(array('script' => $script), $this->params);
+                    //if ($row % 3 != 1) echo "</div>";
                 }
-                $this->params = array_merge(array('script' => $script), $this->params);
-                //if ($row % 3 != 1) echo "</div>";
             ?>
         </div>
     </div>

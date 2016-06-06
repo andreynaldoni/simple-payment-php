@@ -6,7 +6,7 @@
             $clienteDAO = new ClienteDAO();
             $clientes = $clienteDAO->listCliente($params);
             
-            return  $clientes;
+            return $clientes;
         }
 
         function updateCliente($cliente){

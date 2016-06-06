@@ -143,14 +143,14 @@
                                     <label for="produto[vl_produto]">Valor:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                        <input name="produto[vl_produto]" type="text" class="form-control" data-mask="#.##0,00" data-mask-reverse="true" placeholder="Ex: R$ 5,00" maxlength="10" value="<?= $atual->getVlProduto() ?>"/>
+                                        <input name="produto[vl_produto]" type="text" class="form-control" data-mask="#.##0,00" data-mask-reverse="true" placeholder="Ex: R$ 5,00" maxlength="10" minlength="3" value="<?= $atual->getVlProduto() ?>"/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="produto[qt_produto]">Quantidade:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                        <input name="produto[qt_produto]" type="text" class="form-control" data-mask="00000000000" maxlength="11" value="<?= $atual->getQtProduto() ?>"/>
+                                        <input name="produto[qt_produto]" type="text" class="form-control" data-mask="00000000000" minlength="1" maxlength="11" value="<?= $atual->getQtProduto() ?>"/>
                                     </div>
                                 </div>
                             </div>
@@ -168,9 +168,9 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                             <button type="submit" name="delete" class="btn btn-danger">Excluir</button>
                             <button type="submit" id="update" name="update" class="btn btn-primary">Salvar</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                         </div>
                         <?php 
                             $this->params['script'] = 
@@ -240,14 +240,14 @@
                             <label for="produto[vl_produto]">Valor:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                <input name="produto[vl_produto]" type="text" class="form-control" data-mask="#.##0,00" data-mask-reverse="true" placeholder="Ex: R$ 5,00" maxlength="10"/>
+                                <input name="produto[vl_produto]" type="text" class="form-control" data-mask="#.##0,00" data-mask-reverse="true" placeholder="Ex: R$ 5,00" minlength="3" maxlength="10"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="produto[qt_produto]">Quantidade:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                <input name="produto[qt_produto]" type="text" data-mask="00000000000" maxlength="11" class="form-control" placeholder="Ex: 100"/>
+                                <input name="produto[qt_produto]" type="text" data-mask="00000000000" minlength="1" maxlength="11" class="form-control" placeholder="Ex: 100"/>
                             </div>
                         </div>
                     </div>
@@ -286,8 +286,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="insert" id="insert" class="btn btn-success">Cadastrar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" name="insert" id="insert" class="btn btn-success">Cadastrar</button>
                 </div>
                 </div>
             </div>

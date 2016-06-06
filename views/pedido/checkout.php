@@ -150,8 +150,13 @@
                                                                 $ing = explode(',', $ing);
                                                     ?>
                                                     <h2><b>Acompanhamentos</b></h2>
-                                                    <div class="row">
-                                                    <?php foreach ($ingprod as $ingrediente => $ingtemp) { ?>
+                                                    <?php 
+                                                                $rowing = 1;
+                                                                foreach ($ingprod as $ingrediente => $ingtemp) {
+                                                                    if($rowing % 3 == 0){
+                                                                        echo '<div class="row">';
+                                                                    } 
+                                                    ?>
                                                         <div class="col-xs-4">
                                                             <div class="checkbox">
                                                                 <label>
@@ -174,10 +179,11 @@
                                                             </div>
                                                         </div>
                                                     <?php
-                                                        }
-                                                    ?>
-                                                    </div>
-                                                    <?php
+                                                                    if($rowing % 3 == 0){
+                                                                        echo '</div>';
+                                                                    }
+                                                                    $rowing++;
+                                                                }
                                                             } 
                                                         } 
                                                     ?>

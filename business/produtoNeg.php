@@ -3,6 +3,15 @@
      
     class ProdutoNeg{
         
+        private function camposObrigatorios($produto){
+            if($produto->getNmProduto() == "" || $produto->getDsProduto() == "" ||
+               $produto->getVlProduto() == "" || $produto->getQtProduto() == "") {
+                echo '<h2 class="text-center">Você deve preencher todos os campos. :(</h2>';
+                return false;
+            }
+            return true;
+        }
+        
         private function checkImg($produto){
             $type = $produto["type"]['im_produto'];
                         
@@ -40,7 +49,11 @@
         function updateProduto($produto){
             if(isset($produto)){
                 $produtoDAO = new ProdutoDAO();
-
+                
+                if(!$this->camposObrigatorios($produto)){
+                    return;
+                }
+                
                 if($_FILES['produto']['name']['im_produto'] != null){
                     if ($this->checkImg($_FILES['produto'])){
                         $img_name = $produto->getCdProduto() . '.' . explode('/', $_FILES['produto']['type']['im_produto'])[1];      
@@ -60,6 +73,10 @@
         function gravarProduto($produto){
             if(isset($produto)){
                 $produtoDAO = new ProdutoDAO();
+                
+                if(!$this->camposObrigatorios($produto)){
+                    return;
+                }
                 
                 if($_FILES['produto']['name']['im_produto'] != null){
                     $produtoDAO->insertProduto($produto);
